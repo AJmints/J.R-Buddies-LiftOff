@@ -1,5 +1,12 @@
-# Project Name Placeholder
-<h2>J.R Buddies LIFT OFF PROJECT</h2>
+# BookMaster
+J.R Buddies LIFT OFF PROJECT
 
 ## Overview of Project
 Library Application with admin panel
+
+### TechStack
+-React</br>
+-JavaScript/HTML/CSS</br>
+-Java</br>
+-SpringBoot</br>
+-MySQL</br>
