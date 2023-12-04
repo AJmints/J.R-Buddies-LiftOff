@@ -10,3 +10,8 @@ Library Application with admin panel
 -Java</br>
 -SpringBoot</br>
 -MySQL</br>
+
+## Meet the Team
+
+-Name:
+-Features: 
