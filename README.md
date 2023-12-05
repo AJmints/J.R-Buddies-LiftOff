@@ -17,4 +17,4 @@ Library Application with admin panel
 -Features: Customers can manage cart and check out /return books (Full CRUD requirement)</br>
     Check in/out and on hold features</br>
     Due dates/fines/renew</br>
-I   nventory display/sort/search features
+    Inventory display/sort/search features
