@@ -13,5 +13,5 @@ Library Application with admin panel
 
 ## Meet the Team
 
--Name:
--Features: 
+-Name: Alex</br>
+-Features: Examples
