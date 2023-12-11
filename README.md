@@ -13,8 +13,8 @@ Library Application with admin panel
 
 ## Meet the Team
 
--Name: Chad Harper</br>
--Features: Customers can manage cart and check out /return books (Full CRUD requirement)</br>
-    Check in/out and on hold features</br>
-    Due dates/fines/renew</br>
-    Inventory display/sort/search features
+-Name: Alex</br>
+-Features: Examples</br>
+
+-Name: Alex</br>
+-Features: Examples</br>
