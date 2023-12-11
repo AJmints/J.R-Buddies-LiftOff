@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.launchcode.bookmaster.BookMasterApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-12-08T02:35:27" hostname="Melanys-MBP.lan" time="0.649">
+  <properties/>
+  <testcase name="contextLoads()" classname="org.launchcode.bookmaster.BookMasterApplicationTests" time="0.649"/>
+  <system-out><![CDATA[20:35:26.245 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [org.launchcode.bookmaster.BookMasterApplicationTests]: BookMasterApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:35:26.333 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration org.launchcode.bookmaster.BookMasterApplication for test class org.launchcode.bookmaster.BookMasterApplicationTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.0)
+
+2023-12-07T20:35:26.651-06:00  INFO 29929 --- [    Test worker] o.l.b.BookMasterApplicationTests         : Starting BookMasterApplicationTests using Java 17.0.8 with PID 29929 (started by mylaptop in /Users/mylaptop/Projects/LaunchCode/J.R-Buddies-LiftOff)
+2023-12-07T20:35:26.652-06:00  INFO 29929 --- [    Test worker] o.l.b.BookMasterApplicationTests         : No active profile set, falling back to 1 default profile: "default"
+2023-12-07T20:35:27.454-06:00  INFO 29929 --- [    Test worker] o.l.b.BookMasterApplicationTests         : Started BookMasterApplicationTests in 0.998 seconds (process running for 1.913)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
