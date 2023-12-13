@@ -1,25 +1,31 @@
 import react, {useState} from "react";
 import axios from "axios";
+import DisplayBook from "../components/DisplayBook";
 
 const Search=()=>{
     const [search, setSearch] = useState("");
+    const [bookData, setBookData] = useState([]);
 
     const searchBook = (e) => {
         e.preventDefault();
         axios.get('https://www.googleapis.com/books/v1/volumes?q='+search+'&key=AIzaSyBp48rUKYmtTfkAGAktCqmsmgOZAjRxR3g')
-        .then(res=>console.log(res))
+        .then(res=>setBookData(res.data.items))
         .catch(err=>console.log(err));
     }
 
     return(
         <>
             <div>
-                <h2>Search Books</h2>
+                <h2>Search For Books</h2>
                 <form onSubmit = {searchBook}>
-                    <input type="text" placeholder="Enter Book Name" value={search}
+                    <input type="text" placeholder="Enter Keyword" value={search}
                         onChange={e=>setSearch(e.target.value)}/>
                     <button type="submit">Submit</button>
                 </form>
+            </div>
+
+            <div>
+                <DisplayBook book={bookData} />
             </div>
         </>)
 }
