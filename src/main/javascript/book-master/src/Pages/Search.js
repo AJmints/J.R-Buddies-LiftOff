@@ -1,6 +1,6 @@
 import react, {useState} from "react";
 import axios from "axios";
-import DisplayBook from "../components/DisplayBook";
+import DisplayResults from "../components/DisplayResults";
 
 const Search=()=>{
     const [search, setSearch] = useState("");
@@ -8,7 +8,7 @@ const Search=()=>{
 
     const searchBook = (e) => {
         e.preventDefault();
-        axios.get('https://www.googleapis.com/books/v1/volumes?q='+search+'&key=AIzaSyBp48rUKYmtTfkAGAktCqmsmgOZAjRxR3g')
+        axios.get('https://www.googleapis.com/books/v1/volumes?q='+search+'&key=AIzaSyBp48rUKYmtTfkAGAktCqmsmgOZAjRxR3g'+'&maxResults=40')
         .then(res=>setBookData(res.data.items))
         .catch(err=>console.log(err));
     }
@@ -20,12 +20,12 @@ const Search=()=>{
                 <form onSubmit = {searchBook}>
                     <input type="text" placeholder="Enter Keyword" value={search}
                         onChange={e=>setSearch(e.target.value)}/>
-                    <button type="submit">Submit</button>
+                    <button type="submit">Search</button>
                 </form>
             </div>
 
             <div>
-                <DisplayBook book={bookData} />
+                <DisplayResults results={bookData} />
             </div>
         </>)
 }
