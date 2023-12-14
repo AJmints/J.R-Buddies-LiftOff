@@ -1,10 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
 import Main from './components/Main';
+import DisplayBook from './components/DisplayBook';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
 function App() {
   return (
-    <Main />
+    <BrowserRouter>
+        <Routes>
+            <Route exact path='/' Component={Main} />
+            <Route exact path='/DisplayBook' Component={DisplayBook} />
+        </Routes>
+    </BrowserRouter>
     /*<div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
