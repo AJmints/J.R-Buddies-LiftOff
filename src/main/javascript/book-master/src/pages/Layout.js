@@ -1,9 +1,11 @@
 import { Outlet, Link } from "react-router-dom";
+import Header from "../components/header";
 
 const Layout = () => {
     return (
         <>
             <nav>
+                <Header />
                 <ul>
                     <li>
                         <Link to="/">Home</Link>
@@ -22,7 +24,7 @@ const Layout = () => {
                     </li>
                 </ul>
             </nav>
-            
+
             <Outlet />
         </>
     )
