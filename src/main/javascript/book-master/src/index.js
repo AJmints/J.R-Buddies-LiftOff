@@ -6,7 +6,7 @@ import UserRegistration from './pages/UserRegistration'
 import UserSignin from './pages/UserSignin'
 import reportWebVitals from './reportWebVitals';
 import Search from './pages/Search'
-import DisplayBook from './components/DisplayBook';
+import DisplayBook from './pages/DisplayBook';
 import {
   createBrowserRouter,
   RouterProvider,
