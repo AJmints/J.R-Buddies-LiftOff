@@ -1,7 +1,14 @@
 package org.launchcode.bookmaster.book;
 
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import org.launchcode.bookmaster.abstractEntity.AbstractEntity;
 import jakarta.persistence.Entity;
+import org.launchcode.bookmaster.loan.Loan;
+import org.launchcode.bookmaster.review.Review;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -13,6 +20,12 @@ public class Book extends AbstractEntity {
     private String gender;
     private Integer total_quantity;
     private Integer available_quantity;
+
+    @OneToMany(mappedBy= "book")
+    private final List<Loan> loans = new ArrayList<>();
+
+    @OneToMany(mappedBy= "book")
+    private final List<Review> reviews = new ArrayList<>();
 
     public Book(String title, String author, String isbn, String gender, Integer total_quantity, Integer available_quantity) {
         this.title = title;
@@ -71,6 +84,14 @@ public class Book extends AbstractEntity {
 
     public void setAvailable_quantity(Integer available_quantity) {
         this.available_quantity = available_quantity;
+    }
+
+    public List<Loan> getLoans() {
+        return loans;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
     }
 
     @Override

@@ -1,9 +1,12 @@
 package org.launchcode.bookmaster.User;
 
+import jakarta.persistence.*;
 import org.launchcode.bookmaster.abstractEntity.AbstractEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import org.launchcode.bookmaster.loan.Loan;
+import org.launchcode.bookmaster.review.Review;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User extends AbstractEntity {
@@ -16,6 +19,12 @@ public class User extends AbstractEntity {
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @OneToMany(mappedBy= "user")
+    private final List<Review> reviews = new ArrayList<>();
+
+    @OneToMany(mappedBy= "user")
+    private final List<Loan> loans = new ArrayList<>();
 
     public User(String firstname, String lastname, String phone, String address, String email, String password, Role role) {
         this.firstname = firstname;
@@ -83,6 +92,14 @@ public class User extends AbstractEntity {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public List<Loan> getLoans() {
+        return loans;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
     }
 
     @Override

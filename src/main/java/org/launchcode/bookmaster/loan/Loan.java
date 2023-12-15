@@ -20,7 +20,9 @@ public class Loan extends AbstractEntity {
     private Date LoanDateIn;
 
 
-    public Loan(Date loanDateOut, Date loanDateIn) {
+    public Loan(Book book, User user,Date loanDateOut, Date loanDateIn) {
+        this.book= book;
+        this.user = user;
         this.loanDateOut = loanDateOut;
         this.LoanDateIn = loanDateIn;
     }
@@ -59,6 +61,8 @@ public class Loan extends AbstractEntity {
     public void setLoanDateIn(Date loanDateIn) {
         LoanDateIn = loanDateIn;
     }
+
+
 
 
 }
