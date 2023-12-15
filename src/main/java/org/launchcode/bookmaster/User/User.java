@@ -1,6 +1,6 @@
 package org.launchcode.bookmaster.User;
 
-import com.launchcode.tags.abstractEntity.AbstractEntity;
+import org.launchcode.bookmaster.abstractEntity.AbstractEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;

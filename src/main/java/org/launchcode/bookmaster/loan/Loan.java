@@ -1,8 +1,8 @@
 package org.launchcode.bookmaster.loan;
 
-import com.launchcode.tags.User.User;
-import com.launchcode.tags.abstractEntity.AbstractEntity;
-import com.launchcode.tags.book.Book;
+import org.launchcode.bookmaster.User.User;
+import org.launchcode.bookmaster.abstractEntity.AbstractEntity;
+import org.launchcode.bookmaster.book.Book;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 

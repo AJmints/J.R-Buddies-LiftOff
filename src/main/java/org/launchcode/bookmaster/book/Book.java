@@ -1,6 +1,6 @@
 package org.launchcode.bookmaster.book;
 
-import com.launchcode.tags.abstractEntity.AbstractEntity;
+import org.launchcode.bookmaster.abstractEntity.AbstractEntity;
 import jakarta.persistence.Entity;
 
 
