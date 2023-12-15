@@ -1,6 +1,7 @@
 import { Outlet, Link } from "react-router-dom";
 import Header from "../components/header";
 import "./layout.css"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Layout = () => {
     return (
