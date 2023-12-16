@@ -13,8 +13,14 @@ Library Application with admin panel
 
 ## Meet the Team
 
--Name: Alex</br>
+- Martin </br>
 -Features: Examples</br>
 
--Name: Alex</br>
+- Ronald </br>
+-Features: Examples</br>
+
+- Melany </br>
+-Features: Examples</br>
+
+- Chad </br>
 -Features: Examples</br>
