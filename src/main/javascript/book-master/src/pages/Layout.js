@@ -5,20 +5,50 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Layout = () => {
     return (
-        <>
-            <nav>
+        <div className="body">
+            <header>
                 <Header />
-                <div className="navbar">
-                    <Link to="/">Home</Link>
-                    <Link to="advanced_search">Advanced Search</Link>
-                    <Link to="login_and_register">Login/Register</Link>
-                    <Link to="customer_account">Customer Account</Link>
-                    <Link to="admin_account">Admin Account</Link>
-                </div>
+            </header>
+            
+            <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
+                <ul className="navbar-nav">
+                    <li className="nav-item">
+                        <Link to="/" className="nav-link">Home</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="advanced_search" className="nav-link">Advanced Search</Link>
+                    </li>
+                    <form className="d-flex">
+                        <input className="form-control me-2" type="text" placeholder="Quick Search"></input>
+                        <button className="btn btn-primary" type="button">Search</button>
+                    </form>
+                    <li className="nav-item">
+                        <Link to="user_sign_in" className="nav-link">Login</Link>
+                    </li>
+                    <li className="nav-item invisible">
+                        <Link to="customer_account" className="nav-link">Customer Account</Link>
+                    </li>
+                    <li className="nav-item invisible">
+                        <Link to="admin_account" className="nav-link">Admin Account</Link>
+                    </li>
+                        
+                        
+
+                        
+
+                        
+                        
+                </ul>
+
             </nav>
 
-            <Outlet />
-        </>
+            <main>
+              <Outlet />  
+            </main>
+
+            <footer>
+            </footer>
+        </div>
     )
 };
 

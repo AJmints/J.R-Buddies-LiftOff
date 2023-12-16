@@ -1,7 +1,7 @@
 .header-img {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/header-background.jpg");
     height: 150px;
-    width: 90vw;
+    width: 100%;
     margin: auto;
     background-position: center;
     background-repeat: no-repeat;
