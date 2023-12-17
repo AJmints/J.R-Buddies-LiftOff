@@ -18,6 +18,20 @@ const DisplayResults=({results})=>{
     const saveBooksToDatabase = (event) => {
         event.preventDefault();
         console.log(checked);
+
+        //Create book component to hold information
+        //const book = {title, author, description}
+
+        //TODO: Uncomment when adding books to database has been implemented
+        //Remember to add @CrossOrigin to the Book Controller
+        /*
+        fetch("http://localhost:8080/book/add", {
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify(checked)
+        }).then(()=>{
+            console.log("Books added")
+        })*/
     }
 
     return(
