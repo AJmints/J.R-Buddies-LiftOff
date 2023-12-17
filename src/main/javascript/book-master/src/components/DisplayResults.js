@@ -16,7 +16,7 @@ const DisplayResults=({results})=>{
     };
 
     const saveBooksToDatabase = (event) => {
-        e.preventDefault();
+        event.preventDefault();
         console.log(checked);
     }
 
@@ -32,12 +32,14 @@ const DisplayResults=({results})=>{
                         return(
                             <div key={index}>
                                 <img src={bookImg} alt="img"/>
-                                <input value={item} type="checkbox" onChange={handleChecks}/>
+                                <br></br>
+                                <input value={[item.volumeInfo.title, bookImg, item.volumeInfo.description]} type="checkbox" onChange={handleChecks}/>
                                 <span>{item.volumeInfo.title}</span>
                             </div>
                         )
                     })
                 }
+                <br></br>
                 <button onClick={saveBooksToDatabase}>Save Selected Books</button>
             </div>
         </div>
