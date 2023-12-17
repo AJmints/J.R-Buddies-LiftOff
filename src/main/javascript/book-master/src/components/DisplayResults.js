@@ -1,17 +1,51 @@
-import react from "react";
+import react, { useState } from "react";
 import {Link} from "react-router-dom";
 
 const DisplayResults=({results})=>{
-    console.log(results[0]);
+    const[checked, setChecked] = useState([]);
+
+    const handleChecks = (event) => {
+        var updates = [...checked];
+        if(event.target.checked){
+            updates = [...checked, event.target.value];
+        }
+        else{
+            updates.splice(checked.indexOf(event.target.value), 1);
+        }
+        setChecked(updates);
+    };
+
+    const saveBooksToDatabase = (event) => {
+        e.preventDefault();
+        console.log(checked);
+    }
+
     return(
-        <>
-            {
-                results.map((item) => {
-                    let bookImg = item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail;
-                    let eBook = item.saleInfo && item.saleInfo.isEbook;
-                    let bookInfo = {title: item.volumeInfo && item.volumeInfo.title};
-                    console.log(bookInfo);
-                    if(bookImg !== undefined && eBook !== undefined){
+        <div className = "bookList">
+            <div className="checkList">
+                {
+                    results.map((item, index) => {
+                        let bookImg = item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail;
+                        let eBook = item.saleInfo && item.saleInfo.isEbook;
+                        let bookInfo = {title: item.volumeInfo && item.volumeInfo.title};
+                        
+                        return(
+                            <div key={index}>
+                                <img src={bookImg} alt="img"/>
+                                <input value={item} type="checkbox" onChange={handleChecks}/>
+                                <span>{item.volumeInfo.title}</span>
+                            </div>
+                        )
+                    })
+                }
+                <button onClick={saveBooksToDatabase}>Save Selected Books</button>
+            </div>
+        </div>
+    )
+}
+
+/*
+if(bookImg !== undefined && eBook !== undefined){
                         if(eBook){
                             return(
                                 <>
@@ -45,17 +79,6 @@ const DisplayResults=({results})=>{
                             )
                         }
                     }
-                    return(
-                        <>
-                        </>
-                    )
-                })
-            }
-        </>
-    )
-}
-
-/*
 */
 
 export default DisplayResults;
