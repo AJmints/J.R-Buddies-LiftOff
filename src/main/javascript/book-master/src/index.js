@@ -2,9 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import UserRegistration from './pages/UserRegistration'
-import UserSignin from './pages/UserSignin'
+import UserRegistration from './Pages/UserRegistration'
+import UserSignin from './Pages/UserSignin'
 import reportWebVitals from './reportWebVitals';
+import Search from './Pages/Search'
+import DisplayBook from './Pages/DisplayBook';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -23,6 +25,14 @@ const router = createBrowserRouter([
   {
     path: "signin",
     element: <UserSignin/>,
+  },
+  {
+      path: "search",
+      element: <Search />,
+  },
+  {
+      path: "displayBook",
+      element: <DisplayBook />,
   },
 ]);
 
