@@ -1,6 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 
 function Registration() {
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [address, setAddress] = useState("");
+    const [password, setPassword] = useState("");
+    const [verifyPassword, setVerifyPassword] = useState("");
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+    }
+
+        try {
+            const response = await fetch("endpoint", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    firstName,
+                    lastName,
+                    email,
+                    phoneNumber,
+                    address,
+                    password,
+                    verifyPassword,
+                }),
+            });
+
+            if (response.ok) {
+                // Successful registration
+
+            } else {
+                // Handle registration failure
+            }
+        } catch (error) {
+            console.error("Error during registration:", error);
+        }
+
+        };
+
+        
     return (
          <div class='container mt-5'>
             <h3>Registration Form</h3>
