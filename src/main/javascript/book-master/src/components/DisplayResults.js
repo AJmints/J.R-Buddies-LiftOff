@@ -17,21 +17,22 @@ const DisplayResults=({results})=>{
 
     const saveBooksToDatabase = (event) => {
         event.preventDefault();
-        console.log(checked);
+        checked.map((item) => {
+            console.log(item)
+            //Create book component to hold information
+            //const book = {title, author, description}
 
-        //Create book component to hold information
-        //const book = {title, author, description}
-
-        //TODO: Uncomment when adding books to database has been implemented
-        //Remember to add @CrossOrigin to the Book Controller
-        /*
-        fetch("http://localhost:8080/book/add", {
-            method:"POST",
-            headers:{"Content-Type":"application/json"},
-            body:JSON.stringify(checked)
-        }).then(()=>{
-            console.log("Books added")
-        })*/
+            //TODO: Uncomment when adding books to database has been implemented
+            //Remember to add @CrossOrigin to the Book Controller
+            /*
+            fetch("http://localhost:8080/book/add", {
+                method:"POST",
+                headers:{"Content-Type":"application/json"},
+                body:JSON.stringify(checked)
+            }).then(()=>{
+                console.log("Book added")
+            })*/
+        });
     }
 
     return(
@@ -42,12 +43,13 @@ const DisplayResults=({results})=>{
                         let bookImg = item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail;
                         let eBook = item.saleInfo && item.saleInfo.isEbook;
                         let bookInfo = {title: item.volumeInfo && item.volumeInfo.title};
+                        //console.log(item);
                         
                         return(
                             <div key={index}>
                                 <img src={bookImg} alt="img"/>
                                 <br></br>
-                                <input value={[item.volumeInfo.title, bookImg, item.volumeInfo.description]} type="checkbox" onChange={handleChecks}/>
+                                <input value={[item.volumeInfo.title, item.volumeInfo.authors, bookImg, item.volumeInfo.description, item.volumeInfo.categories]} type="checkbox" onChange={handleChecks}/>
                                 <span>{item.volumeInfo.title}</span>
                             </div>
                         )
