@@ -1,10 +1,19 @@
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link , useNavigate } from "react-router-dom";
 import Header from "../components/header";
 import "./layout.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Collapse } from "bootstrap";
+import { useState } from "react";
+
 
 const Layout = () => {
+    const [keyword, setKeyword] = useState("");
+    const navigate = useNavigate();
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        navigate("/search_results", { state: {key: "keyword"}});
+    }
+
     return (
         <div className="body">
             <header>
@@ -21,9 +30,10 @@ const Layout = () => {
                         <Link to="advanced_search" className="nav-link">Advanced Search</Link>
                     </li>
 
-                    <form className="d-flex">
-                        <input className="form-control me-2" type="text" placeholder="Quick Search" id="search_keyword"></input>
-                        <button className="btn btn-primary" type="button">Search</button>
+                    {/* will use quick search to search all fields with keyword and go to searchResults.js page to display results */}
+                    <form className="d-flex" onSubmit={handleSearch}>
+                        <input className="form-control me-2" type="text" placeholder="Quick Search" id="search_keyword" value={keyword} onChange={(e) => setKeyword(e.target.value)}></input>
+                        <button className="btn btn-primary" type="Submit" >Search</button>
                     </form>
 
                     <li className="nav-item">
@@ -48,7 +58,7 @@ const Layout = () => {
             </main>
 
             <footer>
-                <div className="navbar navbar-expand-sm bg-dark navbar-dark fixed-bottom">
+                <div className="navbar navbar-expand-sm bg-dark navbar-dark fixed-bottom justify-content-center">
                     <span className="navbar-text">JR-Buddies &copy; </span>
                 </div>
             </footer>
