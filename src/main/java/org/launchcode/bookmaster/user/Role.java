@@ -1,4 +1,4 @@
-package org.launchcode.bookmaster.User;
+package org.launchcode.bookmaster.user;
 
 public enum Role {
     USER,

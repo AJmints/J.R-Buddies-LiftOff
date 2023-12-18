@@ -1,21 +1,44 @@
-package org.launchcode.bookmaster.User;
+package org.launchcode.bookmaster.user;
 
+//import lombok.RequiredArgsConstructor;
+//import org.launchcode.bookmaster.user.auth.AuthenticationRequest;
+//import org.launchcode.bookmaster.user.auth.AuthenticationResponse;
+//import org.launchcode.bookmaster.user.auth.AuthenticationService;
+//import org.launchcode.bookmaster.user.auth.RegisterRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
 
+//@RequiredArgsConstructor
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
+@CrossOrigin
 public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+//    private final AuthenticationService service;
 
-    @PostMapping
-    public User saveUser(@RequestBody User newUser){
-        return userRepository.save(newUser);
+
+//    @PostMapping("/register")
+//    public ResponseEntity<AuthenticationResponse> register(
+//            @RequestBody RegisterRequest request
+//    ) {
+//        return  ResponseEntity.ok(service.register(request));
+//    }
+
+
+//    @PostMapping("/login")
+//    public ResponseEntity<AuthenticationResponse> authenticate(
+//            @RequestBody AuthenticationRequest request
+//    ) {
+//        return  ResponseEntity.ok(service.authenticate(request));
+//    }
+
+    @PostMapping("/register")
+    public User saveUser(@RequestBody User user) {
+        return userRepository.save(user);
     }
 
     @GetMapping("/all")
@@ -42,6 +65,7 @@ public class UserController {
             user.setEmail(updatedUser.getEmail());
             user.setPhone(updatedUser.getPhone());
             user.setAddress(updatedUser.getAddress());
+
 
             return userRepository.save(user);
 

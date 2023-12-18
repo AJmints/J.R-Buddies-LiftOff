@@ -1,9 +1,9 @@
 package org.launchcode.bookmaster.book;
 
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import org.launchcode.bookmaster.abstractEntity.AbstractEntity;
-import jakarta.persistence.Entity;
 import org.launchcode.bookmaster.loan.Loan;
 import org.launchcode.bookmaster.review.Review;
 
@@ -21,11 +21,12 @@ public class Book extends AbstractEntity {
     private Integer total_quantity;
     private Integer available_quantity;
 
-    @OneToMany(mappedBy= "book")
-    private final List<Loan> loans = new ArrayList<>();
 
-    @OneToMany(mappedBy= "book")
-    private final List<Review> reviews = new ArrayList<>();
+    @OneToMany(mappedBy = "book")
+    private List<Loan> loans = new ArrayList<>();
+
+    @OneToMany(mappedBy = "book")
+    private List<Review> reviews = new ArrayList<>();
 
     public Book(String title, String author, String isbn, String gender, Integer total_quantity, Integer available_quantity) {
         this.title = title;
@@ -35,6 +36,7 @@ public class Book extends AbstractEntity {
         this.total_quantity = total_quantity;
         this.available_quantity = available_quantity;
     }
+
 
     public Book() {}
 
@@ -86,12 +88,21 @@ public class Book extends AbstractEntity {
         this.available_quantity = available_quantity;
     }
 
+//    @JsonManagedReference
     public List<Loan> getLoans() {
         return loans;
     }
+    public void setLoans(List<Loan> loans){
+        this.loans = loans;
+    }
 
+//    @JsonManagedReference
     public List<Review> getReviews() {
         return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 
     @Override

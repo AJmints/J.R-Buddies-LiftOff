@@ -1,6 +1,8 @@
 package org.launchcode.bookmaster.loan;
 
-import org.launchcode.bookmaster.User.User;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.launchcode.bookmaster.user.User;
 import org.launchcode.bookmaster.abstractEntity.AbstractEntity;
 import org.launchcode.bookmaster.book.Book;
 import jakarta.persistence.Entity;
@@ -13,6 +15,7 @@ public class Loan extends AbstractEntity {
 
     @ManyToOne
     private Book book;
+
     @ManyToOne
     private User user;
 
@@ -20,8 +23,8 @@ public class Loan extends AbstractEntity {
     private Date LoanDateIn;
 
 
-    public Loan(Book book, User user,Date loanDateOut, Date loanDateIn) {
-        this.book= book;
+    public Loan( Book book, User user, Date loanDateOut, Date loanDateIn) {
+        this.book = book;
         this.user = user;
         this.loanDateOut = loanDateOut;
         this.LoanDateIn = loanDateIn;
@@ -30,6 +33,7 @@ public class Loan extends AbstractEntity {
     public Loan() {
     }
 
+//    @JsonBackReference
     public Book getBook() {
         return book;
     }
@@ -38,6 +42,7 @@ public class Loan extends AbstractEntity {
         this.book = book;
     }
 
+//    @JsonBackReference
     public User getUser() {
         return user;
     }

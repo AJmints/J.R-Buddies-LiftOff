@@ -1,9 +1,8 @@
 package org.launchcode.bookmaster.review;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import org.launchcode.bookmaster.User.User;
+import org.launchcode.bookmaster.user.User;
 import org.launchcode.bookmaster.abstractEntity.AbstractEntity;
 import org.launchcode.bookmaster.book.Book;
 

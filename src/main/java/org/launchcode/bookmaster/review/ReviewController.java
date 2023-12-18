@@ -1,6 +1,5 @@
 package org.launchcode.bookmaster.review;
 
-import org.launchcode.bookmaster.User.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,8 +26,8 @@ public class ReviewController {
     }
 
     @DeleteMapping("/{reviewId}")
-    public void deleteReview(@PathVariable Integer userId) {
-        reviewRepository.deleteById(userId);
+    public void deleteReview(@PathVariable Integer reviewId) {
+        reviewRepository.deleteById(reviewId);
 
     }
 
