@@ -14,6 +14,13 @@ Library Application with admin panel
 ## Meet the Team
 
 - Martin </br>
+-Features: Examples</br>
+
 - Ronald </br>
+-Features: Examples</br>
+
 - Melany </br>
+-Features: Examples</br>
+
 - Chad </br>
+-Features: Examples</br>
