@@ -36,7 +36,7 @@ public class BookController {
         book.setTitle(updatedBook.getTitle());
         book.setAuthor(updatedBook.getAuthor());
         book.setIsbn(updatedBook.getIsbn());
-        book.setGender(updatedBook.getGender());
+        book.setGender(updatedBook.getGenre());
         book.setTotal_quantity(updatedBook.getTotal_quantity());
         book.setAvailable_quantity(updatedBook.getAvailable_quantity());
 

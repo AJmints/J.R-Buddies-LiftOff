@@ -20,15 +20,15 @@ const DisplayResults=({results})=>{
         checked.map((item) => {
             console.log(item)
             //Create book component to hold information
-            //const book = {title, author, description}
+            const book = {item[0], item[1], description}
 
             //TODO: Uncomment when adding books to database has been implemented
             //Remember to add @CrossOrigin to the Book Controller
             /*
-            fetch("http://localhost:8080/book/add", {
+            fetch("http://localhost:8080/book/save", {
                 method:"POST",
                 headers:{"Content-Type":"application/json"},
-                body:JSON.stringify(checked)
+                body:JSON.stringify(book)
             }).then(()=>{
                 console.log("Book added")
             })*/
@@ -43,13 +43,14 @@ const DisplayResults=({results})=>{
                         let bookImg = item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail;
                         let eBook = item.saleInfo && item.saleInfo.isEbook;
                         let bookInfo = {title: item.volumeInfo && item.volumeInfo.title};
-                        //console.log(item);
+                        console.log(item);
                         
                         return(
                             <div key={index}>
                                 <img src={bookImg} alt="img"/>
                                 <br></br>
-                                <input value={[item.volumeInfo.title, item.volumeInfo.authors, bookImg, item.volumeInfo.description, item.volumeInfo.categories]} type="checkbox" onChange={handleChecks}/>
+                                <input value={[item.volumeInfo.title, item.volumeInfo.authors, bookImg, 
+                                    item.volumeInfo.description, item.volumeInfo.categories, item.id]} type="checkbox" onChange={handleChecks}/>
                                 <span>{item.volumeInfo.title}</span>
                             </div>
                         )
