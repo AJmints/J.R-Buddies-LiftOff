@@ -15,7 +15,7 @@ const DisplayResults=({results})=>{
                         if(eBook){
                             return(
                                 <>
-                                <div>
+                                <div  className="container mt-3">
                                     <img src={bookImg} alt="img"/>
                                     <div>
                                         <h3>{item.volumeInfo.title}</h3>
@@ -31,7 +31,7 @@ const DisplayResults=({results})=>{
                         else{
                             return(
                                 <>
-                                <div>
+                                <div className="container mt-3">
                                     <img src={bookImg} alt="img"/>
                                     <div>
                                         <h3>{item.volumeInfo.title}</h3>
