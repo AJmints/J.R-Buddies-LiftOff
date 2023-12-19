@@ -1,4 +1,4 @@
-import react, {useState} from "react";
+import React , {useState} from 'react';
 import axios from "axios";
 import DisplayResults from "../components/DisplayResults";
 
@@ -16,7 +16,7 @@ const Search=()=>{
 
     return(
         <>
-            <div>
+            <div className='container mt-3'>
                 <h2>Search For Books</h2>
                 <form onSubmit = {searchBook}>
                     <input type="text" placeholder="Enter Keyword" value={search}

@@ -1,39 +1,40 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import UserRegistration from './pages/UserRegistration'
-import UserSignin from './pages/UserSignin'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AdminAccount from "./pages/AdminAccount";
+import CustomerAccount from "./pages/CustomerAccount";
+import Home from "./pages/Home";
+import Layout from "./pages/Layout";
+import NoPage from "./pages/NoPage";
+import UserRegistration from "./pages/UserRegistration";
+import UserSignIn from "./pages/UserSignin";
 import reportWebVitals from './reportWebVitals';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import Search from './pages/Search'
+import DisplayBook from './pages/DisplayBook';
 
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App/>,
-  },
-  {
-    path: "registration",
-    element: <UserRegistration/>,
-  },
-  {
-    path: "signin",
-    element: <UserSignin/>,
-  },
-]);
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          {/* Routes in alphabetical order to be easier to find */}
+          <Route path="admin_account" element={<AdminAccount />} />
+          <Route path="customer_account" element={<CustomerAccount />} />
+          <Route path="displayBook" element={<DisplayBook />} />
+          <Route path="*" element={<NoPage />} />
+          <Route path="search" element={<Search />} />
+          <Route path="user_sign_in" element={<UserSignIn />} />
+          <Route path="user_registration" element={<UserRegistration />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+reportWebVitals(console.log);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <RouterProvider router={router}/>
-  </React.StrictMode>
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+root.render(<App />);
