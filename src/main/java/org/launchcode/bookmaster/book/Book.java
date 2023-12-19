@@ -17,7 +17,7 @@ public class Book extends AbstractEntity {
     private String title;
     private String author;
     private String isbn;
-    private String gender;
+    private String genre;
     private Integer total_quantity;
     private Integer available_quantity;
 
@@ -28,11 +28,11 @@ public class Book extends AbstractEntity {
     @OneToMany(mappedBy = "book")
     private List<Review> reviews = new ArrayList<>();
 
-    public Book(String title, String author, String isbn, String gender, Integer total_quantity, Integer available_quantity) {
+    public Book(String title, String author, String isbn, String genre, Integer total_quantity, Integer available_quantity) {
         this.title = title;
         this.author = author;
         this.isbn = isbn;
-        this.gender = gender;
+        this.genre = genre;
         this.total_quantity = total_quantity;
         this.available_quantity = available_quantity;
     }
@@ -64,12 +64,12 @@ public class Book extends AbstractEntity {
         this.isbn = isbn;
     }
 
-    public String getGender() {
-        return gender;
+    public String getGenre() {
+        return genre;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     public Integer getTotal_quantity() {
