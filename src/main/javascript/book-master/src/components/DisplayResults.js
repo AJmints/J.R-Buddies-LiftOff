@@ -67,7 +67,7 @@ if(bookImg !== undefined && eBook !== undefined){
                         if(eBook){
                             return(
                                 <>
-                                <div>
+                                <div  className="container mt-3">
                                     <img src={bookImg} alt="img"/>
                                     <div>
                                         <h3>{item.volumeInfo.title}</h3>
@@ -83,7 +83,7 @@ if(bookImg !== undefined && eBook !== undefined){
                         else{
                             return(
                                 <>
-                                <div>
+                                <div className="container mt-3">
                                     <img src={bookImg} alt="img"/>
                                     <div>
                                         <h3>{item.volumeInfo.title}</h3>

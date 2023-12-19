@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Search from '../pages/Search';
+import Search from '../Pages/Search';
 
 const Main = () => {
     return (
