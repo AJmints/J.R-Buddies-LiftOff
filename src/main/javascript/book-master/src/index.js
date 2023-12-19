@@ -1,4 +1,8 @@
 import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import UserRegistration from './Pages/UserRegistration'
+import UserSignin from './Pages/UserSignin'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AdminAccount from "./pages/AdminAccount";
 import AdvancedSearch from "./pages/AdvancedSearch";
@@ -11,6 +15,36 @@ import SearchResults from "./pages/SearchResults";
 import UserRegistration from "./pages/UserRegistration";
 import UserSignIn from "./pages/UserSignin";
 import reportWebVitals from './reportWebVitals';
+import Search from './Pages/Search'
+import DisplayBook from './Pages/DisplayBook';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App/>,
+  },
+  {
+    path: "registration",
+    element: <UserRegistration/>,
+  },
+  {
+    path: "signin",
+    element: <UserSignin/>,
+  },
+  {
+      path: "search",
+      element: <Search />,
+  },
+  {
+      path: "displayBook",
+      element: <DisplayBook />,
+  },
+]);
 
 
 
