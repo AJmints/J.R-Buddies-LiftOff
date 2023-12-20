@@ -1,4 +1,5 @@
 import react, { useState } from "react";
+import axios from "axios";
 import {Link} from "react-router-dom";
 
 const DisplayResults=({results})=>{
@@ -17,21 +18,25 @@ const DisplayResults=({results})=>{
 
     const saveBooksToDatabase = (event) => {
         event.preventDefault();
-        checked.map((item) => {
-            console.log(item)
-            //Create book component to hold information
-            const book = {item[0], item[1], description}
 
-            //TODO: Uncomment when adding books to database has been implemented
-            //Remember to add @CrossOrigin to the Book Controller
-            /*
-            fetch("http://localhost:8080/book/save", {
-                method:"POST",
-                headers:{"Content-Type":"application/json"},
-                body:JSON.stringify(book)
-            }).then(()=>{
-                console.log("Book added")
-            })*/
+        checked.map((item) => {
+            //Create array for book info
+            const arr = item.replaceAll(',', '').split("~");
+
+            const book = {'title':arr[0], 'author':arr[1], 'description':arr[2], 'thumbnail':arr[3],
+                        'isbn':arr[4], 'genre':arr[5], 'total_quantity':1, 'available_quantity':1};
+
+            const config = {
+                method: 'post',
+                url: 'http://localhost:8080/book/save',
+                headers: {'Content-Type':'application/json'},
+                data: JSON.stringify(book)
+            };
+
+            //TODO:Later have it redirect to a added success page and have hyperlinks to search and home pages
+            axios(config)
+            .then((response) => {console.log(response);})
+            .catch(err => console.log(err));
         });
     }
 
@@ -43,14 +48,14 @@ const DisplayResults=({results})=>{
                         let bookImg = item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail;
                         let eBook = item.saleInfo && item.saleInfo.isEbook;
                         let bookInfo = {title: item.volumeInfo && item.volumeInfo.title};
-                        console.log(item);
+                        //console.log(item);
                         
                         return(
                             <div key={index}>
                                 <img src={bookImg} alt="img"/>
                                 <br></br>
-                                <input value={[item.volumeInfo.title, item.volumeInfo.authors, bookImg, 
-                                    item.volumeInfo.description, item.volumeInfo.categories, item.id]} type="checkbox" onChange={handleChecks}/>
+                                <input value={[item.volumeInfo.title, "~",item.volumeInfo.authors,"~",
+                                    item.volumeInfo.description,"~", bookImg,"~", item.id,"~", item.volumeInfo.categories]} type="checkbox" onChange={handleChecks}/>
                                 <span>{item.volumeInfo.title}</span>
                             </div>
                         )
