@@ -46,9 +46,6 @@ const DisplayResults=({results})=>{
                 {
                     results.map((item, index) => {
                         let bookImg = item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail;
-                        let eBook = item.saleInfo && item.saleInfo.isEbook;
-                        let bookInfo = {title: item.volumeInfo && item.volumeInfo.title};
-                        //console.log(item);
                         
                         return(
                             <div key={index}>
@@ -67,42 +64,5 @@ const DisplayResults=({results})=>{
         </div>
     )
 }
-
-/*
-if(bookImg !== undefined && eBook !== undefined){
-                        if(eBook){
-                            return(
-                                <>
-                                <div  className="container mt-3">
-                                    <img src={bookImg} alt="img"/>
-                                    <div>
-                                        <h3>{item.volumeInfo.title}</h3>
-                                        <p>eBook version is available</p>
-                                        <Link to={{pathname:"/DisplayBook", state: bookInfo}}>
-                                            Click to Look at Book Details
-                                        </Link>
-                                    </div>
-                                </div>
-                                </>
-                            )
-                        }
-                        else{
-                            return(
-                                <>
-                                <div className="container mt-3">
-                                    <img src={bookImg} alt="img"/>
-                                    <div>
-                                        <h3>{item.volumeInfo.title}</h3>
-                                        <p>eBook version is not available</p>
-                                        <Link to={{pathname:"/DisplayBook", state: bookInfo}}>
-                                            Click to Look at Book Details
-                                        </Link>
-                                    </div>
-                                </div>
-                                </>
-                            )
-                        }
-                    }
-*/
 
 export default DisplayResults;
