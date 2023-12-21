@@ -23,7 +23,7 @@ const DisplayResults=({results})=>{
             //Create array for book info
             const arr = item.replaceAll(',', '').split("~");
 
-            const book = {'title':arr[0], 'author':arr[1], 'description':arr[2].substring(0, arr[2].indexOf(".")), 'thumbnail':arr[3],
+            const book = {'title':arr[0], 'author':arr[1], 'description':arr[2].substring(0, 200), 'thumbnail':arr[3],
                         'isbn':arr[4], 'genre':arr[5], 'total_quantity':1, 'available_quantity':1};
 
             const config = {
