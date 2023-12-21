@@ -60,8 +60,8 @@ public class UserController {
     @PutMapping("/{userId}")
     public User updateUser(@PathVariable Integer userId, @RequestBody User updatedUser) {
         User user = userRepository.findById(userId).orElseThrow();
-            user.setFirstname(updatedUser.getFirstname());
-            user.setLastname(updatedUser.getLastname());
+            user.setFirstName(updatedUser.getFirstName());
+            user.setLastName(updatedUser.getLastName());
             user.setEmail(updatedUser.getEmail());
             user.setPhone(updatedUser.getPhone());
             user.setAddress(updatedUser.getAddress());

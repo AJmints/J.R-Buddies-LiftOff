@@ -11,6 +11,7 @@ import UserSignIn from "./pages/UserSignin";
 import reportWebVitals from './reportWebVitals';
 import Search from './pages/Search'
 import DisplayBook from './pages/DisplayBook';
+import EventsForm from './pages/EventsForm'
 
 
 
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="admin_account" element={<AdminAccount />} />
           <Route path="customer_account" element={<CustomerAccount />} />
           <Route path="displayBook" element={<DisplayBook />} />
+          <Route path="event_form" element={<EventsForm /> } />
           <Route path="*" element={<NoPage />} />
           <Route path="search" element={<Search />} />
           <Route path="user_sign_in" element={<UserSignIn />} />
