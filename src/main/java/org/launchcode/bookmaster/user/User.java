@@ -23,8 +23,8 @@ import java.util.List;
 @Entity
 public class User extends AbstractEntity{
 
-    private String firstname;
-    private String lastname;
+    private String firstName; //updated to match react
+    private String lastName; //updated to match react
     private String phone;
     private String address;
     private String email;
@@ -32,6 +32,8 @@ public class User extends AbstractEntity{
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    // If the form is connecting to this they need to match. We need to figure out how the role is going to work.
+    // Need a verify password field
 
     @OneToMany(mappedBy = "user")
     private final List<Review> reviews = new ArrayList<>();
@@ -39,32 +41,33 @@ public class User extends AbstractEntity{
     @OneToMany(mappedBy = "user")
     private final List<Loan> loans = new ArrayList<>();
 
-    public User(String firstname, String lastname, String phone, String address, String email, String password, Role role) {
-        this.firstname = firstname;
-        this.lastname = lastname;
+    public User(String firstName, String lastName, String phone, String address, String email, String password, Role role) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.phone = phone;
         this.address = address;
         this.email = email;
         this.password = password;
         this.role = role;
     }
+
     public User() {
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstname) {
+        this.firstName = firstName;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPhone() {
@@ -154,6 +157,6 @@ public class User extends AbstractEntity{
 
     @Override
     public String toString() {
-        return firstname + " " + lastname;
+        return firstName + " " + lastName;
     }
 }
