@@ -23,7 +23,7 @@ const DisplayResults=({results})=>{
             //Create array for book info
             const arr = item.replaceAll(',', '').split("~");
 
-            const book = {'title':arr[0], 'author':arr[1], 'description':arr[2], 'thumbnail':arr[3],
+            const book = {'title':arr[0], 'author':arr[1], 'description':arr[2].substring(0, arr[2].indexOf(".")), 'thumbnail':arr[3],
                         'isbn':arr[4], 'genre':arr[5], 'total_quantity':1, 'available_quantity':1};
 
             const config = {
@@ -36,7 +36,7 @@ const DisplayResults=({results})=>{
             //TODO:Later have it redirect to a added success page and have hyperlinks to search and home pages
             axios(config)
             .then((response) => {console.log(response);})
-            .catch(err => console.log(err));
+            .catch(err => console.log(err.response.data.message));
         });
     }
 
@@ -60,6 +60,10 @@ const DisplayResults=({results})=>{
                 }
                 <br></br>
                 <button onClick={saveBooksToDatabase}>Save Selected Books</button>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
             </div>
         </div>
     )
