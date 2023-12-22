@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/book")
+@CrossOrigin
 public class BookController {
 
     @Autowired
@@ -36,7 +37,7 @@ public class BookController {
         book.setTitle(updatedBook.getTitle());
         book.setAuthor(updatedBook.getAuthor());
         book.setIsbn(updatedBook.getIsbn());
-        book.setGenre(updatedBook.getGenre());
+        book.setGender(updatedBook.getGenre());
         book.setTotal_quantity(updatedBook.getTotal_quantity());
         book.setAvailable_quantity(updatedBook.getAvailable_quantity());
 
