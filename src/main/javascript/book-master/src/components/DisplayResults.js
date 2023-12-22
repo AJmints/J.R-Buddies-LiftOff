@@ -34,7 +34,6 @@ const DisplayResults=({results})=>{
                 data: JSON.stringify(book)
             };
 
-            //TODO:Later have it redirect to a added success page and have hyperlinks to search and home pages
             axios(config)
             .then((response) => {console.log(response);})
             .catch(err => console.log(err.response.data.message));
