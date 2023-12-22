@@ -12,7 +12,7 @@ import reportWebVitals from './reportWebVitals';
 import Search from './pages/Search'
 import DisplayBook from './pages/DisplayBook';
 import EventsForm from './pages/EventsForm'
-
+import AddedBookToDBSuccess from "./pages/AddedBookToDBSuccess";
 
 
 export default function App() {
@@ -23,6 +23,7 @@ export default function App() {
           <Route index element={<Home />} />
           {/* Routes in alphabetical order to be easier to find */}
           <Route path="admin_account" element={<AdminAccount />} />
+          <Route path="added_success" element={<AddedBookToDBSuccess />} />
           <Route path="customer_account" element={<CustomerAccount />} />
           <Route path="displayBook" element={<DisplayBook />} />
           <Route path="event_form" element={<EventsForm /> } />

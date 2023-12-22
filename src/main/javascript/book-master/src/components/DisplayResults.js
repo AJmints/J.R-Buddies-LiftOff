@@ -1,9 +1,10 @@
 import react, { useState } from "react";
 import axios from "axios";
-import {Link} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const DisplayResults=({results})=>{
     const[checked, setChecked] = useState([]);
+    const navigate = useNavigate();
 
     const handleChecks = (event) => {
         var updates = [...checked];
@@ -38,6 +39,8 @@ const DisplayResults=({results})=>{
             .then((response) => {console.log(response);})
             .catch(err => console.log(err.response.data.message));
         });
+
+        navigate('/added_success');
     }
 
     return(
