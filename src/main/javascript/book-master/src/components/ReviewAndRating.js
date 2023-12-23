@@ -1,20 +1,40 @@
+import axios from "axios";
 import { useState } from "react";
 
 function ReviewAndRating () {
-    const [inputs, setInputs] = useState({});
     const [book, setBook] = useState("");
     const [user, setUser] = useState("");
     const [review, setReview] = useState("");
     const [rating, setRating] = useState("");
 
-    const handleChange = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
-        setInputs(values => ({...values, [name]: value}))
+
+    const handleInputChange = (e, setStateFunction) => {
+        setStateFunction(e.target.value);
     }
-    const submitReview = (e) => {
+
+    const submitReview = async (e) => {
         e.preventDefault();
-        console.log(inputs);
+        console.log("Submited");
+
+        axios.post("http://localhost:8080/reviews", {book, user, review, rating})
+        .then(response => console.log(response))
+        .catch(err => console.log(err))
+        // try{
+        //     const response = await axios.post("/reviews", {
+        //         book,
+        //         user,
+        //         review,
+        //         rating
+        //     });
+
+        //     if (response.status === 200) {
+
+        //     } else {
+
+        //     }
+        // } catch (error) {
+        //     console.error("Error posting review", error)
+        // }
     };
 
     return <div>
@@ -22,13 +42,19 @@ function ReviewAndRating () {
                 <form onSubmit={submitReview}>
                     <div className='row mt-2'>
                         <div className='col-6'>
+                            <label htmlFor="book" className='form-label'>Book Title:</label>
+                            <input type="text" className='form-control' id="book" name="book" placeholder="Dune" value={book} onChange={(e) => handleInputChange(e, setBook)} required/>
+                        </div>
+                    </div>
+                    <div className='row mt-2'>
+                        <div className='col-6'>
                             <label htmlFor="user" className='form-label'>User ID:</label>
-                            <input type="text" className='form-control' id="user" name="user" placeholder="example@gmail.com" value={inputs.user || ""} onChange={handleChange} required/>
+                            <input type="text" className='form-control' id="user" name="user" placeholder="example@gmail.com" value={user} onChange={(e) => handleInputChange(e, setUser)} required/>
                         </div>
                     </div>
                     <div className='col-3 mt-2'>
                         <label htmlFor='rating' className='form-label'>Rating: </label>
-                        <select className='form-control' id='rating' name='rating' defaultValue="5 stars" value={inputs.rating} onChange={handleChange} required>
+                        <select className='form-control' id='rating' name='rating' defaultValue="5 stars" value={rating} onChange={(e) => handleInputChange(e, setRating)} required>
                             <option></option>
                             <option>5 Stars</option>
                             <option>4 Stars</option>
@@ -39,7 +65,7 @@ function ReviewAndRating () {
                     </div>
                     <div className='row mt-3'>
                         <div className='form-floating'>
-                            <textarea className='form-control' id="review" name='review' placeholder='Write review here' rows={5} value={inputs.review || ""} onChange={handleChange}/>
+                            <textarea className='form-control' id="review" name='review' placeholder='Write review here' rows={5} value={review} onChange={(e) => handleInputChange(e, setReview)}/>
                             <label className="ms-2" htmlFor='review' >Review:</label>
                         </div>
                     </div>
