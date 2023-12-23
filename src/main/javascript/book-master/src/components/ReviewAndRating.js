@@ -28,12 +28,13 @@ function ReviewAndRating () {
                     </div>
                     <div className='col-3 mt-2'>
                         <label htmlFor='rating' className='form-label'>Rating: </label>
-                        <select className='form-control' id='rating' name='rating' value={inputs.stars} onChange={handleChange}>
-                            <option name="rating" value={inputs.five_stars} onChange={handleChange}>5 Stars</option>
-                            <option name="rating" value={inputs.four_stars} onChange={handleChange}>4 Stars</option>
-                            <option name="rating" value={inputs.three_stars} onChange={handleChange}>3 Stars</option>
-                            <option name="rating" value={inputs.two_stars} onChange={handleChange}>2 Stars</option>
-                            <option name="rating" value={inputs.one_stars} onChange={handleChange}>1 Stars</option>
+                        <select className='form-control' id='rating' name='rating' defaultValue="5 stars" value={inputs.rating} onChange={handleChange} required>
+                            <option></option>
+                            <option>5 Stars</option>
+                            <option>4 Stars</option>
+                            <option>3 Stars</option>
+                            <option>2 Stars</option>
+                            <option>1 Stars</option>
                          </select>
                     </div>
                     <div className='row mt-3'>
