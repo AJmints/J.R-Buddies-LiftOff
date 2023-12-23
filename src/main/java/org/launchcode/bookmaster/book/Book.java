@@ -30,11 +30,7 @@ public class Book extends AbstractEntity {
     @OneToMany(mappedBy = "book")
     private List<Review> reviews = new ArrayList<>();
 
-<<<<<<< HEAD
-    public Book(String title, String author, String isbn, String genre, Integer total_quantity, Integer available_quantity) {
-=======
     public Book(String title, String author, String description, String thumbnail, String isbn, String genre, Integer total_quantity, Integer available_quantity) {
->>>>>>> b442e626704b6c804442546f74623107e8009781
         this.title = title;
         this.author = author;
         this.description = description;
@@ -92,11 +88,7 @@ public class Book extends AbstractEntity {
         return genre;
     }
 
-<<<<<<< HEAD
-    public void setGenre(String genre) {
-=======
     public void setGender(String genre) {
->>>>>>> b442e626704b6c804442546f74623107e8009781
         this.genre = genre;
     }
 
@@ -116,7 +108,7 @@ public class Book extends AbstractEntity {
         this.available_quantity = available_quantity;
     }
 
-//    @JsonManagedReference
+    //    @JsonManagedReference
     public List<Loan> getLoans() {
         return loans;
     }
@@ -124,7 +116,7 @@ public class Book extends AbstractEntity {
         this.loans = loans;
     }
 
-//    @JsonManagedReference
+    //    @JsonManagedReference
     public List<Review> getReviews() {
         return reviews;
     }

@@ -11,7 +11,7 @@ const Layout = () => {
 
     const handleSearch = (e) => {
         e.preventDefault();
-        navigate("/search", { state: {key: "keyword"}});
+        navigate("/displaybook", { state: {key: "search"}});
     }
 
     return (

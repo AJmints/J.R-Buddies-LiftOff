@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ReviewAndRating from '../components/ReviewAndRating';
+// import axios from 'axios';
 
-function DisplayBook({props}) {
-    const {state} = props.location;
-    const {title} = state;
-    return(
-        <div>
-            <p>Title: {title}</p>
+function DisplayBook() {
+
+    
+
+    return( <div className='container mt-5'>
+            <h1>Title: </h1>
+            <ReviewAndRating />
         </div>
     );
 }

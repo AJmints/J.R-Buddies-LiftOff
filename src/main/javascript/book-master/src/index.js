@@ -8,7 +8,6 @@ import Layout from "./pages/Layout";
 import NoPage from "./pages/NoPage";
 import UserRegistration from "./pages/UserRegistration";
 import UserSignIn from "./pages/UserSignin";
-import reportWebVitals from './reportWebVitals';
 import Search from './pages/Search'
 import DisplayBook from './pages/DisplayBook';
 import EventsForm from './pages/EventsForm'
@@ -35,8 +34,6 @@ export default function App() {
     </BrowserRouter>
   );
 }
-
-reportWebVitals(console.log);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<App />);
