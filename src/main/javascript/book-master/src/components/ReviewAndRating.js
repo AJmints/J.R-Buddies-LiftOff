@@ -20,9 +20,9 @@ function ReviewAndRating () {
             });
 
             if (response.status === 200) {
-
+                console.log("Review submitted successfully")
             } else {
-
+                console.log("Submission failed")
             }
         } catch (error) {
             console.error("Error posting review", error)
