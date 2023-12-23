@@ -7,11 +7,6 @@ function ReviewAndRating () {
     const [review, setReview] = useState("");
     const [rating, setRating] = useState("");
 
-
-    // const handleInputChange = (e, setStateFunction) => {
-    //     setStateFunction(e.target.value);
-    // };
-
     const submitReview = async (e) => {
         e.preventDefault();
         console.log("Submited");

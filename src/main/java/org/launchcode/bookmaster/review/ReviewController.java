@@ -11,8 +11,8 @@ public class ReviewController {
     private ReviewRepository reviewRepository;
 
     @PostMapping
-    public Review saveReview(@RequestBody Review newReview){
-        return reviewRepository.save(newReview);
+    public Review saveReview(@RequestBody Review review){
+        return reviewRepository.save(review);
     }
 
     @GetMapping("/all")
