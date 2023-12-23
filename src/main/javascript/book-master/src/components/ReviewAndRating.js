@@ -35,7 +35,7 @@ function ReviewAndRating () {
                     <div className='row mt-2'>
                         <div className='col-6'>
                             <label htmlFor="book" className='form-label'>Book Title:</label>
-                            <input type="text" className='form-control' id="book" name="book" placeholder="Dune" value={book} onChange={(e) => setBook(e.target.value)} required/>
+                            <input type="text" className='form-control' id="book" name="book" placeholder="Dune" value={book} onChange={(e) => setBook(e.target.value)} />
                         </div>
                     </div>
                     <div className='row mt-2'>

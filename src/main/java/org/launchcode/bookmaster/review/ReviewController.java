@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/reviews")
+@CrossOrigin
 public class ReviewController {
 
     @Autowired
