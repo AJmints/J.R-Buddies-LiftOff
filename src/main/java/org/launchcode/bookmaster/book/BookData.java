@@ -22,7 +22,7 @@ public class BookData {
     public static ArrayList<Book> findByColumn(String column, String searchValue, Iterable<Book> allBooks){
         ArrayList<Book> results = new ArrayList<>();
 
-        if(searchValue.isEmpty() || searchValue.isBlank() || searchValue == null){
+        if(searchValue.isEmpty() || searchValue.isBlank()){
             return (ArrayList<Book>) allBooks;
         }
         if(column.equals("all")){
