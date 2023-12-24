@@ -9,23 +9,10 @@ const LibrarySearch=()=>{
 
     const searchLibrary = (e) => {
         e.preventDefault();
-        if(category === "all"){
-            axios.get("http://localhost:8080/book/all")
-            .then(res=>setBookData(res.data.items))
-            .catch(err=>console.log(err));
-        }
-        else if(category === "title"){
-        //TODO:Change so it searches by title
-            axios.get("http://localhost:8080/book/all")
-            .then(res=>setBookData(res.data.items))
-            .catch(err=>console.log(err));
-        }
-        else{
-        //TODO:Change so it searches by author
-            axios.get("http://localhost:8080/book/all")
-            .then(res=>setBookData(res.data.items))
-            .catch(err=>console.log(err));
-        }
+
+        axios.get("http://localhost:8080/book/search_results?column="+category+"&searchTerm="+search)
+        .then(res=>setBookData(res.data.items))
+        .catch(err=>console.log(err));
     }
 
     return(
@@ -45,6 +32,11 @@ const LibrarySearch=()=>{
                     </label>
                     <button type="submit">Search</button>
                 </form>
+            </div>
+
+
+            <div>
+                <UserResults results={bookData} />
             </div>
         </>)
 }

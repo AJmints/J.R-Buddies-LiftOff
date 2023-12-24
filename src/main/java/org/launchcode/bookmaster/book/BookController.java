@@ -2,6 +2,7 @@ package org.launchcode.bookmaster.book;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.launchcode.bookmaster.book.BookData;
 
 @RestController
 @RequestMapping("/book")
@@ -44,4 +45,14 @@ public class BookController {
         return bookRepository.save(book);
 
     }
+
+    @GetMapping("/search_results")
+    public Iterable<Book> listBooks(@RequestParam String column, @RequestParam String searchTerm) {
+        Iterable<Book> books;
+
+        books = BookData.findByColumn(column, searchTerm, bookRepository.findAll());
+
+        return books;
+    }
+    //http://localhost:8080/book/search_results?column=all&searchTerm=
 }

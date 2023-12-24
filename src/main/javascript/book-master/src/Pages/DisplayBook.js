@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-function DisplayBook({props}) {
-    const {state} = props.location;
-    const {title} = state;
+function DisplayBook({id}) {
+    const [bookData, setBookData] = useState([]);
+
+    axios.get("http://localhost:8080/book/"+id)
+            .then(res=>setBookData(res.data.items))
+            .catch(err=>console.log(err));
     return(
         <div>
-            <p>Title: {title}</p>
+            <p>Title: {bookData.getTitle()}</p>
         </div>
     );
 }
