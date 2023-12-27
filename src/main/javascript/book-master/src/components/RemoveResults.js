@@ -30,7 +30,7 @@ const RemoveResults=({results})=>{
     }
 
     return(
-        <div className = "bookList">
+        <div className = "DatabaseBookList">
             <div className="checkList">
                 {
                     results.map((item, index) => {
