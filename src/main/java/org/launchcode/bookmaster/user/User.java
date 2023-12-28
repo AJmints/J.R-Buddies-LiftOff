@@ -58,7 +58,7 @@ public class User extends AbstractEntity{
         return firstName;
     }
 
-    public void setFirstName(String firstname) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
