@@ -5,9 +5,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from "react";
 
 
+
 const Layout = () => {
     const [keyword, setKeyword] = useState("");
     const navigate = useNavigate();
+    const [loginState, setLoginState] = useState("");
+
+    const handleLoginState = (e) => {
+        setLoginState(e.target)
+        console.log(loginState.value)
+    }
 
     const handleSearch = (e) => {
         e.preventDefault();
@@ -37,18 +44,26 @@ const Layout = () => {
                     </form>
 
                     <li className="nav-item">
-                        <Link to="user_sign_in" className="nav-link">Login</Link>
+                        <Link to="user_sign_in" className="nav-link">Login/Register</Link>
                     </li>
 
 {/* last 2 pages hidden will add code for with user verification and link will be visible only to correct user type */}
 
-                    <li className="nav-item invisible">
-                        <Link to="customer_account" className="nav-link">Customer Account</Link>
+                    <li className="nav-item">
+                        <Link to="customer_account" className="nav-link" >Customer Account</Link>
                     </li>
 
-                    <li className="nav-item invisible">
+                    <li className="nav-item">
                         <Link to="admin_account" className="nav-link">Admin Account</Link>
                     </li>
+
+                    <div className="nav-item">
+                    <select className='form-control' id='loginDrop' name='loginDrop' onChange={handleLoginState}>
+                            <option value={"logout"}>Logout</option>
+                            <option value={"customer"}>Customer</option>
+                            <option value={"admin"}>Admin</option>
+                         </select>
+                    </div>
 
                 </ul>
             </nav>

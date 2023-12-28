@@ -7,7 +7,7 @@ function ReviewAndRating () {
     const [book, setBook] = useState("");
     const [user, setUser] = useState("");
     const [review, setReview] = useState("");
-    const [rating, setRating] = useState("");
+    const [rating, setRating] = useState(5);
 
 
     const submitReview = async (e) => {
@@ -54,13 +54,12 @@ function ReviewAndRating () {
                         </div>
                         <div className='col-3 mt-2'>
                             <label htmlFor='rating' className='form-label'>Star Rating: </label>
-                            <select className='form-control' id='rating' name='rating' value={rating} onChange={(e) => setRating(e.target.value)} required>
-                                <option></option>
-                                <option>5 Stars</option>
-                                <option>4 Stars</option>
-                                <option>3 Stars</option>
-                                <option>2 Stars</option>
-                                <option>1 Stars</option>
+                            <select className='form-control' id='rating' name='rating' onChange={(e) => setRating(e.target.value)} required>
+                                <option value={5}>5 Stars</option>
+                                <option value={4}>4 Stars</option>
+                                <option value={3}>3 Stars</option>
+                                <option value={2}>2 Stars</option>
+                                <option value={1}>1 Stars</option>
                             </select>
                         </div>
                     </div>

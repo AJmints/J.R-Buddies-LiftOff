@@ -1,4 +1,4 @@
-import axios from "axios";
+// import axios from "axios";
 import { useState } from "react";
 
 function ReviewAndRating () {
@@ -33,12 +33,11 @@ function ReviewAndRating () {
                     <div className='col-3 mt-2'>
                         <label htmlFor='rating' className='form-label'>Rating: </label>
                         <select className='form-control' id='rating' name='rating' defaultValue="5 stars" value={inputs.rating} onChange={handleChange} required>
-                            <option></option>
-                            <option>5 Stars</option>
-                            <option>4 Stars</option>
-                            <option>3 Stars</option>
-                            <option>2 Stars</option>
-                            <option>1 Stars</option>
+                            <option value={5}>5 Stars</option>
+                            <option value={4}>4 Stars</option>
+                            <option value={3}>3 Stars</option>
+                            <option value={2}>2 Stars</option>
+                            <option value={1}>1 Stars</option>
                          </select>
                     </div>
                     <div className='row mt-3'>
