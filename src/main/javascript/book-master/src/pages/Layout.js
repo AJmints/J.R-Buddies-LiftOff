@@ -12,8 +12,24 @@ const Layout = () => {
     const [loginState, setLoginState] = useState("");
 
     const handleLoginState = (e) => {
-        setLoginState(e.target)
-        console.log(loginState.value)
+        const loginLink = document.getElementById("loginLink");
+        const customerAccount = document.getElementById("customerAccount");
+        const adminAccount = document.getElementById("adminAccount");
+        setLoginState(e.target);
+        console.log(loginState.value);
+        if (loginState.value == "logout") {
+            loginLink.style.display = "block";
+            customerAccount.style.display = "none";
+            adminAccount.style.display = "none";
+        } else if (loginState.value == "customer") {
+            loginLink.style.display = "none";
+            customerAccount.style.display = "block";
+            adminAccount.style.display = "none";
+        } else if (loginState.value == "admin") {
+            loginLink.style.display = "none";
+            customerAccount.style.display = "none";
+            adminAccount.style.display = "block";
+        }
     }
 
     const handleSearch = (e) => {
@@ -44,27 +60,26 @@ const Layout = () => {
                     </form>
 
                     <li className="nav-item">
-                        <Link to="user_sign_in" className="nav-link">Login/Register</Link>
+                        <Link id="loginLink" to="user_sign_in" className="nav-link">Login/Register</Link>
                     </li>
 
 {/* last 2 pages hidden will add code for with user verification and link will be visible only to correct user type */}
 
                     <li className="nav-item">
-                        <Link to="customer_account" className="nav-link" >Customer Account</Link>
+                        <Link id="customerAccount" to="customer_account" className="nav-link" style={{display: "none"}}>Customer Account</Link>
                     </li>
 
                     <li className="nav-item">
-                        <Link to="admin_account" className="nav-link">Admin Account</Link>
+                        <Link id="adminAccount" to="admin_account" className="nav-link" style={{display: "none"}}>Admin Account</Link>
                     </li>
-
-                    <div className="nav-item">
-                    <select className='form-control' id='loginDrop' name='loginDrop' onChange={handleLoginState}>
+                    
+                    <li className="nav-item ms-3">
+                    <select className='form-control' id='loginDrop' name='loginDrop' onChange={handleLoginState} >
                             <option value={"logout"}>Logout</option>
                             <option value={"customer"}>Customer</option>
                             <option value={"admin"}>Admin</option>
                          </select>
-                    </div>
-
+                    </li>
                 </ul>
             </nav>
 
