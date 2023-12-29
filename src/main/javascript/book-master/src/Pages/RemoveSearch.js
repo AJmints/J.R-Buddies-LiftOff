@@ -1,6 +1,6 @@
 import react , {useState} from 'react';
 import axios from "axios";
-import UserResults from "../components/RemoveResults";
+import RemoveResults from "../components/RemoveResults";
 
 const RemoveSearch=()=>{
 
