@@ -4,31 +4,38 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import AdminAccount from "./Pages/AdminAccount";
-import AdminHome from './Pages/AdminHome';
-import AdminUserInfo from './Pages/AdminUserInfo';
-import AdminUsers from './Pages/AdminUsers';
-import CustomerAccount from "./Pages/CustomerAccount";
-import Home from "./Pages/Home";
-import Layout from "./Pages/Layout";
-import NoPage from "./Pages/NoPage";
-import UserRegistration from "./Pages/UserRegistration";
-import UserSignIn from "./Pages/UserSignin";
+
+import AdminAccount from "./pages/AdminAccount";
+import Admin1Home from './pages/Admin1Home';
+import Admin2Books from './pages/Admin2Books';
+import Admin2Users from './pages/Admin2Users';
+import Admin3UserInfo from './pages/Admin3UserInfo';
+import Admin3BookInfo from './pages/Admin3BookInfo'
+import CustomerAccount from "./pages/CustomerAccount";
+import Home from "./pages/Home";
+import Layout from "./pages/Layout";
+import NoPage from "./pages/NoPage";
+import UserRegistration from "./pages/UserRegistration";
+import UserSignIn from "./pages/UserSignin";
 import reportWebVitals from './reportWebVitals';
-import Search from './Pages/Search'
-import DisplayBook from './Pages/DisplayBook';
+import Search from './pages/Search'
+import DisplayBook from './pages/DisplayBook';
+import Admin5BookUpdates from './pages/Admin5BookUpdates';
 
 
 
 
 export default function App() {
-
   const [users, setUsers] = useState([]);
+  const [books, setBooks] = useState([]);
   
+  
+ ///////////////////////////////
+// FETCHING USERS TABLES
+////////////////////////////////
+
   const URL = "http://localhost:8080/api/user/all"
   const URL2 = "http://localhost:8080/api/user/"
-  
- 
 
     // Function to fetch data using Axios
   const getUsers = async () => {
@@ -50,14 +57,47 @@ export default function App() {
     getUsers()
   };
 
-
-
     // Call fetchData on component mount
-    useEffect(() => {
-        getUsers();
-      }, []);
+   
+    useEffect(() => {getUsers()}, []);
+
+ ///////////////////////////////
+// FETCHING BOOKS TABLES
+////////////////////////////////
 
 
+
+const URL_BOOKS = "http://localhost:8080/book/"
+
+const getBooks = async () => {
+  try {
+    const response = await axios.get(URL_BOOKS + "all");
+    setBooks(response.data);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  };
+};
+
+const deleteBook = async (id) => {
+ try{
+  axios.delete(URL_BOOKS + id)
+} catch (error) {
+  console.error("Error fetching data:", error);
+};
+ getBooks()
+  }
+
+
+const updateBook = (book, id) => {
+  try{
+         axios.put(URL_BOOKS + id, book)
+        } catch (error) {
+                  console.error("Error fetching data:", error);
+                };  
+      getBooks()
+};
+
+useEffect(() => {getBooks()}, []);
 
 
   return (
@@ -67,15 +107,25 @@ export default function App() {
         <Route index element={<Home />} />
           {/* Routes in alphabetical order to be easier to find */}
           <Route path="admin_account" element={<AdminAccount />} />
-          <Route path="admin_home" element={<AdminHome />}/>
-          <Route path="admin_home/users/" element={<AdminUsers users={users} />}/>
+          <Route path="admin_home" element={<Admin1Home />}/>
+          <Route path="admin_home/books/" element={<Admin2Books books={books} getBooks={getBooks}/>}/>
+          <Route path="admin_home/users/" element={<Admin2Users users={users} />}/>
           <Route path="admin_home/users/:id"
-                             element = {< AdminUserInfo 
+                             element = {< Admin3UserInfo 
                                           users={users}
                                           deleteUser={deleteUser}
                                         />
                                                         } 
-          />      
+          />  
+          <Route path="admin_home/books/:id"
+                             element = {< Admin3BookInfo 
+                                          books={books}
+                                          deleteBook={deleteBook}
+                                          
+                                        />
+                                                        } 
+          /> 
+          <Route path="/admin_home/books/edit/:id" element={<Admin5BookUpdates getBooks= {getBooks} updateBook={updateBook}/>}/>
           <Route path="customer_account" element={<CustomerAccount />} />
           <Route path="displayBook" element={<DisplayBook />} />
           <Route path="*" element={<NoPage />} />

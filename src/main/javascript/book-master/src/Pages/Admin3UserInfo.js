@@ -1,21 +1,22 @@
 import { useNavigate, useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import ShowUserLoans from "../components/ShowUserLoans";
+import Admin4ShowUserLoans from "../components/Admin4ShowUserLoans";
 import axios from "axios";
 
-const AdminUserInfo = (props) => {
+const Admin3UserInfo = (props) => {
 
     const [userLoansBooks, setUserLoanBooks]= useState([]);
     const URL3 = "http://localhost:8080/api/user/loan/"
     
     const { id } = useParams()
     const users = props.users
+    console.log(props.users)
     const user = users.find(p => p.id === parseInt(id))
     const navigate = useNavigate();
     
     const removeUser = ()=>{
         props.deleteUser(user.id)
-        navigate("/admin_home")
+        navigate("/admin_home/users")
     }
 
     const getUserLoansBooks = async (id) => {
@@ -26,6 +27,10 @@ const AdminUserInfo = (props) => {
           console.error("Error fetching data:", error);
         }
       };
+
+      const loansId = user.loans.map((loan)=>{
+        return loan.id
+      })
 
       useEffect(() => {
         getUserLoansBooks(id);
@@ -72,9 +77,11 @@ const AdminUserInfo = (props) => {
                             <th>id</th>
                             <th>title</th>
                             <th>Author</th>
+                            <th>Date loan out</th>
+                            <th>Date returned</th>
                         </tr>
                         </thead>
-                            <ShowUserLoans user={user} userLoansBooks={userLoansBooks}/>       
+                            <Admin4ShowUserLoans user={user} userLoansBooks={userLoansBooks} loansId={loansId} />       
                 </table>
             </div>
             
@@ -84,4 +91,4 @@ const AdminUserInfo = (props) => {
     )
 };
 
-export default AdminUserInfo;
+export default Admin3UserInfo;

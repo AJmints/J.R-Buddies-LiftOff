@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-const AdminHome = () => {
+const Admin1Home = () => {
 
             const tables = [{
                                 name:"Users",
@@ -43,4 +43,4 @@ const AdminHome = () => {
     )
     
 }
-export default AdminHome;
+export default Admin1Home;

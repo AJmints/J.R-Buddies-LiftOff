@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
-const AdminUsers = (props) => {
-          const [users, setUsers] = useState(props.users)
+const Admin2Users = (props) => {
+  const usersToDisplay = props.users
+          const [users, setUsers] = useState(usersToDisplay)
           const [email, setEmail] = useState([])
+          
+          useEffect(() => {setUsers(usersToDisplay)}, [usersToDisplay]);
 
 
           const handleChange = event => {
@@ -82,4 +85,4 @@ const AdminUsers = (props) => {
       );
 };
 
-export default AdminUsers;
+export default Admin2Users;
