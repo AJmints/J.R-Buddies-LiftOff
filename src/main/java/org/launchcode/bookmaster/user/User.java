@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 //import lombok.*;
 import org.launchcode.bookmaster.abstractEntity.AbstractEntity;
+import org.launchcode.bookmaster.book.Book;
 import org.launchcode.bookmaster.loan.Loan;
 import org.launchcode.bookmaster.review.Review;
 //import org.springframework.security.core.GrantedAuthority;
@@ -29,6 +30,7 @@ public class User extends AbstractEntity{
     private String address;
     private String email;
     private String password;
+    private final List<Book> recommendation = new ArrayList<>();
     @Enumerated(EnumType.STRING)
     private Role role;
 
@@ -109,7 +111,19 @@ public class User extends AbstractEntity{
         this.role = role;
     }
 
-//    @JsonManagedReference
+    public List<Book> getRecommendation() {
+        return recommendation;
+    }
+
+    public void addRecommendation(Book book) {
+        this.recommendation.add(book);
+    }
+
+    public void removeRecommendation(Book book) {
+        this.recommendation.remove(book);
+    }
+
+    //    @JsonManagedReference
     public List<Loan> getLoans() {
         return loans;
     }

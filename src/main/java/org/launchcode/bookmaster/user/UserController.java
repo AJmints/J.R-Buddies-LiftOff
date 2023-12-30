@@ -5,6 +5,7 @@ package org.launchcode.bookmaster.user;
 //import org.launchcode.bookmaster.user.auth.AuthenticationResponse;
 //import org.launchcode.bookmaster.user.auth.AuthenticationService;
 //import org.launchcode.bookmaster.user.auth.RegisterRequest;
+import org.launchcode.bookmaster.book.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -72,4 +73,21 @@ public class UserController {
 
     }
 
+    @GetMapping("/{userId}/allRecommendations")
+    public Iterable<Book> getAllRecommendations(@PathVariable Integer userId){
+        User user = userRepository.findById(userId).orElseThrow();
+        return user.getRecommendation();
+    }
+
+    @PutMapping("/{userId}/addRecommendation")
+    public void addRecommendation(@PathVariable Integer userId, @RequestBody Book book){
+        User user = userRepository.findById(userId).orElseThrow();
+        user.addRecommendation(book);
+    }
+
+    @DeleteMapping("/{userId}/deleteRecommendation")
+    public void deleteRecommendation(@PathVariable Integer userId, @RequestBody Book book) {
+        User user = userRepository.findById(userId).orElseThrow();
+        user.removeRecommendation(book);
+    }
 }

@@ -47,7 +47,7 @@ const DisplayBook=()=> {
                                 <h5>{available}</h5>
                             </tr>
                             <tr>
-                                <h6>{obj.book.description}</h6>
+                                <h5>{obj.book.description}</h5>
                             </tr>
                         </table>
                     </td>
