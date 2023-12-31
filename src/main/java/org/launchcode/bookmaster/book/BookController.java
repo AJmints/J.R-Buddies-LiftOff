@@ -2,9 +2,11 @@ package org.launchcode.bookmaster.book;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.launchcode.bookmaster.book.BookData;
 
 @RestController
 @RequestMapping("/book")
+@CrossOrigin
 public class BookController {
 
     @Autowired
@@ -36,11 +38,21 @@ public class BookController {
         book.setTitle(updatedBook.getTitle());
         book.setAuthor(updatedBook.getAuthor());
         book.setIsbn(updatedBook.getIsbn());
-        book.setGender(updatedBook.getGender());
+        book.setGender(updatedBook.getGenre());
         book.setTotal_quantity(updatedBook.getTotal_quantity());
         book.setAvailable_quantity(updatedBook.getAvailable_quantity());
 
         return bookRepository.save(book);
 
     }
+
+    @GetMapping("/search_results")
+    public Iterable<Book> listBooks(@RequestParam String column, @RequestParam String searchTerm) {
+        Iterable<Book> books;
+
+        books = BookData.findByColumn(column, searchTerm, bookRepository.findAll());
+
+        return books;
+    }
+    //http://localhost:8080/book/search_results?column=all&searchTerm=
 }

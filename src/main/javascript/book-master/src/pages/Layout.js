@@ -27,7 +27,11 @@ const Layout = () => {
                     </li>
 
                     <li className="nav-item">
-                        <Link to="search" className="nav-link">Advanced Search</Link>
+                        <Link to="library_search" className="nav-link">Search Library</Link>
+                    </li>
+
+                    <li className="nav-item">
+                        <Link to="search" className="nav-link">Search & Add Books</Link>
                     </li>
 
                     {/* will use quick search to search all fields with keyword and go to searchResults.js page to display results */}
