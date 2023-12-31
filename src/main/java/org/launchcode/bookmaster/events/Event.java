@@ -1,26 +1,22 @@
 package org.launchcode.bookmaster.events;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
 import org.launchcode.bookmaster.abstractEntity.AbstractEntity;
-import org.launchcode.bookmaster.loan.Loan;
-import org.launchcode.bookmaster.review.Review;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
 
 
 @Entity
 public class Event extends AbstractEntity {
 
     private String name;
-    private String detail;
-    private Date date;
+    private String details;
 
-    public Event(String name, String detail, Date date) {
+    private LocalDate date;
+
+    public Event(String name, String detail, LocalDate date) {
         this.name = name;
-        this.detail = detail;
+        this.details = details;
         this.date = date;
     }
 
@@ -34,19 +30,19 @@ public class Event extends AbstractEntity {
         this.name = name;
     }
 
-    public String getDetail() {
-        return detail;
+    public String getDetails() {
+        return details;
     }
 
-    public void setDetail(String detail) {
-        this.detail = detail;
+    public void setDetails(String details) {
+        this.details = details;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

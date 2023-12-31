@@ -35,7 +35,7 @@ public class EventController {
     public Event updateEvent(@PathVariable Integer eventId, @RequestBody Event updatedEvent) {
         Event event = eventRepository.findById(eventId).orElseThrow();
         event.setName(updatedEvent.getName());
-        event.setDetail(updatedEvent.getDetail());
+        event.setDetails(updatedEvent.getDetails());
         event.setDate(updatedEvent.getDate());
 
 
