@@ -50,7 +50,7 @@ const EventsForm = () => {
             </div>
             <div className='col-md-12'>
                 <label htmlFor="date">Date</label>
-                <input type="text" className="form-control" id="date"
+                <input type="date" className="form-control" id="date"
                 value={date} onChange={(e) => handleInputChange(e, setDate)}/>
             </div>
             <div>
