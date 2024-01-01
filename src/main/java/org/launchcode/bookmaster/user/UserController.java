@@ -72,22 +72,4 @@ public class UserController {
 
 
     }
-
-    @GetMapping("/{userId}/allRecommendations")
-    public Iterable<Book> getAllRecommendations(@PathVariable Integer userId){
-        User user = userRepository.findById(userId).orElseThrow();
-        return user.getRecommendation();
-    }
-
-    @PutMapping("/{userId}/addRecommendation")
-    public void addRecommendation(@PathVariable Integer userId, @RequestBody Book book){
-        User user = userRepository.findById(userId).orElseThrow();
-        user.addRecommendation(book);
-    }
-
-    @DeleteMapping("/{userId}/deleteRecommendation")
-    public void deleteRecommendation(@PathVariable Integer userId, @RequestBody Book book) {
-        User user = userRepository.findById(userId).orElseThrow();
-        user.removeRecommendation(book);
-    }
 }

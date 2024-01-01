@@ -30,7 +30,6 @@ public class User extends AbstractEntity{
     private String address;
     private String email;
     private String password;
-    private final List<Book> recommendation = new ArrayList<>();
     @Enumerated(EnumType.STRING)
     private Role role;
 
@@ -111,17 +110,6 @@ public class User extends AbstractEntity{
         this.role = role;
     }
 
-    public List<Book> getRecommendation() {
-        return recommendation;
-    }
-
-    public void addRecommendation(Book book) {
-        this.recommendation.add(book);
-    }
-
-    public void removeRecommendation(Book book) {
-        this.recommendation.remove(book);
-    }
 
     //    @JsonManagedReference
     public List<Loan> getLoans() {
