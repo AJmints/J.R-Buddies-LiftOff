@@ -1,4 +1,9 @@
 package org.launchcode.bookmaster.recommendation;
 
-public interface RecommendationRepository {
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface RecommendationRepository extends CrudRepository<Recommendation,Integer> {
+    Recommendation getRecommendationById(int id);
 }
