@@ -22,7 +22,11 @@ import Search from './pages/Search'
 import DisplayBook from './pages/DisplayBook';
 import Admin5BookUpdates from './pages/Admin5BookUpdates';
 
-
+import EventsForm from './pages/EventsForm'
+import AddedBookToDBSuccess from "./pages/AddedBookToDBSuccess";
+import LibrarySearch from "./pages/LibrarySearch";
+import RemoveSearch from "./pages/RemoveSearch";
+import RemoveBookSuccess from "./pages/RemoveBookSuccess";
 
 
 export default function App() {
@@ -107,6 +111,7 @@ useEffect(() => {getBooks()}, []);
         <Route index element={<Home />} />
           {/* Routes in alphabetical order to be easier to find */}
           <Route path="admin_account" element={<AdminAccount />} />
+
           <Route path="admin_home" element={<Admin1Home />}/>
           <Route path="admin_home/books/" element={<Admin2Books books={books} getBooks={getBooks}/>}/>
           <Route path="admin_home/users/" element={<Admin2Users users={users} />}/>
@@ -126,9 +131,14 @@ useEffect(() => {getBooks()}, []);
                                                         } 
           /> 
           <Route path="/admin_home/books/edit/:id" element={<Admin5BookUpdates getBooks= {getBooks} updateBook={updateBook}/>}/>
+          <Route path="added_success" element={<AddedBookToDBSuccess />} />
           <Route path="customer_account" element={<CustomerAccount />} />
           <Route path="displayBook" element={<DisplayBook />} />
+          <Route path="event_form" element={<EventsForm /> } />
+          <Route path="library_search" element={<LibrarySearch /> } />
           <Route path="*" element={<NoPage />} />
+          <Route path="remove_search" element={<RemoveSearch />} />
+          <Route path="remove_success" element={<RemoveBookSuccess />} />
           <Route path="search" element={<Search />} />
           <Route path="user_sign_in" element={<UserSignIn />} />
           <Route path="user_registration" element={<UserRegistration />} />
