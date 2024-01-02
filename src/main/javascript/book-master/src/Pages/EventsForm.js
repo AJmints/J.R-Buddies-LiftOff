@@ -6,6 +6,7 @@ const EventsForm = () => {
     const [name, setName] = useState("");
     const [details, setDetails] = useState("");
     const [date, setDate] = useState("");
+    const [formSubmitted, setFormSubmitted] = useState(false);
 
     const handleInputChange = (e, setStateFunction) => {
         setStateFunction(e.target.value);
@@ -23,6 +24,7 @@ const EventsForm = () => {
             });
 
             if (response.status === 200) {
+                setFormSubmitted(true);
 
             } else {
                 console.error("Error saving event:", response.data.error);
@@ -32,6 +34,14 @@ const EventsForm = () => {
             console.error("Error saving event", error);
         }
     };
+
+    if (formSubmitted) {
+        return (
+            <div className="container mt-5">
+                <h3>Your event has been added!</h3>
+            </div>
+        )
+    }
     
 
     return (
