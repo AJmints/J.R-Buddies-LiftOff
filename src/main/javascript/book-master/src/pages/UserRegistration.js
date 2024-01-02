@@ -10,7 +10,7 @@ const UserRegistration = () => {
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
     const [password, setPassword] = useState("");
-    //const [verifyPassword, setVerifyPassword] = useState("");
+    const [verifyPassword, setVerifyPassword] = useState("");
     const [role, setRole] = useState("USER")
 
     const handleInputChange = (e, setStateFunction) => {
@@ -21,6 +21,11 @@ const UserRegistration = () => {
         e.preventDefault();
         console.log("Form Submitted");
 
+        if (password !== verifyPassword) {
+            console.error("Passwords do not match");
+            return;
+        }
+
         try{
             const response = await axios.post("http://localhost:8080/api/user/register", {
                 firstName,
@@ -29,7 +34,6 @@ const UserRegistration = () => {
                 phone,
                 address,
                 password,
-                //verifyPassword,
                 role,
             });
 
@@ -76,13 +80,11 @@ const UserRegistration = () => {
                     <input type='password' className='form-control' id='password' required 
                     value={password} onChange={(e) => setPassword(e.target.value)}/>
                 </div>
-                //add logic to verify password
-                {/* <div className='col-md-6'>
+                <div className='col-md-6'>
                     <label htmlFor="verify" className='form-label'>Verify Password:</label>
                     <input type='password' className='form-control' id='verify' required 
                     value={verifyPassword} onChange={(e) => setVerifyPassword(e.target.value)}/>
-                </div> */}
-                // add hidden role feature
+                </div>
                 <div>
                     <input type="hidden" name="role" value={role} />
                 </div>
