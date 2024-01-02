@@ -11,6 +11,7 @@ const UserRegistration = () => {
     const [address, setAddress] = useState("");
     const [password, setPassword] = useState("");
     //const [verifyPassword, setVerifyPassword] = useState("");
+    const [role, setRole] = useState("USER")
 
     const handleInputChange = (e, setStateFunction) => {
         setStateFunction(e.target.value);
@@ -29,6 +30,7 @@ const UserRegistration = () => {
                 address,
                 password,
                 //verifyPassword,
+                role,
             });
 
             if (response.status === 200) {
@@ -81,6 +83,9 @@ const UserRegistration = () => {
                     value={verifyPassword} onChange={(e) => setVerifyPassword(e.target.value)}/>
                 </div> */}
                 // add hidden role feature
+                <div>
+                    <input type="hidden" name="role" value={role} />
+                </div>
                 <div>
                     <button type='submit' className="btn btn-success">Submit</button>
                 </div>
