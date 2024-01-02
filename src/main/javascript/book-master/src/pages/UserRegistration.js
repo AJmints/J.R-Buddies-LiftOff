@@ -1,5 +1,6 @@
 import React , {useState} from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 
 const UserRegistration = () => {
@@ -14,6 +15,7 @@ const UserRegistration = () => {
     const [role, setRole] = useState("USER");
     const [passwordMismatch, setPasswordMismatch] = useState(false);
     const [missingFields, setMissingFields] = useState([]);
+    const [formSubmitted, setFormSubmitted] = useState(false);
 
     const handleInputChange = (e, setStateFunction) => {
         setStateFunction(e.target.value);
@@ -50,6 +52,7 @@ const UserRegistration = () => {
             });
 
             if (response.status === 200) {
+                setFormSubmitted(true);
 
             } else {
 
@@ -58,6 +61,15 @@ const UserRegistration = () => {
             console.error("Error during registration:", error);
         }
     };
+
+    if (formSubmitted) {
+        return (
+            <div className="containter mt-5">
+                <h3>Thank you for registering!</h3>
+                <Link to="/user_sign_in">Sign In</Link>
+            </div>
+        )
+    }
 
     return  <div className='container mt-5'>
         <h3>Registration Form</h3>
