@@ -1,5 +1,6 @@
 package org.launchcode.bookmaster.recommendation;
 
+import org.launchcode.bookmaster.book.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,5 +30,14 @@ public class RecommendationController {
     @DeleteMapping("/{recommendationId}")
     public void deleteRecommendation(@PathVariable Integer recommendationId){
         recommendationRepository.deleteById(recommendationId);
+    }
+
+    @GetMapping("/search")
+    public Iterable<Recommendation> listRecommendations(@RequestParam String idType, @RequestParam Integer idValue) {
+        Iterable<Recommendation> recommendations;
+
+        recommendations = RecommendationData.findByColumn(idType, idValue, recommendationRepository.findAll());
+
+        return recommendations;
     }
 }

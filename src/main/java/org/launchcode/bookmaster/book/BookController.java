@@ -2,7 +2,6 @@ package org.launchcode.bookmaster.book;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.launchcode.bookmaster.book.BookData;
 
 @RestController
 @RequestMapping("/book")

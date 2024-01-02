@@ -16,8 +16,8 @@ const UserResults=({results})=>{
 
     return(
         <div className = "bookList">
+            <h3>Click on Book Thumbnail to view details</h3>
             {
-                //Having trouble with the state property, will not send any data to displaybook
             results.map((book, index) => {
                 return(
                     <div key={index}>
