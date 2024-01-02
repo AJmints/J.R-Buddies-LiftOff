@@ -65,7 +65,7 @@ const UserRegistration = () => {
     if (formSubmitted) {
         return (
             <div className="containter mt-5">
-                <h3>Thank you for registering!</h3>
+                <h5>Thank you for registering!</h5>
                 <Link to="/user_sign_in">Sign In</Link>
             </div>
         )

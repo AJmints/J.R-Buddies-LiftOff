@@ -38,7 +38,7 @@ const EventsForm = () => {
     if (formSubmitted) {
         return (
             <div className="container mt-5">
-                <h3>Your event has been added!</h3>
+                <h5>Your event has been added!</h5>
             </div>
         )
     }
