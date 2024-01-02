@@ -11,7 +11,9 @@ const UserRegistration = () => {
     const [address, setAddress] = useState("");
     const [password, setPassword] = useState("");
     const [verifyPassword, setVerifyPassword] = useState("");
-    const [role, setRole] = useState("USER")
+    const [role, setRole] = useState("USER");
+    const [passwordMismatch, setPasswordMismatch] = useState(false);
+    const [missingFields, setMissingFields] = useState([]);
 
     const handleInputChange = (e, setStateFunction) => {
         setStateFunction(e.target.value);
@@ -21,8 +23,18 @@ const UserRegistration = () => {
         e.preventDefault();
         console.log("Form Submitted");
 
+        const missingFieldsArray = [];
+        if (!firstName) missingFieldsArray.push('First Name');
+        if (!lastName) missingFieldsArray.push("Last Name");
+        if (!email) missingFieldsArray.push("Email");
+        if (!address) missingFieldsArray.push("Address");
+        if (!password) missingFieldsArray.push("Password");
+        if (!verifyPassword) missingFieldsArray.push("Verify Password");
+
+        setMissingFields(missingFieldsArray);
+
         if (password !== verifyPassword) {
-            console.error("Passwords do not match");
+            setPasswordMismatch(true);
             return;
         }
 
@@ -84,10 +96,21 @@ const UserRegistration = () => {
                     <label htmlFor="verify" className='form-label'>Verify Password:</label>
                     <input type='password' className='form-control' id='verify' required 
                     value={verifyPassword} onChange={(e) => setVerifyPassword(e.target.value)}/>
+                    {passwordMismatch && (
+                        <p className="text-danger">Passwords do not match</p>
+                    )}
                 </div>
                 <div>
                     <input type="hidden" name="role" value={role} />
                 </div>
+
+                {missingFields.length > 0 && (
+                    <div className="col-12">
+                        <p className="text-danger">
+                            Please fill in the following fields: {missingFields.join(", ")}
+                        </p>
+                    </div>
+                )}
                 <div>
                     <button type='submit' className="btn btn-success">Submit</button>
                 </div>
