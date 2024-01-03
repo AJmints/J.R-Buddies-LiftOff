@@ -10,31 +10,31 @@ const Layout = () => {
     const [keyword, setKeyword] = useState("");
     const navigate = useNavigate();
     const [loginState, setLoginState] = useState("");
+    const [showLogin, setShowLogin] = useState(true);
+    const [showAdmin, setShowAdmin] = useState(false);
+    const [showCustomer, setShowCustomer] = useState(false);
 
     const handleLoginState = (e) => {
-        const loginLink = document.getElementById("loginLink");
-        const customerAccount = document.getElementById("customerAccount");
-        const adminAccount = document.getElementById("adminAccount");
         setLoginState(e.target);
         console.log(loginState.value);
-        if (loginState.value == "logout") {
-            loginLink.style.display = "block";
-            customerAccount.style.display = "none";
-            adminAccount.style.display = "none";
-        } else if (loginState.value == "customer") {
-            loginLink.style.display = "none";
-            customerAccount.style.display = "block";
-            adminAccount.style.display = "none";
-        } else if (loginState.value == "admin") {
-            loginLink.style.display = "none";
-            customerAccount.style.display = "none";
-            adminAccount.style.display = "block";
+        if (loginState.value === "logout") {
+            setShowLogin(true);
+            setShowAdmin(false);
+            setShowCustomer(false);
+        } else if (loginState.value === "customer") {
+            setShowLogin(false);
+            setShowAdmin(false);
+            setShowCustomer(true);
+        } else if (loginState.value === "admin") {
+            setShowLogin(false);
+            setShowAdmin(true);
+            setShowCustomer(false);
         }
     }
 
     const handleSearch = (e) => {
         e.preventDefault();
-        navigate("/displaybook", { state: {key: "search"}});
+        navigate("/library_search", {state: keyword});
     }
 
     return (
@@ -54,7 +54,7 @@ const Layout = () => {
                     </li>
 
                     <li className="nav-item">
-                        <Link to="search" className="nav-link">Search & Add Books</Link>
+                        <Link to="search" className="nav-link" style={{display: (showAdmin ? "block" : "none")}}>Search & Add Books</Link>
                     </li>
 
                     {/* will use quick search to search all fields with keyword and go to searchResults.js page to display results */}
@@ -64,22 +64,22 @@ const Layout = () => {
                     </form>
 
                     <li className="nav-item">
-                        <Link id="loginLink" to="user_sign_in" className="nav-link">Login/Register</Link>
+                        <Link id="loginLink" to="user_sign_in" className="nav-link" style={{display: (showLogin ? "block" : "none")}}>Login/Register</Link>
                     </li>
 
 {/* last 2 pages hidden will add code for with user verification and link will be visible only to correct user type */}
 
                     <li className="nav-item">
-                        <Link id="customerAccount" to="customer_account" className="nav-link" style={{display: "none"}}>Customer Account</Link>
+                        <Link id="customerAccount" to="customer_account" className="nav-link" style={{display: (showCustomer ? "block" : "none")}}>Customer Account</Link>
                     </li>
 
                     <li className="nav-item">
-                        <Link id="adminAccount" to="admin_account" className="nav-link" style={{display: "none"}}>Admin Account</Link>
+                        <Link id="adminAccount" to="admin_account" className="nav-link" style={{display: (showAdmin ? "block" : "none")}}>Admin Account</Link>
                     </li>
                     
                     <li className="nav-item ms-3">
-                    <select className='form-control' id='loginDrop' name='loginDrop' onChange={handleLoginState} >
-                            <option value={"logout"}>Logout</option>
+                        <select className='form-control' onChange={handleLoginState} >
+                            <option value={"logout"} >Logout</option>
                             <option value={"customer"}>Customer</option>
                             <option value={"admin"}>Admin</option>
                          </select>
