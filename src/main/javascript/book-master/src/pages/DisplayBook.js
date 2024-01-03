@@ -1,5 +1,6 @@
 import React from 'react';
 import {useLocation} from "react-router-dom";
+import ReviewAndRating from "../components/ReviewAndRating";
 
 const DisplayBook=()=> {
     const location = useLocation();
@@ -14,6 +15,7 @@ const DisplayBook=()=> {
     }
 
     return(
+    <>
         <div>
             <table>
                 <tr>
@@ -54,6 +56,12 @@ const DisplayBook=()=> {
                 </tr>
             </table>
         </div>
+
+        <div className='container-fluid pb-5 mb-5'>
+        <ReviewAndRating results={obj}/>
+        </div>
+    </>
+    
     );
 }
 

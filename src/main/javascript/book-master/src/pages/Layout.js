@@ -34,7 +34,7 @@ const Layout = () => {
 
     const handleSearch = (e) => {
         e.preventDefault();
-        navigate("/library_search", {state: keyword});
+        navigate("/library_search", {state: {keyword}});
     }
 
     return (

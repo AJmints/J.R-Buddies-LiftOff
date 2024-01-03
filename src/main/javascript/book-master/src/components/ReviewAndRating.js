@@ -3,18 +3,37 @@ import axios from "axios";
 import BooksList from "./BooksList"
 
 
-function ReviewAndRating () {
+function ReviewAndRating ({results}) {
     const [book, setBook] = useState("");
     const [user, setUser] = useState("");
     const [review, setReview] = useState("");
     const [rating, setRating] = useState(5);
+    const [users, setUsers] = useState([]);
+    const [userID, setUserID] = useState("")
+
+    useEffect(() => {
+        axios.get("http://localhost:8080/api/user/all")
+        .then(res=>setUsers(res.data))
+        .catch(err=>console.log(err));
+
+        const bookID = results.book.id
+
+        axios.get("http://localhost:8080/book/"+bookID)
+        .then(res=>setBook(res.data))
+        .catch(err=>console.log(err));
+    }, [])
 
 
     const submitReview = async (e) => {
         e.preventDefault();
+        
         console.log("Submited");
 
         try{
+            axios.get("http://localhost:8080/api/user/"+userID)
+            .then(res=>setUser(res.data))
+            .catch(err=>console.log(err));
+
             const response = await axios.post("http://localhost:8080/reviews", {
                 book,
                 user,
@@ -35,22 +54,16 @@ function ReviewAndRating () {
     return <div className="container mt-5">
                 <h3>Leave a review:</h3>
                 <form className="row g-3" onSubmit={submitReview}>
-                    
-
                     <div className='row mt-2'>
                         <div className='col-3 mt-2'>
-                            <label htmlFor="book" className='form-label'>Book Title:</label>
-                            <select className='form-control' id="book" name="book" value={book} onChange={(e) => setBook(e.target.value)} required>
-                                <option>Select one</option>
-                                <option></option>
-                                <option></option>
-                                <option></option>
-                                <option></option>
-                            </select>
-                        </div>
-                        <div className='col-3 mt-2'>
                             <label htmlFor="user" className='form-label'>User ID:</label>
-                            <input type="text" className='form-control' id="user" name="user" placeholder="example@gmail.com" value={user} onChange={(e) => setUser(e.target.value)} required/>
+                            <select className="form-control" id="user" name="user" onChange={(e) => setUserID(e.target.value)} required>
+                                <option>Select your user email</option>
+                            {users.map((user, index) => {
+                                return(
+                                    <option key={index} value={user.id}>{user.email}</option>)
+                            })}
+                            </select>
                         </div>
                         <div className='col-3 mt-2'>
                             <label htmlFor='rating' className='form-label'>Star Rating: </label>
