@@ -1,24 +1,17 @@
 const Admin4ShowUserLoans = (props) => {
     const userLoansBooks = props.userLoansBooks
-    const loansId = props.loansId
+    
 
-    const insertBooks = userLoansBooks.map((book)=>{
+    const insertBooks = userLoansBooks.map((loan)=>{
        
-        var mainLoan = 0
-        for (const loan of book.loans){
-           for (const id of loansId){
-            if (loan.id == id){
-             mainLoan = loan
-            }
-           }
-        }
+       
         return(
-            <tr key={book.id}>   
-                <td>{book.id}</td>
-                <td>{book.title}</td>
-                <td>{book.author}</td>
-                <td>{mainLoan.loanDateOut}</td>
-                <td>{mainLoan.loanDateIn}</td>
+            <tr key={loan.id}>   
+            <td>{loan.book.id}</td>
+            <td>{loan.book.title}</td>
+            <td>{loan.book.author}</td>
+            <td>{loan.loanDateOut}</td>
+            <td>{loan.loanDateIn}</td>
         
           </tr>
       )

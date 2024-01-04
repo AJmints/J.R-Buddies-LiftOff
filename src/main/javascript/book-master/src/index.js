@@ -21,6 +21,7 @@ import reportWebVitals from './reportWebVitals';
 import Search from './pages/Search'
 import DisplayBook from './pages/DisplayBook';
 import Admin5BookUpdates from './pages/Admin5BookUpdates';
+import Admin5UserUpdates from './pages/Admin5UserUpdates';
 
 import EventsForm from './pages/EventsForm'
 import AddedBookToDBSuccess from "./pages/AddedBookToDBSuccess";
@@ -49,6 +50,15 @@ export default function App() {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
+  };
+
+  const updateUser = (user, id) => {
+    try{
+           axios.put(URL2 + id, user)
+          } catch (error) {
+                    console.error("Error fetching data:", error);
+                  };  
+        getUsers()
   };
 
   const deleteUser = async (id) => {
@@ -131,6 +141,7 @@ useEffect(() => {getBooks()}, []);
                                                         } 
           /> 
           <Route path="/admin_home/books/edit/:id" element={<Admin5BookUpdates getBooks= {getBooks} updateBook={updateBook}/>}/>
+          <Route path="/admin_home/user/edit/:id" element={<Admin5UserUpdates getUsers= {getUsers} updateUser={updateUser}/>}/>
           <Route path="added_success" element={<AddedBookToDBSuccess />} />
           <Route path="customer_account" element={<CustomerAccount />} />
           <Route path="displayBook" element={<DisplayBook />} />

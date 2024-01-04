@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 
 const Admin2Users = (props) => {
   const usersToDisplay = props.users
+  
           const [users, setUsers] = useState(usersToDisplay)
           const [email, setEmail] = useState([])
           
@@ -30,10 +31,10 @@ const Admin2Users = (props) => {
             return (
                 <tr key= {user.id}>
                     <td>
-                        <Link to={`/admin_home/users/${user.id}`}>{user.firstname}</Link>
+                        <Link to={`/admin_home/users/${user.id}`}>{user.firstName}</Link>
                     </td>
                     <td>
-                        <Link to={`/admin_home/users/${user.id}`}>{user.lastname}</Link>
+                        <Link to={`/admin_home/users/${user.id}`}>{user.lastName}</Link>
                     </td>
                 </tr>
             )

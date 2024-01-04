@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import Admin4ShowUserLoans from "../components/Admin4ShowUserLoans";
 import axios from "axios";
+import { Link } from "react-router-dom"
 
 const Admin3UserInfo = (props) => {
 
@@ -40,17 +41,18 @@ const Admin3UserInfo = (props) => {
 
     return (
         <div className="form-group row" key= {user.id}>
+            <Link to={`/admin_home/user/edit/${user.id}`}  state={{ user }}><button className="btn btn-primary">edit information</button></Link>
             <div className="form-group row">
                 <label className="col-sm-2 col-form-label"> Id: </label> 
                 <label className="col-sm-2 col-form-label"> {user.id} </label> 
             </div>
             <div className="form-group row">
-                <label className="col-sm-2 col-form-label"> Firstname:  </label> 
-                <label className="col-sm-2 col-form-label"> {user.firstname} </label> 
+                <label className="col-sm-2 col-form-label"> FirstName:  </label> 
+                <label className="col-sm-2 col-form-label"> {user.firstName} </label> 
             </div>
             <div className="form-group row">
-                <label className="col-sm-2 col-form-label">Lastname: </label> 
-                <label className="col-sm-2 col-form-label"> {user.lastname} </label> 
+                <label className="col-sm-2 col-form-label">LastName: </label> 
+                <label className="col-sm-2 col-form-label"> {user.lastName} </label> 
             </div>
             <div className="form-group row">
                 <label className="col-sm-2 col-form-label"> Phone number:  </label> 
@@ -81,7 +83,7 @@ const Admin3UserInfo = (props) => {
                             <th>Date returned</th>
                         </tr>
                         </thead>
-                            <Admin4ShowUserLoans user={user} userLoansBooks={userLoansBooks} loansId={loansId} />       
+                            <Admin4ShowUserLoans user={user} userLoansBooks={userLoansBooks}  />       
                 </table>
             </div>
             
