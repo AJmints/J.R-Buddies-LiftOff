@@ -51,7 +51,7 @@ const DisplayResults=({results})=>{
                         
                         return(
                             <div key={index}>
-                                <img src={bookImg} alt="img"/>
+                                <img src={bookImg} width="200" height="300"alt="img"/>
                                 <br></br>
                                 <input value={[item.volumeInfo.title, "~",item.volumeInfo.authors,"~",
                                     item.volumeInfo.description,"~", bookImg,"~", item.id,"~", item.volumeInfo.categories]} type="checkbox" onChange={handleChecks}/>
