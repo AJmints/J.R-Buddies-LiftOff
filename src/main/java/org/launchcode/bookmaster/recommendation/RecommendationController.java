@@ -40,4 +40,13 @@ public class RecommendationController {
 
         return recommendations;
     }
+
+    @GetMapping("/specific_search")
+    public Recommendation findRecommendation(@RequestParam Integer userId, @RequestParam Integer bookId) {
+        Recommendation recommendation;
+
+        recommendation = RecommendationData.findSpecificRecommendation(userId, bookId, recommendationRepository.findAll());
+
+        return recommendation;
+    }
 }

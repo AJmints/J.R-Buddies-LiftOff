@@ -40,4 +40,14 @@ public class RecommendationData {
 
         return results;
     }
+
+    public static Recommendation findSpecificRecommendation(Integer userId, Integer bookId, Iterable<Recommendation> allRecommendations){
+        ArrayList<Recommendation> results = new ArrayList<>();
+        ArrayList<Recommendation> specific = new ArrayList<>();
+
+        results = findByUser(userId, allRecommendations);
+        specific = findByBook(bookId, results);
+
+        return specific.get(0);
+    }
 }
