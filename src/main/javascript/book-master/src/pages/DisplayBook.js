@@ -13,6 +13,20 @@ const DisplayBook=()=> {
         available = "All Copies Are Currently Checked Out";
     }
 
+    const bookRecommend = (event) => {
+        var element = document.getElementById("recommendButton");
+        if(element.innerHTML==="Recommend Book"){
+            element.innerHTML="Recommended";
+            element.style.color = "green";
+            // Create recommendation object with book and user ids
+        }
+        else{
+            element.innerHTML="Recommend Book";
+            element.style.color = null;
+            // Use user and book id to delete recommendation
+        }
+    }
+
     return(
         <div>
             <table>
@@ -29,7 +43,8 @@ const DisplayBook=()=> {
                         </table>
                     </td>
                     <td> 
-                        <button style={{marginRight: 14 + 'em'}}>Recommend Book</button> 
+                        <button id="recommendButton" onClick={bookRecommend}
+                            style={{marginRight: 14 + 'em'}}>Recommend Book</button>
                         <button style={{marginRight: 14 + 'em'}}>Check Book Out</button>
                         <br></br>
                         <br></br>
@@ -47,7 +62,7 @@ const DisplayBook=()=> {
                                 <h5>{available}</h5>
                             </tr>
                             <tr>
-                                <h6>{obj.book.description}</h6>
+                                <h5>{obj.book.description}</h5>
                             </tr>
                         </table>
                     </td>
