@@ -53,10 +53,6 @@ const Layout = () => {
                         <Link to="library_search" className="nav-link">Search Library</Link>
                     </li>
 
-                    <li className="nav-item">
-                        <Link to="search" className="nav-link" style={{display: (showAdmin ? "block" : "none")}}>Search & Add Books</Link>
-                    </li>
-
                     {/* will use quick search to search all fields with keyword and go to searchResults.js page to display results */}
                     <form className="d-flex" onSubmit={handleSearch}>
                         <input className="form-control me-2" type="text" placeholder="Quick Search" id="search_keyword" value={keyword} onChange={(e) => setKeyword(e.target.value)}></input>
@@ -74,7 +70,11 @@ const Layout = () => {
                     </li>
 
                     <li className="nav-item">
-                        <Link id="adminAccount" to="admin_account" className="nav-link" style={{display: (showAdmin ? "block" : "none")}}>Admin Account</Link>
+                        <Link id="adminAccount" to="admin_home" className="nav-link" style={{display: (showAdmin ? "block" : "none")}}>Admin Home</Link>
+                    </li>
+
+                    <li className="nav-item">
+                        <Link to="search" className="nav-link" style={{display: (showAdmin ? "block" : "none")}}>Search & Add Books</Link>
                     </li>
                     
                     <li className="nav-item ms-3">

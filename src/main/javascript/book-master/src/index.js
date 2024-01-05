@@ -5,7 +5,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 
-import AdminAccount from "./pages/AdminAccount";
 import Admin1Home from './pages/Admin1Home';
 import Admin2Books from './pages/Admin2Books';
 import Admin2Users from './pages/Admin2Users';
@@ -119,8 +118,6 @@ useEffect(() => {getBooks()}, []);
         <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
           {/* Routes in alphabetical order to be easier to find */}
-          <Route path="admin_account" element={<AdminAccount />} />
-
           <Route path="admin_home" element={<Admin1Home />}/>
           <Route path="admin_home/books/" element={<Admin2Books books={books} getBooks={getBooks}/>}/>
           <Route path="admin_home/users/" element={<Admin2Users users={users} />}/>
