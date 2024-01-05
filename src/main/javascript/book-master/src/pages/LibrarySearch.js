@@ -4,7 +4,7 @@ import UserResults from "../components/UserResults";
 
 const LibrarySearch=()=>{
 
-    const [search, setSearch] = useState("");
+    const [search, setSearch] = useState(" ");
     const [category, setCategory] = useState("all");
     const [bookData, setBookData] = useState([]);
     const [show, setShow] = useState(false);
@@ -25,7 +25,7 @@ const LibrarySearch=()=>{
                 <h2>Look For Books</h2>
                 <form onSubmit = {searchLibrary}>
                     <input type="text" placeholder="Enter Search Term" value={search}
-                        onChange={e=>setSearch(e.target.value)}/>
+                        onChange={e=>setSearch(e.target.value.trim())}/>
                     <br></br>
                     <label>
                         Search Category
