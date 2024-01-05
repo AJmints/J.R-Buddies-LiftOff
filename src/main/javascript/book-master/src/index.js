@@ -131,7 +131,7 @@ useEffect(() => {getBooks()}, []);
           <Route path="/admin_home/user/edit/:id" element={<Admin5UserUpdates getUsers= {getUsers} updateUser={updateUser}/>}/>
           <Route path="added_success" element={<AddedBookToDBSuccess />} />
           <Route path="customer_account" element={<CustomerAccount />} />
-          <Route path="create_recommendation" element={<CreateRecommendation bookId={bookId}/>} />
+          <Route path="create_recommendation" element={<CreateRecommendation />} />
           <Route path="displayBook" element={<DisplayBook />} />
           <Route path="event_form" element={<EventsForm /> } />
           <Route path="library_search" element={<LibrarySearch /> } />

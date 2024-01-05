@@ -1,15 +1,37 @@
 import React , {useState} from 'react';
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
-const CreateRecommendation=({bookId})=> {
+const CreateRecommendation=()=> {
+    const location = useLocation();
+    const obj = location.state;
     const [userID, setUserID] = useState(0);
+    const [valid, setValid] = useState(false);
+    const [users, setUsers] = useState([]);
     const navigate = useNavigate();
+
+    axios.get("http://localhost:8080/api/user/all")
+    .then(res=>setUsers(res.data))
+    .catch(err=>console.log(err));
+
+    console.log(obj.bookId);
+
+    const checkUserID = () => {
+        users.map((user) => {
+            if(user.id == userID){
+                setValid(true);
+            }
+        })
+    }
 
     const createRecommendation = (e) => {
         e.preventDefault();
 
-        const recommendation = {'bookId': bookId, 'userId': userID};
+        checkUserID();
+
+        console.log(valid);
+
+        /*const recommendation = {'bookId': bookId, 'userId': userID};
 
         const config = {
             method: 'post',
@@ -20,7 +42,7 @@ const CreateRecommendation=({bookId})=> {
 
         axios(config)
         .then((response) => {console.log(response);})
-        .catch(err => console.log(err.response.data.message));
+        .catch(err => console.log(err.response.data.message));*/
 
         //navigate('/added_success');
     }

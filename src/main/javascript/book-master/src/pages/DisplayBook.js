@@ -13,18 +13,8 @@ const DisplayBook=()=> {
         available = "All Copies Are Currently Checked Out";
     }
 
-    const bookRecommend = (event) => {
-        var element = document.getElementById("recommendButton");
-        if(element.innerHTML==="Recommend Book"){
-            element.innerHTML="Recommended";
-            element.style.color = "green";
-            // Create recommendation object with book and user ids
-        }
-        else{
-            element.innerHTML="Recommend Book";
-            element.style.color = null;
-            // Use user and book id to delete recommendation
-        }
+    const bookRecommend = () => {
+        navigate("/create_recommendation", {state: {obj.book.id}});
     }
 
     return(
