@@ -25,7 +25,7 @@ const RemoveSearch=()=>{
                 <h2>Look For Books</h2>
                 <form onSubmit = {searchLibrary}>
                     <input type="text" placeholder="Enter Search Term" value={search}
-                        onChange={e=>setSearch(e.target.value)}/>
+                        onChange={e=>setSearch(e.target.value.trim())}/>
                     <br></br>
                     <label>
                         Search Category
