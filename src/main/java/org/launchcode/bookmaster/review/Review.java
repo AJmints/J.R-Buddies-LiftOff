@@ -1,5 +1,6 @@
 package org.launchcode.bookmaster.review;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import org.launchcode.bookmaster.user.User;
@@ -26,6 +27,7 @@ public class Review extends AbstractEntity {
     }
     public Review(){}
 
+    @JsonBackReference(value="book-review")
     public Book getBook() {
         return book;
     }
@@ -34,6 +36,7 @@ public class Review extends AbstractEntity {
         this.book = book;
     }
 
+    @JsonBackReference(value="user-review")
     public User getUser() {
         return user;
     }

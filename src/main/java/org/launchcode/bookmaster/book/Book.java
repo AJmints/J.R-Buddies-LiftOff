@@ -108,7 +108,7 @@ public class Book extends AbstractEntity {
         this.available_quantity = available_quantity;
     }
 
-//    @JsonManagedReference
+    @JsonManagedReference(value="book-loan")
     public List<Loan> getLoans() {
         return loans;
     }
@@ -116,7 +116,7 @@ public class Book extends AbstractEntity {
         this.loans = loans;
     }
 
-//    @JsonManagedReference
+    @JsonManagedReference(value="book-review")
     public List<Review> getReviews() {
         return reviews;
     }
