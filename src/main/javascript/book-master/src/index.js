@@ -22,12 +22,12 @@ import Search from './pages/Search'
 import DisplayBook from './pages/DisplayBook';
 import Admin5BookUpdates from './pages/Admin5BookUpdates';
 import Admin5UserUpdates from './pages/Admin5UserUpdates';
-
 import EventsForm from './pages/EventsForm'
 import AddedBookToDBSuccess from "./pages/AddedBookToDBSuccess";
 import LibrarySearch from "./pages/LibrarySearch";
 import RemoveSearch from "./pages/RemoveSearch";
 import RemoveBookSuccess from "./pages/RemoveBookSuccess";
+import CreateRecommendation from "/pages/CreateRecommendation";
 
 
 export default function App() {
@@ -125,25 +125,13 @@ useEffect(() => {getBooks()}, []);
           <Route path="admin_home" element={<Admin1Home />}/>
           <Route path="admin_home/books/" element={<Admin2Books books={books} getBooks={getBooks}/>}/>
           <Route path="admin_home/users/" element={<Admin2Users users={users} />}/>
-          <Route path="admin_home/users/:id"
-                             element = {< Admin3UserInfo 
-                                          users={users}
-                                          deleteUser={deleteUser}
-                                        />
-                                                        } 
-          />  
-          <Route path="admin_home/books/:id"
-                             element = {< Admin3BookInfo 
-                                          books={books}
-                                          deleteBook={deleteBook}
-                                          
-                                        />
-                                                        } 
-          /> 
+          <Route path="admin_home/users/:id" element = {< Admin3UserInfo users={users} deleteUser={deleteUser}/>} />
+          <Route path="admin_home/books/:id" element = {< Admin3BookInfo books={books} deleteBook={deleteBook} />} />
           <Route path="/admin_home/books/edit/:id" element={<Admin5BookUpdates getBooks= {getBooks} updateBook={updateBook}/>}/>
           <Route path="/admin_home/user/edit/:id" element={<Admin5UserUpdates getUsers= {getUsers} updateUser={updateUser}/>}/>
           <Route path="added_success" element={<AddedBookToDBSuccess />} />
           <Route path="customer_account" element={<CustomerAccount />} />
+          <Route path="create_recommendation" element={<CreateRecommendation bookId={bookId}/>} />
           <Route path="displayBook" element={<DisplayBook />} />
           <Route path="event_form" element={<EventsForm /> } />
           <Route path="library_search" element={<LibrarySearch /> } />
