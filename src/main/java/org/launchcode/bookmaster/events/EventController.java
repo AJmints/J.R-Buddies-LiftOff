@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/event")
+@CrossOrigin
 public class EventController {
 
     @Autowired
@@ -31,10 +32,10 @@ public class EventController {
     }
 
     @PutMapping("/{eventId}")
-    public Event updateEvent(@PathVariable Integer bookId, @RequestBody Event updatedEvent) {
-        Event event = eventRepository.findById(bookId).orElseThrow();
+    public Event updateEvent(@PathVariable Integer eventId, @RequestBody Event updatedEvent) {
+        Event event = eventRepository.findById(eventId).orElseThrow();
         event.setName(updatedEvent.getName());
-        event.setDetail(updatedEvent.getDetail());
+        event.setDetails(updatedEvent.getDetails());
         event.setDate(updatedEvent.getDate());
 
 

@@ -43,8 +43,11 @@ function UserSignIn() {
                     <div>
                         <button type='submit' className="btn btn-success">Submit</button>
                     </div>             
-                </form> 
-                <Link to="/user_registration">Registration</Link>
+                </form>
+                <div className="container mt-5">
+                    <h5>Not registered?</h5>
+                    <Link to="/user_registration">Sign Up</Link>
+                </div>
         </div>
             )
         }
