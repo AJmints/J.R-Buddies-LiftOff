@@ -1,8 +1,9 @@
 import React from 'react';
-import {useLocation} from "react-router-dom";
+import {useNavigate, useLocation} from "react-router-dom";
 
 const DisplayBook=()=> {
     const location = useLocation();
+    const navigate = useNavigate();
     const obj = location.state;
     var available = "";
     
@@ -14,7 +15,7 @@ const DisplayBook=()=> {
     }
 
     const bookRecommend = () => {
-        navigate("/create_recommendation", {state: {obj.book.id}});
+        navigate("/create_recommendation", {state: obj});
     }
 
     return(

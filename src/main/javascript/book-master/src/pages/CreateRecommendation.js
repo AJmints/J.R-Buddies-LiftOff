@@ -1,4 +1,4 @@
-import React , {useState} from 'react';
+import React , {useState, useRef} from 'react';
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -6,20 +6,14 @@ const CreateRecommendation=()=> {
     const location = useLocation();
     const obj = location.state;
     const [userID, setUserID] = useState(0);
-    const [valid, setValid] = useState(false);
+    const isValid = useRef(false);
     const [users, setUsers] = useState([]);
     const navigate = useNavigate();
-
-    axios.get("http://localhost:8080/api/user/all")
-    .then(res=>setUsers(res.data))
-    .catch(err=>console.log(err));
-
-    console.log(obj.bookId);
 
     const checkUserID = () => {
         users.map((user) => {
             if(user.id == userID){
-                setValid(true);
+                isValid.current = true;
             }
         })
     }
@@ -27,24 +21,26 @@ const CreateRecommendation=()=> {
     const createRecommendation = (e) => {
         e.preventDefault();
 
+        axios.get("http://localhost:8080/api/user/all")
+            .then(res=>setUsers(res.data))
+            .catch(err=>console.log(err));
+
         checkUserID();
 
-        console.log(valid);
+        if(isValid.current){
+            const recommendation = {'bookId': obj.book.id, 'userId': userID};
 
-        /*const recommendation = {'bookId': bookId, 'userId': userID};
+            const config = {
+                method: 'post',
+                url: 'http://localhost:8080/recommendation/save',
+                headers: {'Content-Type':'application/json'},
+                data: JSON.stringify(recommendation)
+            };
 
-        const config = {
-            method: 'post',
-            url: 'http://localhost:8080/recommendation/save',
-            headers: {'Content-Type':'application/json'},
-            data: JSON.stringify(recommendation)
-        };
-
-        axios(config)
-        .then((response) => {console.log(response);})
-        .catch(err => console.log(err.response.data.message));*/
-
-        //navigate('/added_success');
+            axios(config)
+            .then((response) => {navigate('/recommendation_success');})
+            .catch(err => console.log(err.response.data.message));
+        }
     }
 
     return(
@@ -54,7 +50,7 @@ const CreateRecommendation=()=> {
                     <form onSubmit = {createRecommendation}>
                         <input type="number" placeholder="ID Number" value={userID}
                             onChange={e=>setUserID(e.target.value)}/>
-                        <button type="submit">Search</button>
+                        <button type="submit">Submit ID</button>
                     </form>
                 </div>
             </>)
