@@ -1,10 +1,10 @@
 package org.launchcode.bookmaster.user;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 //import lombok.*;
 import org.launchcode.bookmaster.abstractEntity.AbstractEntity;
-import org.launchcode.bookmaster.book.Book;
 import org.launchcode.bookmaster.loan.Loan;
 import org.launchcode.bookmaster.review.Review;
 //import org.springframework.security.core.GrantedAuthority;
@@ -106,17 +106,17 @@ public class User extends AbstractEntity{
         return role;
     }
 
+
     public void setRole(Role role) {
         this.role = role;
     }
 
-
-    //    @JsonManagedReference
+    @JsonManagedReference(value="user-loan")
     public List<Loan> getLoans() {
         return loans;
     }
 
-//    @JsonManagedReference
+    @JsonManagedReference(value="user-review")
     public List<Review> getReviews() {
         return reviews;
     }

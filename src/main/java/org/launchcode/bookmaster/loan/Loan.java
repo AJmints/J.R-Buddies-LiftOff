@@ -33,7 +33,7 @@ public class Loan extends AbstractEntity {
     public Loan() {
     }
 
-//    @JsonBackReference
+    @JsonBackReference(value="book-loan")
     public Book getBook() {
         return book;
     }
@@ -42,7 +42,7 @@ public class Loan extends AbstractEntity {
         this.book = book;
     }
 
-//    @JsonBackReference
+    @JsonBackReference(value="user-loan")
     public User getUser() {
         return user;
     }
