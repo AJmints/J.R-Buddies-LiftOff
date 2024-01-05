@@ -1,8 +1,13 @@
 package org.launchcode.bookmaster.book;
 
+import org.launchcode.bookmaster.loan.Loan;
+import org.launchcode.bookmaster.user.User;
+import org.launchcode.bookmaster.user.UserLoanDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.launchcode.bookmaster.book.BookData;
+
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/book")
@@ -45,7 +50,19 @@ public class BookController {
         return bookRepository.save(book);
 
     }
+    @GetMapping("/loan/{bookId}")
+    public Iterable<UserLoanDTO> getBooksLoan(@PathVariable Integer bookId) {
+        ArrayList<UserLoanDTO> usersLoans = new ArrayList<>();
 
+        Book book = bookRepository.findById(bookId).orElseThrow();
+        Iterable<Loan> bookLoans = book.getLoans();
+        for (Loan loan : bookLoans) {
+            User user = loan.getUser();
+            UserLoanDTO userLoanDTO= new UserLoanDTO(loan.getLoanDateOut(), loan.getLoanDateIn(), user);
+            usersLoans.add(userLoanDTO);
+        }
+        return usersLoans;
+    }
     @GetMapping("/search_results")
     public Iterable<Book> listBooks(@RequestParam String column, @RequestParam String searchTerm) {
         Iterable<Book> books;
