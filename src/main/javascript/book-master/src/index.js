@@ -16,6 +16,7 @@ import AddedBookToDBSuccess from "./pages/AddedBookToDBSuccess";
 import LibrarySearch from "./pages/LibrarySearch";
 import RemoveSearch from "./pages/RemoveSearch";
 import RemoveBookSuccess from "./pages/RemoveBookSuccess";
+import UserDashboard from "./pages/UserDashboard"
 
 
 export default function App() {
@@ -37,6 +38,7 @@ export default function App() {
           <Route path="search" element={<Search />} />
           <Route path="user_sign_in" element={<UserSignIn />} />
           <Route path="user_registration" element={<UserRegistration />} />
+          <Route path="user_dashboard" element={<UserDashboard />} />
         </Route>
       </Routes>
     </BrowserRouter>

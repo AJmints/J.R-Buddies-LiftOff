@@ -2,6 +2,7 @@ import { Outlet, Link , useNavigate } from "react-router-dom";
 import Header from "../components/header";
 import "./layout.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min'
 import { useState } from "react";
 
 
@@ -40,9 +41,23 @@ const Layout = () => {
                         <button className="btn btn-primary" type="Submit" >Search</button>
                     </form>
 
-                    <li className="nav-item">
-                        <Link to="user_sign_in" className="nav-link">Login</Link>
-                    </li>
+                    <li className="nav-item dropdown">
+                    <a
+                        className="nav-link dropdown-toggle"
+                        href="#"
+                        id="navbarDropdown"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                    >
+                        Account
+                    </a>
+                    <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <Link to="user_sign_in" className="dropdown-item">Login</Link>
+                        <Link to="user_registration" className="dropdown-item">Register</Link>
+                    </div>
+                </li>
 
 {/* last 2 pages hidden will add code for with user verification and link will be visible only to correct user type */}
 
