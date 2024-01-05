@@ -7,7 +7,7 @@ const UserRegistration = () => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
-    const [phoneNumber, setPhoneNumber] = useState("");
+    const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
     const [password, setPassword] = useState("");
     //const [verifyPassword, setVerifyPassword] = useState("");
@@ -25,7 +25,7 @@ const UserRegistration = () => {
                 firstName,
                 lastName,
                 email,
-                phoneNumber,
+                phone,
                 address,
                 password,
                 //verifyPassword,
@@ -62,7 +62,7 @@ const UserRegistration = () => {
                 <div className='col-md-4'>
                     <label htmlFor="pnumber" className='form-label'>Phone number:</label>
                     <input type='text' className='form-control' id='pnumber'
-                    value={phoneNumber} onChange={(e) => handleInputChange(e, setPhoneNumber)}/>
+                    value={phone} onChange={(e) => handleInputChange(e, setPhone)}/>
                 </div>
                 <div className='col-md-12'>
                     <label htmlFor="address" className='form-label'>Address:</label>

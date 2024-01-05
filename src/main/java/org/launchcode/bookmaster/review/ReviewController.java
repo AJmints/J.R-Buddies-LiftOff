@@ -21,6 +21,13 @@ public class ReviewController {
         return reviewRepository.findAll();
     }
 
+//    @GetMapping("/all")
+//    public Iterable<Review> getAllUserReviews(){
+//        Review review = reviewRepository.findAll();
+//
+//        return reviewRepository.findAll();
+//    }
+
     @GetMapping("/{reviewId}")
     public Review getReview(@PathVariable Integer reviewId){
         return reviewRepository.findById(reviewId).orElseThrow();
