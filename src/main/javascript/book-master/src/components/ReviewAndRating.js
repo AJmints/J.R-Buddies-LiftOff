@@ -1,5 +1,6 @@
 import React , {useEffect, useState} from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 
 function ReviewAndRating ({results}) {
@@ -10,6 +11,7 @@ function ReviewAndRating ({results}) {
     const [users, setUsers] = useState([]);
     const [userID, setUserID] = useState("");
     const bookID = results.book.id
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get("http://localhost:8080/api/user/all")
@@ -21,6 +23,13 @@ function ReviewAndRating ({results}) {
         .catch(err=>console.log(err));
     }, [])
 
+    const selectUser = (e)=>{
+        setUserID(e.target.value);
+
+        axios.get("http://localhost:8080/api/user/"+userID)
+            .then(res=>setUser(res.data))
+            .catch(err=>console.log(err));
+    }
 
     const submitReview = async (e) => {
         e.preventDefault();
@@ -28,10 +37,6 @@ function ReviewAndRating ({results}) {
         console.log("Submited");
 
         try{
-            axios.get("http://localhost:8080/api/user/"+userID)
-            .then(res=>setUser(res.data))
-            .catch(err=>console.log(err));
-
             const response = await axios.post("http://localhost:8080/reviews", {
                 book,
                 user,
@@ -47,7 +52,7 @@ function ReviewAndRating ({results}) {
         } catch (error) {
             console.error("Error posting review", error)
         }
-        
+        window.location.reload();
     };
 
     return <div className="container mt-5">
@@ -56,7 +61,7 @@ function ReviewAndRating ({results}) {
                     <div className='row mt-2'>
                         <div className='col-3 mt-2'>
                             <label htmlFor="user" className='form-label'>User ID:</label>
-                            <select className="form-control" id="user" name="user" onChange={(e) => setUserID(e.target.value)} required>
+                            <select className="form-control" id="user" name="user" onChange={selectUser} required>
                                 <option>Select your user email</option>
                             {users.map((user, index) => {
                                 return(
