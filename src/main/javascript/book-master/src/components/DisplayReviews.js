@@ -19,21 +19,21 @@ function DisplayReviews ({results}) {
     }, [])
 
     return (<div className="container mt-3" style={{display: (show ? 'block' : 'none')}}>
-        <h3>Reviews:</h3>
+        <h3>{results.book.title} Book Reviews:</h3>
         {reviews.map((review, index) => {
             return(
                 <div key={index} className="row g-3">
                     <div  className='row mt-2'>
                         <div  className='col-3 mt-2'>
-                            <p>User ID: {review.user.email}</p>
+                            <p><span style={{fontWeight: "bold"}}>User ID:</span> {review.user.email}</p>
                         </div>
                         <div  className='col-3 mt-2'>
-                            <p>User Rating: {review.rating}</p>
+                            <p><span style={{fontWeight: "bold"}}>User Rating:</span> {review.rating}</p>
                         </div>
                     </div>
                     <div className='row'>
-                        <p>Review:</p>
-                        <p>"{review.review}"</p>
+                        <p><span style={{fontWeight: "bold"}}>Review:</span></p>
+                        <p className="text-bg-light">"{review.review}"</p>
                     </div>
                 </div>
             )

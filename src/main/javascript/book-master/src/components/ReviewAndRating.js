@@ -56,7 +56,7 @@ function ReviewAndRating ({results}) {
     };
 
     return <div className="container mt-5">
-                <h3>Leave a review:</h3>
+                <h3>Leave a book review:</h3>
                 <form className="row g-3" onSubmit={submitReview}>
                     <div className='row mt-2'>
                         <div className='col-3 mt-2'>

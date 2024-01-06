@@ -58,13 +58,14 @@ const DisplayBook=()=> {
             </table>
         </div>
 
-        <div className='container-fluid pb-1 mb-1'>
-            <DisplayReviews results={obj}/>
+        <div className='container-fluid mb-4'>
+            <ReviewAndRating results={obj}/>
         </div>
 
         <div className='container-fluid pb-5 mb-5'>
-            <ReviewAndRating results={obj}/>
+            <DisplayReviews results={obj}/>
         </div>
+
     </>
     
     );
