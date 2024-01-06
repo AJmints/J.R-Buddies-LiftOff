@@ -29,6 +29,7 @@ import RemoveSearch from "./pages/RemoveSearch";
 import RemoveBookSuccess from "./pages/RemoveBookSuccess";
 import CreateRecommendation from "./pages/CreateRecommendation";
 import RecommendationSuccess from "./pages/RecommendationSuccess";
+import RemoveRecommendations from "./pages/RemoveRecommendations";
 
 
 export default function App() {
@@ -138,6 +139,7 @@ useEffect(() => {getBooks()}, []);
           <Route path="library_search" element={<LibrarySearch /> } />
           <Route path="*" element={<NoPage />} />
           <Route path="recommendation_success" element={<RecommendationSuccess />} />
+          <Route path="remove_recommend" element={<RemoveRecommendations />} />
           <Route path="remove_search" element={<RemoveSearch />} />
           <Route path="remove_success" element={<RemoveBookSuccess />} />
           <Route path="search" element={<Search />} />
