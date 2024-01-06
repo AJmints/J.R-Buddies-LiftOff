@@ -1,6 +1,5 @@
 import React , {useEffect, useState} from "react";
 import axios from "axios";
-import BooksList from "./BooksList"
 
 
 function ReviewAndRating ({results}) {
@@ -9,14 +8,13 @@ function ReviewAndRating ({results}) {
     const [review, setReview] = useState("");
     const [rating, setRating] = useState(5);
     const [users, setUsers] = useState([]);
-    const [userID, setUserID] = useState("")
+    const [userID, setUserID] = useState("");
+    const bookID = results.book.id
 
     useEffect(() => {
         axios.get("http://localhost:8080/api/user/all")
         .then(res=>setUsers(res.data))
         .catch(err=>console.log(err));
-
-        const bookID = results.book.id
 
         axios.get("http://localhost:8080/book/"+bookID)
         .then(res=>setBook(res.data))
@@ -49,6 +47,7 @@ function ReviewAndRating ({results}) {
         } catch (error) {
             console.error("Error posting review", error)
         }
+        
     };
 
     return <div className="container mt-5">

@@ -13,6 +13,7 @@ public class ReviewController {
 
     @PostMapping
     public Review saveReview(@RequestBody Review review){
+
         return reviewRepository.save(review);
     }
 
@@ -20,13 +21,6 @@ public class ReviewController {
     public Iterable<Review> getAllReviews(){
         return reviewRepository.findAll();
     }
-
-//    @GetMapping("/all")
-//    public Iterable<Review> getAllUserReviews(){
-//        Review review = reviewRepository.findAll();
-//
-//        return reviewRepository.findAll();
-//    }
 
     @GetMapping("/{reviewId}")
     public Review getReview(@PathVariable Integer reviewId){
