@@ -61,7 +61,7 @@ public class BookController {
         Iterable<Review> bookReviews = book.getReviews();
         for (Review review : bookReviews) {
             User user = review.getUser();
-            UserReviewDTO userReviewDTO= new UserReviewDTO(user, review.getReview(), review.getRating());
+            UserReviewDTO userReviewDTO= new UserReviewDTO(review.getId(), user, review.getReview(), review.getRating());
             usersReviews.add(userReviewDTO);
         }
         return usersReviews;
