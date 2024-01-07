@@ -24,20 +24,20 @@ function CustomerReviews ({}) {
     }
 
     const updateReviews = (e) => {
-        e.preventDefault();
 
         axios.delete(`http://localhost:8080/reviews/${reviewId}`)
         .then((res) => {console.log(`successfully deleted book review ${reviewId}`);})
         .catch(err => console.log(err.res.data.message))
     }
     const deleteReviews = (e) => {
-        e.preventDefault();
 
-            axios.delete(`http://localhost:8080/reviews/${reviewId}`)
-            .then((res) => {console.log(`successfully deleted book review ${reviewId}`);})
-            .catch(err => console.log(err.res.data.message))
+        axios.delete("http://localhost:8080/reviews/"+e)
+        .then((res) => {console.log(`successfully deleted book review ${reviewId}`);})
+        .catch(err => console.log(err.res.data.message))
 
-        window.location.reload();
+        axios.get("http://localhost:8080/api/user/reviews/"+userId)
+        .then(res=>setReviews(res.data))
+        .catch(err=>console.log(err));
     }
 
     return <div className="container mt-3 pb-5 mb-5" >
@@ -71,7 +71,7 @@ function CustomerReviews ({}) {
                     </div>
                     <div className="mb-2">
                         <button type='submit' className="btn btn-primary" onSubmit={updateReviews}>Update</button>
-                        <button type='submit' className="btn btn-secondary" onSubmit={deleteReviews}>Delete</button>
+                        <button type='submit' className="btn btn-secondary" value={review.id} onClick={(e) => deleteReviews(e.target.value)}>Delete</button>
                     </div>
                 </div>
             )
