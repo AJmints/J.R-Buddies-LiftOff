@@ -13,7 +13,7 @@ public class ShelfController {
     @Autowired
     private ShelfRespository shelfRespository;
 
-    @PostMapping
+    @PostMapping("/saveBook")
     public Shelf saveShelf(@RequestBody Shelf newShelf){
         return shelfRespository.save(newShelf);
     }
