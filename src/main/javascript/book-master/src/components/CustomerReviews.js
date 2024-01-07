@@ -7,7 +7,6 @@ function CustomerReviews ({}) {
     const [show, setShow] = useState(true);
     const [users, setUsers] = useState([]);
     const [reviewId, setReviewId] = useState("");
-    const[checked, setChecked] = useState([]);
 
 
     useEffect(() => {
@@ -24,22 +23,21 @@ function CustomerReviews ({}) {
         .catch(err=>console.log(err));
     }
 
-    const handleChecks = (event) => {
-        var updates = [...checked];
-        if(event.target.checked){
-            updates = [...checked, event.target.value];
-        }
-        else{
-            updates.splice(checked.indexOf(event.target.value), 1);
-        }
-        setChecked(updates);
-    };
+    const updateReviews = (e) => {
+        e.preventDefault();
 
-    const handleDeleteReview = (e) => {
-        setReviewId(e);
         axios.delete(`http://localhost:8080/reviews/${reviewId}`)
         .then((res) => {console.log(`successfully deleted book review ${reviewId}`);})
         .catch(err => console.log(err.res.data.message))
+    }
+    const deleteReviews = (e) => {
+        e.preventDefault();
+
+            axios.delete(`http://localhost:8080/reviews/${reviewId}`)
+            .then((res) => {console.log(`successfully deleted book review ${reviewId}`);})
+            .catch(err => console.log(err.res.data.message))
+
+        window.location.reload();
     }
 
     return <div className="container mt-3 pb-5 mb-5" >
@@ -61,7 +59,7 @@ function CustomerReviews ({}) {
                 <div key={index} className="row border border-3">
                     <div  className='row mt-2'>
                         <div  className='col-2 mt-2'>
-                            <p><input className="form-check-input" value={review.id} type="checkbox" onChange={handleChecks}/><span style={{fontWeight: "bold"}}> Book:</span> {review.book.title}</p>
+                            <p><input className="form-check-input" value={review.id} type="checkbox" /><span style={{fontWeight: "bold"}}> Book:</span> {review.book.title}</p>
                         </div>
                         <div  className='col-2 mt-2'>
                             <p><span style={{fontWeight: "bold"}}>User Rating:</span> {review.rating}</p>
@@ -71,13 +69,13 @@ function CustomerReviews ({}) {
                         <p><span style={{fontWeight: "bold"}}>Review:</span></p>
                         <p className="text-bg-light">"{review.review}"</p>
                     </div>
+                    <div className="mb-2">
+                        <button type='submit' className="btn btn-primary" onSubmit={updateReviews}>Update</button>
+                        <button type='submit' className="btn btn-secondary" onSubmit={deleteReviews}>Delete</button>
+                    </div>
                 </div>
             )
         })}
-        <div>
-            <button type='submit' className="btn btn-primary">Update</button>
-            <button type='submit' className="btn btn-secondary" onSubmit={handleDeleteReview}>Delete</button>
-        </div>
     </div>
 
 };
