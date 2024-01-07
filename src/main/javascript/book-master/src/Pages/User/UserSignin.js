@@ -11,7 +11,7 @@ function UserSignIn() {
         e.preventDefault();
 
         try {
-            const response = await axios.post("localhost:8080", {
+            const response = await axios.post("localhost:8080/api/user/login", {
                 username,
                 password,
             });
