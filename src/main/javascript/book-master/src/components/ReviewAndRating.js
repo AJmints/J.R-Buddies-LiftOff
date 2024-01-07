@@ -9,9 +9,8 @@ function ReviewAndRating ({results}) {
     const [review, setReview] = useState("");
     const [rating, setRating] = useState(5);
     const [users, setUsers] = useState([]);
-    const [userID, setUserID] = useState("");
+    const [userId, setUserId] = useState("");
     const bookID = results.book.id
-    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get("http://localhost:8080/api/user/all")
@@ -24,9 +23,9 @@ function ReviewAndRating ({results}) {
     }, [])
 
     const selectUser = (e)=>{
-        setUserID(e.target.value);
+        setUserId(e.target.value);
 
-        axios.get("http://localhost:8080/api/user/"+userID)
+        axios.get("http://localhost:8080/api/user/"+userId)
             .then(res=>setUser(res.data))
             .catch(err=>console.log(err));
     }
