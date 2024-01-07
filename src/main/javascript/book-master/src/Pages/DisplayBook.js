@@ -29,8 +29,16 @@ const DisplayBook=()=> {
                         </table>
                     </td>
                     <td> 
-                        <button style={{marginRight: 14 + 'em'}}>Recommend Book</button> 
-                        <button style={{marginRight: 14 + 'em'}}>Check Book Out</button>
+                        <button style={{marginRight: 14 + 'em'}}>Recommend Book</button>
+                        {obj.book.available_quantity > 0 ? (
+                            <>
+                            <button style={{marginRight: 14 + 'em'}}>Check Book Out</button>
+                            </>
+                        ) : (
+                            <button style={{marginRight: 14 + 'em'}}>Place Hold</button> 
+                        )}
+                        
+                        
                         <br></br>
                         <br></br>
                         <table>
