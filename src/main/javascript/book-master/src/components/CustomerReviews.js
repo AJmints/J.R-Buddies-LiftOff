@@ -6,6 +6,7 @@ function CustomerReviews ({}) {
     const [reviews, setReviews] = useState([]);
     const [show, setShow] = useState(true);
     const [users, setUsers] = useState([]);
+    const [reviewId, setReviewId] = useState("")
 
 
     useEffect(() => {
@@ -20,6 +21,10 @@ function CustomerReviews ({}) {
         axios.get("http://localhost:8080/api/user/reviews/"+userId)
         .then(res=>setReviews(res.data))
         .catch(err=>console.log(err));
+    }
+
+    const handleDeleteReview = (e) => {
+        axios.delete("http://localhost:8080/reviews/"+{reviewId})
     }
 
     return <div className="container mt-3 pb-5 mb-5" >
@@ -50,6 +55,10 @@ function CustomerReviews ({}) {
                     <div className='row'>
                         <p><span style={{fontWeight: "bold"}}>Review:</span></p>
                         <p className="text-bg-light">"{review.review}"</p>
+                    </div>
+                    <div>
+                        <button type='submit' className="btn btn-primary">Update</button>
+                        <button type='submit' className="btn btn-secondary" onSubmit={handleDeleteReview}>Delete</button>
                     </div>
                 </div>
             )

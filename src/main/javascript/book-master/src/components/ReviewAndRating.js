@@ -32,8 +32,6 @@ function ReviewAndRating ({results}) {
 
     const submitReview = async (e) => {
         e.preventDefault();
-        
-        console.log("Submited");
 
         try{
             const response = await axios.post("http://localhost:8080/reviews", {
