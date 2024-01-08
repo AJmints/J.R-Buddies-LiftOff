@@ -1,6 +1,5 @@
 import React , {useEffect, useState} from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 
 function ReviewAndRating ({results}) {
@@ -30,36 +29,24 @@ function ReviewAndRating ({results}) {
             .catch(err=>console.log(err));
     }
 
-    const submitReview = async (e) => {
+    const submitReview = (e) => {
         e.preventDefault();
+        axios.post("http://localhost:8080/reviews", {book,user,review,rating})
+        .then(res=>console.log(res))
+        .catch(err=>console.log(err))
 
-        try{
-            const response = await axios.post("http://localhost:8080/reviews", {
-                book,
-                user,
-                review,
-                rating,
-            });
-
-            if (response.status === 200) {
-                console.log("Review submitted successfully")
-            } else {
-                console.log("Submission failed")
-            }
-        } catch (error) {
-            console.error("Error posting review", error)
-        }
         window.location.reload();
-    };
+    }
+    
 
     return <div className="container mt-5">
                 <h3>Leave a book review:</h3>
                 <form className="row g-3" onSubmit={submitReview}>
                     <div className='row mt-2'>
                         <div className='col-3 mt-2'>
-                            <label htmlFor="user" className='form-label'>User ID:</label>
-                            <select className="form-control" id="user" name="user" onChange={selectUser} required>
-                                <option>Select your user email</option>
+                            <label htmlFor="user" className='form-label'>User ID: {user.email}</label>
+                            <select className="form-control" onClick={selectUser}>
+                                {/* <option>Select your user email</option> */}
                             {users.map((user, index) => {
                                 return(
                                     <option key={index} value={user.id}>{user.email}</option>)

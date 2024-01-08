@@ -17,7 +17,6 @@ const Layout = () => {
 
     const handleLoginState = (e) => {
         setLoginState(e.target);
-        console.log(loginState.value);
         if (loginState.value === "logout") {
             setShowLogin(true);
             setShowAdmin(false);
@@ -79,7 +78,7 @@ const Layout = () => {
                     </li>
                     
                     <li className="nav-item ms-3">
-                        <select className='form-control' onChange={handleLoginState} >
+                        <select className='form-control' onClick={handleLoginState} >
                             <option value={"logout"} >Logout</option>
                             <option value={"customer"}>Customer</option>
                             <option value={"admin"}>Admin</option>

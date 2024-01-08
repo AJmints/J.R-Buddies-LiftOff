@@ -4,7 +4,6 @@ import axios from "axios";
 function CustomerReviews ({}) {
     const [userId, setUserId] = useState("");
     const [reviews, setReviews] = useState([]);
-    const [show, setShow] = useState(true);
     const [users, setUsers] = useState([]);
     const [reviewId, setReviewId] = useState("");
 
@@ -25,15 +24,18 @@ function CustomerReviews ({}) {
 
     const updateReviews = (e) => {
 
-        axios.delete(`http://localhost:8080/reviews/${reviewId}`)
-        .then((res) => {console.log(`successfully deleted book review ${reviewId}`);})
+        axios.delete(`http://localhost:8080/reviews/${e}`)
+        .then((res) => {console.log(`successfully deleted book review ${e}`);})
         .catch(err => console.log(err.res.data.message))
     }
     const deleteReviews = (e) => {
 
         axios.delete("http://localhost:8080/reviews/"+e)
-        .then((res) => {console.log(`successfully deleted book review ${reviewId}`);})
+        .then((res) => {console.log(`successfully deleted book review ${e}`);})
         .catch(err => console.log(err.res.data.message))
+
+        const getuserid = document.getElementById("user");
+        setUserId(getuserid);
 
         axios.get("http://localhost:8080/api/user/reviews/"+userId)
         .then(res=>setReviews(res.data))
@@ -58,12 +60,10 @@ function CustomerReviews ({}) {
             return(
                 <div key={index} className="row border border-3">
                     <div  className='row mt-2'>
-                        <div  className='col-2 mt-2'>
-                            <p><input className="form-check-input" value={review.id} type="checkbox" /><span style={{fontWeight: "bold"}}> Book:</span> {review.book.title}</p>
-                        </div>
-                        <div  className='col-2 mt-2'>
-                            <p><span style={{fontWeight: "bold"}}>User Rating:</span> {review.rating}</p>
-                        </div>
+                        <p><span style={{fontWeight: "bold"}}> Book:</span> {review.book.title}</p>
+                    </div>
+                    <div  className='row'>
+                        <p><span style={{fontWeight: "bold"}}>User Rating:</span> {review.rating}</p>
                     </div>
                     <div className='row'>
                         <p><span style={{fontWeight: "bold"}}>Review:</span></p>
