@@ -46,7 +46,6 @@ function ReviewAndRating ({results}) {
                         <div className='col-3 mt-2'>
                             <label htmlFor="user" className='form-label'>User ID: {user.email}</label>
                             <select className="form-control" onClick={selectUser}>
-                                {/* <option>Select your user email</option> */}
                             {users.map((user, index) => {
                                 return(
                                     <option key={index} value={user.id}>{user.email}</option>)

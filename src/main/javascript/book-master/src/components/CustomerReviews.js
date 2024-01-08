@@ -39,9 +39,7 @@ function CustomerReviews ({}) {
         .then((res) => {console.log(`successfully deleted book review ${e}`);})
         .catch(err => console.log(err.res.data.message))
 
-        axios.get("http://localhost:8080/api/user/reviews/"+userId)
-        .then(res=>setReviews(res.data))
-        .catch(err=>console.log(err));
+        
     }
 
     return <div className="container mt-3 pb-5 mb-5" >
@@ -49,7 +47,6 @@ function CustomerReviews ({}) {
             <div className='col-3 mt-2 mb-3'>
                 <label htmlFor="user" className='form-label'>User ID: {user.email} </label>
                 <select className="form-control" onClick={selectUser} required>
-                    <option>Select your user email</option>
                         {users.map((user, index) => {
                                 return(
                         <option key={index} value={user.id}>{user.email}</option>)
