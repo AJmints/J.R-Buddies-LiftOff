@@ -6,6 +6,7 @@ function CustomerReviews ({}) {
     const [reviews, setReviews] = useState([]);
     const [users, setUsers] = useState([]);
     const [reviewId, setReviewId] = useState("");
+    const [user, setUser] = useState("");
 
 
     useEffect(() => {
@@ -19,6 +20,10 @@ function CustomerReviews ({}) {
             
         axios.get("http://localhost:8080/api/user/reviews/"+userId)
         .then(res=>setReviews(res.data))
+        .catch(err=>console.log(err));
+
+        axios.get("http://localhost:8080/api/user/"+userId)
+        .then(res=>setUser(res.data))
         .catch(err=>console.log(err));
     }
 
@@ -34,9 +39,6 @@ function CustomerReviews ({}) {
         .then((res) => {console.log(`successfully deleted book review ${e}`);})
         .catch(err => console.log(err.res.data.message))
 
-        const getuserid = document.getElementById("user");
-        setUserId(getuserid);
-
         axios.get("http://localhost:8080/api/user/reviews/"+userId)
         .then(res=>setReviews(res.data))
         .catch(err=>console.log(err));
@@ -45,8 +47,8 @@ function CustomerReviews ({}) {
     return <div className="container mt-3 pb-5 mb-5" >
         <div className='row mt-2'>
             <div className='col-3 mt-2 mb-3'>
-                <label htmlFor="user" className='form-label'>User ID:</label>
-                <select className="form-control" id="user" name="user" onChange={selectUser} required>
+                <label htmlFor="user" className='form-label'>User ID: {user.email} </label>
+                <select className="form-control" onClick={selectUser} required>
                     <option>Select your user email</option>
                         {users.map((user, index) => {
                                 return(
