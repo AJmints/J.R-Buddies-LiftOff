@@ -4,7 +4,6 @@ import { useState } from "react"
 const Admin5UserUpdates = (props) => {
     const location = useLocation()
     const { user } = location.state
-    console.log(user)
     const navigate = useNavigate();
 
     const [editForm, setEditForm] = useState(user)
