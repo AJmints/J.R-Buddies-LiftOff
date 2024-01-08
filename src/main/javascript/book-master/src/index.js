@@ -125,6 +125,7 @@ useEffect(() => {getBooks()}, []);
           <Route path="admin_account" element={<AdminAccount />} />
 
           <Route path="admin_home" element={<Admin1Home />}/>
+          <Route path="admin_home/events" element={<AdminEvents />} />
           <Route path="admin_home/books/" element={<Admin2Books books={books} getBooks={getBooks}/>}/>
           <Route path="admin_home/users/" element={<Admin2Users users={users} />}/>
           <Route path="admin_home/users/:id"
