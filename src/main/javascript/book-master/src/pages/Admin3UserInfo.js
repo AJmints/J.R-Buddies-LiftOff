@@ -11,7 +11,6 @@ const Admin3UserInfo = (props) => {
     
     const { id } = useParams()
     const users = props.users
-    console.log(props.users)
     const user = users.find(p => p.id === parseInt(id))
     const navigate = useNavigate();
     
@@ -29,10 +28,6 @@ const Admin3UserInfo = (props) => {
         }
       };
 
-      const loansId = user.loans.map((loan)=>{
-        return loan.id
-      })
-
       useEffect(() => {
         getUserLoansBooks(id);
       }, [id]);
@@ -41,7 +36,7 @@ const Admin3UserInfo = (props) => {
 
     return (
         <div className="form-group row" key= {user.id}>
-            <Link to={`/admin_home/user/edit/${user.id}`}  state={{ user }}><button className="btn btn-primary">edit information</button></Link>
+            <Link to={`/admin_home/users/edit/${user.id}`}  state={{ user }}><button className="btn btn-primary">edit information</button></Link>
             <div className="form-group row">
                 <label className="col-sm-2 col-form-label"> Id: </label> 
                 <label className="col-sm-2 col-form-label"> {user.id} </label> 
@@ -83,7 +78,9 @@ const Admin3UserInfo = (props) => {
                             <th>Date returned</th>
                         </tr>
                         </thead>
-                            <Admin4ShowUserLoans user={user} userLoansBooks={userLoansBooks}  />       
+                  
+                            <Admin4ShowUserLoans  userLoansBooks={userLoansBooks}  />  
+                         
                 </table>
             </div>
             

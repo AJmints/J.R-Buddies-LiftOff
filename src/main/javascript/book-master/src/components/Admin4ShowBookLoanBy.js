@@ -1,8 +1,6 @@
 const Admin4ShowBookLoanBy = (props) => {
     const bookLoansUsers = props.bookLoansUsers
     
-    
-   console.log(bookLoansUsers)
 
     const insertUser = bookLoansUsers.map((loan)=>{
     
