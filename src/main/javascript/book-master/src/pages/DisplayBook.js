@@ -1,10 +1,12 @@
 import React from 'react';
 import {useLocation} from "react-router-dom";
+import ReviewAndRating from "../components/ReviewAndRating";
+import DisplayReviews from '../components/DisplayReviews';
 
 const DisplayBook=()=> {
     const location = useLocation();
     const obj = location.state;
-    var available = "";
+    let available = "";
     
     if(obj.book.available_quantity > 0){
         available = "Copies Available: " + obj.book.available_quantity;
@@ -14,7 +16,8 @@ const DisplayBook=()=> {
     }
 
     return(
-        <div>
+    <>
+        <div className='container mt-3'>
             <table>
                 <tr>
                     <td>
@@ -54,6 +57,17 @@ const DisplayBook=()=> {
                 </tr>
             </table>
         </div>
+
+        <div className='container-fluid mb-4'>
+            <ReviewAndRating results={obj}/>
+        </div>
+
+        <div className='container-fluid pb-5 mb-5'>
+            <DisplayReviews results={obj}/>
+        </div>
+
+    </>
+    
     );
 }
 

@@ -50,7 +50,7 @@ const Admin2loans =(props)=>{
     return (
       <>
         <br></br>
-        <div>
+        <div className="container mt-3">
             <form onSubmit={handleSubmit} className="row g-2 align-items-center">
                      <div className="col-auto">
                           <input
@@ -68,7 +68,7 @@ const Admin2loans =(props)=>{
                       </div>
             </form>
         </div>
-       <div>
+       <div className="container">
             <br></br>
             <h2>Loans History</h2>
             <br></br>

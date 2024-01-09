@@ -1,8 +1,10 @@
 package org.launchcode.bookmaster.book;
 
 import org.launchcode.bookmaster.loan.Loan;
+import org.launchcode.bookmaster.review.Review;
 import org.launchcode.bookmaster.user.User;
 import org.launchcode.bookmaster.user.UserLoanDTO;
+import org.launchcode.bookmaster.user.UserReviewDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.launchcode.bookmaster.book.BookData;
@@ -50,6 +52,21 @@ public class BookController {
         return bookRepository.save(book);
 
     }
+
+    @GetMapping("/reviews/{bookId}")
+    public Iterable<UserReviewDTO> getBookReviews(@PathVariable Integer bookId) {
+        ArrayList<UserReviewDTO> usersReviews = new ArrayList<>();
+
+        Book book = bookRepository.findById(bookId).orElseThrow();
+        Iterable<Review> bookReviews = book.getReviews();
+        for (Review review : bookReviews) {
+            User user = review.getUser();
+            UserReviewDTO userReviewDTO= new UserReviewDTO(review.getId(), user, review.getReview(), review.getRating());
+            usersReviews.add(userReviewDTO);
+        }
+        return usersReviews;
+    }
+
     @GetMapping("/loan/{bookId}")
     public Iterable<UserLoanDTO> getBooksLoan(@PathVariable Integer bookId) {
         ArrayList<UserLoanDTO> usersLoans = new ArrayList<>();
@@ -63,6 +80,7 @@ public class BookController {
         }
         return usersLoans;
     }
+
     @GetMapping("/search_results")
     public Iterable<Book> listBooks(@RequestParam String column, @RequestParam String searchTerm) {
         Iterable<Book> books;
