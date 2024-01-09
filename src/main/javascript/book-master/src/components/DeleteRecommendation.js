@@ -20,13 +20,15 @@ const DeleteRecommendation=({results})=>{
     };
 
     useEffect(() => {
-         results.map((rec, index) => {
+         results.map((rec) => {
             axios.get("http://localhost:8080/book/"+rec.bookId)
-            .then(res => res.data.map(book => {
-                var update = {...books, rec.id:book};
-                setBooks(update);
-            }))
+            .then(res => setBook(res.data))
             .catch(err=>console.log(err));
+
+            var updates = {};
+            Object.keys(books).forEach(key => {updates[key] = books[key]});
+            updates[rec.id] = book;
+            setBooks(updates);
          })
     }, []);
 
