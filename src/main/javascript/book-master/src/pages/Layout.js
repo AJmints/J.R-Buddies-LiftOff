@@ -13,22 +13,22 @@ const Layout = () => {
     const [loginState, setLoginState] = useState("");
     const [showLogin, setShowLogin] = useState(true);
     const [showAdmin, setShowAdmin] = useState(false);
-    const [showCustomer, setShowCustomer] = useState(false);
+    const [showUser, setShowUser] = useState(false);
 
     const handleLoginState = (e) => {
         setLoginState(e.target);
         if (loginState.value === "logout") {
             setShowLogin(true);
             setShowAdmin(false);
-            setShowCustomer(false);
-        } else if (loginState.value === "customer") {
+            setShowUser(false);
+        } else if (loginState.value === "user") {
             setShowLogin(false);
             setShowAdmin(false);
-            setShowCustomer(true);
+            setShowUser(true);
         } else if (loginState.value === "admin") {
             setShowLogin(false);
             setShowAdmin(true);
-            setShowCustomer(false);
+            setShowUser(false);
         }
     }
 
@@ -66,7 +66,7 @@ const Layout = () => {
 {/* last 2 pages hidden will add code for with user verification and link will be visible only to correct user type */}
 
                     <li className="nav-item">
-                        <Link id="customerAccount" to="customer_account" className="nav-link" style={{display: (showCustomer ? "block" : "none")}}>Customer Account</Link>
+                        <Link id="userAccount" to="user_account" className="nav-link" style={{display: (showUser ? "block" : "none")}}>User Account</Link>
                     </li>
 
                     <li className="nav-item">
@@ -80,7 +80,7 @@ const Layout = () => {
                     <li className="nav-item ms-3">
                         <select className='form-control' onClick={handleLoginState} >
                             <option value={"logout"} >Logout</option>
-                            <option value={"customer"}>Customer</option>
+                            <option value={"user"}>User</option>
                             <option value={"admin"}>Admin</option>
                          </select>
                     </li>

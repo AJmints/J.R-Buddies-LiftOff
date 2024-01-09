@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 
 const Admin2Books = (props) => {
@@ -6,6 +6,7 @@ const Admin2Books = (props) => {
  
           const [books, setBooks] = useState(booksToDisplay)
           const [title, setTitle] = useState([])
+          const navigate = useNavigate();
           
             
           useEffect(() => {setBooks(booksToDisplay)}, [booksToDisplay]);
@@ -43,7 +44,7 @@ const Admin2Books = (props) => {
     return (
       <>
         <br></br>
-        <div>
+        <div className="container mt-3">
             <form onSubmit={handleSubmit} className="row g-2 align-items-center">
                      <div className="col-auto">
                           <input
@@ -60,11 +61,11 @@ const Admin2Books = (props) => {
                           <button type="submit"  className="btn btn-primary">Search Book</button>
                       </div>
                       <div className="col-auto">
-                          <button type="submit" className="btn btn-success">Get More Books to the Library</button>
+                          <button type="submit" className="btn btn-success" onClick={() => navigate("/search")}>Get More Books to the Library</button>
                       </div>
             </form>
         </div>
-       <div>
+       <div className="container">
             <br></br>
             <h2>Books Available:</h2>
             <br></br>

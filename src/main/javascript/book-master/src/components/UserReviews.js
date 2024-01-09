@@ -1,7 +1,7 @@
 import React , {useEffect, useState} from "react";
 import axios from "axios";
 
-function CustomerReviews () {
+function UserReviews () {
     const [userId, setUserId] = useState("");
     const [reviews, setReviews] = useState([]);
     const [users, setUsers] = useState([]);
@@ -132,4 +132,4 @@ function CustomerReviews () {
 
 };
 
-export default CustomerReviews;
+export default UserReviews;

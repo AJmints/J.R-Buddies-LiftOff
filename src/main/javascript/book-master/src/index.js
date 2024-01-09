@@ -11,7 +11,7 @@ import Admin2Users from './pages/Admin2Users';
 import Admin2loans from './pages/Admin2Loans';
 import Admin3UserInfo from './pages/Admin3UserInfo';
 import Admin3BookInfo from './pages/Admin3BookInfo'
-import CustomerAccount from "./pages/CustomerAccount";
+import UserAccount from "./pages/UserAccount";
 import Home from "./pages/Home";
 import Layout from "./pages/Layout";
 import NoPage from "./pages/NoPage";
@@ -182,7 +182,7 @@ useEffect(() => {getLoans()}, []);
           <Route path="admin_home/loans/" element={<Admin2loans loans={loans} />}/>
 
           <Route path="added_success" element={<AddedBookToDBSuccess />} />
-          <Route path="customer_account" element={<CustomerAccount />} />
+          <Route path="user_account" element={<UserAccount />} />
           <Route path="displayBook" element={<DisplayBook />} />
           <Route path="event_form" element={<EventsForm /> } />
           <Route path="library_search" element={<LibrarySearch /> } />

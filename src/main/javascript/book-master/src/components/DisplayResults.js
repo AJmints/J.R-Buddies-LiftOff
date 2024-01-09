@@ -43,7 +43,7 @@ const DisplayResults=({results})=>{
     }
 
     return(
-        <div className = "bookList">
+        <div className= "bookList container">
             <div className="checkList">
                 {
                     results.map((item, index) => {
