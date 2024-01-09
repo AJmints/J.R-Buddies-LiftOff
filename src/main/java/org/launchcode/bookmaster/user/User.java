@@ -22,8 +22,8 @@ import java.util.List;
 @Entity
 public class User extends AbstractEntity implements UserDetails {
 
-    private String firstName; //updated to match react
-    private String lastName; //updated to match react
+    private String firstName;
+    private String lastName;
     private String phone;
     private String address;
     private String email;
@@ -31,8 +31,6 @@ public class User extends AbstractEntity implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    // If the form is connecting to this they need to match. We need to figure out how the role is going to work.
-    // Need a verify password field
 
     @OneToMany(mappedBy = "user")
     private final List<Review> reviews = new ArrayList<>();
@@ -40,74 +38,74 @@ public class User extends AbstractEntity implements UserDetails {
     @OneToMany(mappedBy = "user")
     private final List<Loan> loans = new ArrayList<>();
 
-    public User(String firstName, String lastName, String phone, String address, String email, String password, Role role) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phone = phone;
-        this.address = address;
-        this.email = email;
-        this.password = password;
-        this.role = role;
-    }
+//    public User(String firstName, String lastName, String phone, String address, String email, String password, Role role) {
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.phone = phone;
+//        this.address = address;
+//        this.email = email;
+//        this.password = password;
+//        this.role = role;
+//    }
 
-    public User() {
-    }
+//    public User() {
+//    }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
+//    public String getFirstName() {
+//        return firstName;
+//    }
+//
+//    public void setFirstName(String firstName) {
+//        this.firstName = firstName;
+//    }
+//
+//    public String getLastName() {
+//        return lastName;
+//    }
+//
+//    public void setLastName(String lastName) {
+//        this.lastName = lastName;
+//    }
+//
+//    public String getPhone() {
+//        return phone;
+//    }
+//
+//    public void setPhone(String phone) {
+//        this.phone = phone;
+//    }
+//
+//    public String getAddress() {
+//        return address;
+//    }
+//
+//    public void setAddress(String address) {
+//        this.address = address;
+//    }
+//
+//    public String getEmail() {
+//        return email;
+//    }
+//
+//    public void setEmail(String email) {
+//        this.email = email;
+//    }
+//
 //    public String getPassword() {
 //        return password;
 //    }
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
+//    public void setPassword(String password) {
+//        this.password = password;
+//    }
+//
+//    public Role getRole() {
+//        return role;
+//    }
+//
+//
+//    public void setRole(Role role) {
+//        this.role = role;
+//    }
 
     @JsonManagedReference(value="user-loan")
     public List<Loan> getLoans() {

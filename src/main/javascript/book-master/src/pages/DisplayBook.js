@@ -61,7 +61,7 @@ const DisplayBook=()=> {
                     </td>
                     <td> 
                         <button style={{marginRight: 14 + 'em'}}>Recommend Book</button>
-                        <button style={{marginRight: 14 + 'em'}} onClick={saveForLater}>Save For Later</button>
+                        <button style={{marginRight: 14 + 'em'}}>Save For Later</button>
 
                         {obj.book.available_quantity > 0 ? (
                             <>

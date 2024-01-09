@@ -17,7 +17,11 @@ function UserSignIn() {
             });
 
             if (response.status === 200) {
-                console.log("Login successful");
+                const token = response.data.token;
+                document.cookie = 'jwtToken=${token}; path=/; secure; SameSite=Strict';
+
+                console.log('Login successful')
+                
             } else {
                 console.error("Authentication failed");
             }

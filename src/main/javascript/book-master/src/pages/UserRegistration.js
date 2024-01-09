@@ -52,6 +52,8 @@ const UserRegistration = () => {
             });
 
             if (response.status === 200) {
+                const token = response.data.token;
+                document.cookie = `jwtToken=${token}; path=/; secure; SameSite=Strict`;
                 setFormSubmitted(true);
 
             } else {
