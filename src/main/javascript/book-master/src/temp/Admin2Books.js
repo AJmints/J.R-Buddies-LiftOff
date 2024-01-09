@@ -39,7 +39,7 @@ const Admin2Books = (props) => {
                 </tr>
             )
           })
-          console.log(books)
+      
     return (
       <>
         <br></br>
@@ -66,7 +66,7 @@ const Admin2Books = (props) => {
         </div>
        <div>
             <br></br>
-            <h2>Books Availables:</h2>
+            <h2>Books Available:</h2>
             <br></br>
                 {
                   displayed.length === 0? <h2>No books to show</h2> 
