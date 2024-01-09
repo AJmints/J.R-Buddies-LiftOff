@@ -9,6 +9,7 @@ import AdminAccount from "./pages/AdminAccount";
 import Admin1Home from './pages/Admin1Home';
 import Admin2Books from './pages/Admin2Books';
 import Admin2Users from './pages/Admin2Users';
+import Admin2loans from './pages/Admin2Loans';
 import Admin3UserInfo from './pages/Admin3UserInfo';
 import Admin3BookInfo from './pages/Admin3BookInfo'
 import CustomerAccount from "./pages/CustomerAccount";
@@ -35,7 +36,8 @@ import RemoveRecommendations from "./pages/RemoveRecommendations";
 export default function App() {
   const [users, setUsers] = useState([]);
   const [books, setBooks] = useState([]);
-  
+  const [loans, setLoans] = useState([]);
+
   
  ///////////////////////////////
 // FETCHING USERS TABLES
@@ -116,6 +118,42 @@ const updateBook = (book, id) => {
 useEffect(() => {getBooks()}, []);
 
 
+ ///////////////////////////////
+// FETCHING LOANS TABLE
+////////////////////////////////
+
+const URL_LOANS = "http://localhost:8080/loan/"
+
+const getLoans = async () => {
+  try {
+    const response = await axios.get(URL_LOANS + "all_details");
+    setLoans(response.data);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  };
+};
+
+const deleteLoan = async (id) => {
+ try{
+  axios.delete(URL_LOANS + id)
+} catch (error) {
+  console.error("Error fetching data:", error);
+};
+ getLoans()
+  }
+
+
+const updateLoan = (loan, id) => {
+  try{
+         axios.put(URL_LOANS + id, loan)
+        } catch (error) {
+                  console.error("Error fetching data:", error);
+                };
+      getLoans()
+};
+
+useEffect(() => {getLoans()}, []);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -125,12 +163,34 @@ useEffect(() => {getBooks()}, []);
           <Route path="admin_account" element={<AdminAccount />} />
 
           <Route path="admin_home" element={<Admin1Home />}/>
-          <Route path="admin_home/books/" element={<Admin2Books books={books} getBooks={getBooks}/>}/>
+
           <Route path="admin_home/users/" element={<Admin2Users users={users} />}/>
           <Route path="admin_home/users/:id" element = {< Admin3UserInfo users={users} deleteUser={deleteUser}/>} />
           <Route path="admin_home/books/:id" element = {< Admin3BookInfo books={books} deleteBook={deleteBook} />} />
           <Route path="/admin_home/books/edit/:id" element={<Admin5BookUpdates getBooks= {getBooks} updateBook={updateBook}/>}/>
           <Route path="/admin_home/user/edit/:id" element={<Admin5UserUpdates getUsers= {getUsers} updateUser={updateUser}/>}/>
+          <Route path="admin_home/users/:id"
+                             element = {< Admin3UserInfo
+                                          users={users}
+                                          deleteUser={deleteUser}
+                                        />
+                                                        }
+          />
+           <Route path="/admin_home/users/edit/:id" element={<Admin5UserUpdates  updateUser={updateUser}/>}/>
+
+          <Route path="admin_home/books/" element={<Admin2Books books={books}/>}/>
+          <Route path="admin_home/books/:id"
+                             element = {< Admin3BookInfo
+                                          books={books}
+                                          deleteBook={deleteBook}
+
+                                        />
+                                                        }
+          />
+          <Route path="/admin_home/books/edit/:id" element={<Admin5BookUpdates updateBook={updateBook}/>}/>
+
+          <Route path="admin_home/loans/" element={<Admin2loans loans={loans} />}/>
+
           <Route path="added_success" element={<AddedBookToDBSuccess />} />
           <Route path="customer_account" element={<CustomerAccount />} />
           <Route path="create_recommendation" element={<CreateRecommendation />} />
