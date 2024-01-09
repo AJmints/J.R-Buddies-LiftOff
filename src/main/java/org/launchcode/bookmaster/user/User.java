@@ -3,26 +3,24 @@ package org.launchcode.bookmaster.user;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-//import lombok.*;
+import lombok.*;
 import org.launchcode.bookmaster.abstractEntity.AbstractEntity;
 import org.launchcode.bookmaster.loan.Loan;
 import org.launchcode.bookmaster.review.Review;
-//import org.springframework.security.core.GrantedAuthority;
-//import org.springframework.security.core.userdetails.UserDetails;
-//import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import java.util.ArrayList;
-//import java.util.Collection;
+import java.util.Collection;
 import java.util.List;
 
-//@Data
-//@EqualsAndHashCode(callSuper=true)
-//@Builder
-//@NoArgsConstructor
-//@AllArgsConstructor
-//@Entity
-//public class User extends AbstractEntity implements UserDetails
+@Data
+@EqualsAndHashCode(callSuper=true)
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-public class User extends AbstractEntity{
+public class User extends AbstractEntity implements UserDetails {
 
     private String firstName; //updated to match react
     private String lastName; //updated to match react
@@ -95,9 +93,9 @@ public class User extends AbstractEntity{
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
+//    public String getPassword() {
+//        return password;
+//    }
     public void setPassword(String password) {
         this.password = password;
     }
@@ -122,40 +120,40 @@ public class User extends AbstractEntity{
     }
 
 
-    //    @Override
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        return List.of(new SimpleGrantedAuthority(role.name()));
-//    }
-//
-//    @Override
-//    public String getPassword() {
-//        return password;
-//    }
-//
-//    @Override
-//    public String getUsername() {
-//        return null;
-//    }
-//
-//    @Override
-//    public boolean isAccountNonExpired() {
-//        return false;
-//    }
-//
-//    @Override
-//    public boolean isAccountNonLocked() {
-//        return false;
-//    }
-//
-//    @Override
-//    public boolean isCredentialsNonExpired() {
-//        return false;
-//    }
-//
-//    @Override
-//    public boolean isEnabled() {
-//        return false;
-//    }
+        @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return null;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
 
     @Override
     public String toString() {
