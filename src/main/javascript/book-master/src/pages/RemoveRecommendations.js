@@ -32,7 +32,8 @@ const RemoveRecommendations=()=> {
         checkUserInfo();
 
         if(isValid.current){
-            axios.get('http://localhost:8080/recommendation/all')
+            console.log(userID);
+            axios.get('http://localhost:8080/recommendation/search?idType=user&idValue='+userID)
                 .then(res=>setRecommendData(res.data))
                 .catch(err=>console.log(err));
             show.current = true;

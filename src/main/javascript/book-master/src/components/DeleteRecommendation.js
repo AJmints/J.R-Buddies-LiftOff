@@ -44,6 +44,8 @@ const DeleteRecommendation=({results})=>{
         //navigate('/remove_success');
     }
 
+    console.log(results);
+
     return(
         <div className = "DatabaseBookList">
             <div className="checkList">

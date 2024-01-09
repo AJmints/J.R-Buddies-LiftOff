@@ -33,19 +33,19 @@ public class RecommendationController {
     }
 
     @GetMapping("/search")
-    public Iterable<Recommendation> listRecommendations(@RequestParam String idType, @RequestParam Integer idValue) {
+    public Iterable<Recommendation> listRecommendations(@RequestParam String idType, @RequestParam String idValue) {
         Iterable<Recommendation> recommendations;
 
-        recommendations = RecommendationData.findByColumn(idType, idValue, recommendationRepository.findAll());
+        recommendations = RecommendationData.findByColumn(idType, Integer.valueOf(idValue), recommendationRepository.findAll());
 
         return recommendations;
     }
 
     @GetMapping("/specific_search")
-    public Recommendation findRecommendation(@RequestParam Integer userId, @RequestParam Integer bookId) {
+    public Recommendation findRecommendation(@RequestParam String userId, @RequestParam String bookId) {
         Recommendation recommendation;
 
-        recommendation = RecommendationData.findSpecificRecommendation(userId, bookId, recommendationRepository.findAll());
+        recommendation = RecommendationData.findSpecificRecommendation(Integer.valueOf(userId), Integer.valueOf(bookId), recommendationRepository.findAll());
 
         return recommendation;
     }
