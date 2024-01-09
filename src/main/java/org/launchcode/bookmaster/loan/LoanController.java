@@ -1,11 +1,17 @@
 package org.launchcode.bookmaster.loan;
 
 
+import org.launchcode.bookmaster.book.Book;
+import org.launchcode.bookmaster.book.BookLoanDTO;
+import org.launchcode.bookmaster.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+
 @RestController
 @RequestMapping("/loan")
+@CrossOrigin
 public class LoanController {
 
     @Autowired
@@ -40,5 +46,19 @@ public class LoanController {
         return loanRepository.save(loan);
 
 
+    }
+
+    @GetMapping("/git")
+    public Iterable<UserBookLoanDTO> getUsersBooksLoan() {
+        ArrayList<UserBookLoanDTO> userBookLoans = new ArrayList<>();
+
+        Iterable<Loan> loans = loanRepository.findAll();
+        for (Loan loan : loans) {
+            Book book = loan.getBook();
+            User user = loan.getUser();
+            UserBookLoanDTO userBookLoanDTO= new UserBookLoanDTO(loan, user, book);
+            userBookLoans.add(userBookLoanDTO);
+        }
+        return userBookLoans;
     }
 }

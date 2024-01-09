@@ -15,7 +15,7 @@ const Admin3BookInfo = (props) => {
     const navigate = useNavigate();
 
 
-    const removeBook = (event)=>{
+    const removeBook = ()=>{
         props.deleteBook(book.id)
         navigate("/admin_home/books")
     }
@@ -29,14 +29,9 @@ const Admin3BookInfo = (props) => {
         }
       };
 
-      const loansId = book.loans.map((loan)=>{
-        return loan.id
-      })
-
       useEffect(() => {
-        getBookLoansUsers(id);
+        getBookLoansUsers(id)
       }, [id]);
-
 
 
     return (
@@ -85,7 +80,7 @@ const Admin3BookInfo = (props) => {
                         </tr>
                         </thead>
 
-                        <Admin4ShowBookLoanBy books={books} bookLoansUsers={bookLoansUsers} loansId={loansId}/>       
+                        <Admin4ShowBookLoanBy  bookLoansUsers={bookLoansUsers}/>       
                 </table>
             </div>
 
