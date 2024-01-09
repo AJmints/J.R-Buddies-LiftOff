@@ -1,4 +1,4 @@
-import react, { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -43,7 +43,7 @@ const DisplayResults=({results})=>{
     }
 
     return(
-        <div className = "bookList">
+        <div className= "bookList container">
             <div className="checkList">
                 {
                     results.map((item, index) => {

@@ -7,8 +7,10 @@ import lombok.RequiredArgsConstructor;
 //import org.launchcode.bookmaster.user.auth.RegisterRequest;
 import org.launchcode.bookmaster.book.BookLoanDTO;
 import org.launchcode.bookmaster.book.BookRepository;
+import org.launchcode.bookmaster.book.BookReviewsDTO;
 import org.launchcode.bookmaster.loan.Loan;
 import org.launchcode.bookmaster.loan.LoanRepository;
+import org.launchcode.bookmaster.review.Review;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.launchcode.bookmaster.book.Book;
@@ -57,6 +59,20 @@ public class UserController {
     @GetMapping("/{userId}")
     public User getUser(@PathVariable Integer userId){
         return userRepository.findById(userId).orElseThrow();
+    }
+
+    @GetMapping("/reviews/{userId}")
+    public Iterable<BookReviewsDTO> getUserReviews(@PathVariable Integer userId) {
+        ArrayList<BookReviewsDTO> booksReviews = new ArrayList<>();
+
+        User user = userRepository.findById(userId).orElseThrow();
+        Iterable<Review> userReviews = user.getReviews();
+        for (Review review : userReviews) {
+            Book book = review.getBook();
+            BookReviewsDTO bookReviewsDTO= new BookReviewsDTO(review.getId(), book, review.getReview(), review.getRating());
+            booksReviews.add(bookReviewsDTO);
+        }
+        return booksReviews;
     }
 
     @GetMapping("/loan/{userId}")

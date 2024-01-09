@@ -4,12 +4,12 @@ import java.util.Date;
 
 public class BookLoanDTO {
     private Date loanDateOut;
-    private Date LoanDateIn;
+    private Date loanDateIn;
     private Book book;
 
     public BookLoanDTO(Date loanDateOut, Date loanDateIn, Book book) {
         this.loanDateOut = loanDateOut;
-        LoanDateIn = loanDateIn;
+        this.loanDateIn = loanDateIn;
         this.book = book;
     }
 
@@ -22,11 +22,11 @@ public class BookLoanDTO {
     }
 
     public Date getLoanDateIn() {
-        return LoanDateIn;
+        return loanDateIn;
     }
 
     public void setLoanDateIn(Date loanDateIn) {
-        LoanDateIn = loanDateIn;
+        this.loanDateIn = loanDateIn;
     }
 
     public Book getBook() {

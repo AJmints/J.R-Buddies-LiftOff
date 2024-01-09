@@ -6,13 +6,36 @@ import 'bootstrap/dist/js/bootstrap.bundle.min'
 import { useState } from "react";
 
 
+
+
 const Layout = () => {
     const [keyword, setKeyword] = useState("");
     const navigate = useNavigate();
+    const [loginState, setLoginState] = useState("");
+    const [showLogin, setShowLogin] = useState(true);
+    const [showAdmin, setShowAdmin] = useState(false);
+    const [showUser, setShowUser] = useState(false);
+
+    const handleLoginState = (e) => {
+        setLoginState(e.target);
+        if (loginState.value === "logout") {
+            setShowLogin(true);
+            setShowAdmin(false);
+            setShowUser(false);
+        } else if (loginState.value === "user") {
+            setShowLogin(false);
+            setShowAdmin(false);
+            setShowUser(true);
+        } else if (loginState.value === "admin") {
+            setShowLogin(false);
+            setShowAdmin(true);
+            setShowUser(false);
+        }
+    }
 
     const handleSearch = (e) => {
         e.preventDefault();
-        navigate("/search", { state: {key: "keyword"}});
+        navigate("/library_search", {state: {keyword}});
     }
 
     return (
@@ -29,10 +52,6 @@ const Layout = () => {
 
                     <li className="nav-item">
                         <Link to="library_search" className="nav-link">Search Library</Link>
-                    </li>
-
-                    <li className="nav-item">
-                        <Link to="search" className="nav-link">Search & Add Books</Link>
                     </li>
 
                     {/* will use quick search to search all fields with keyword and go to searchResults.js page to display results */}
@@ -61,14 +80,25 @@ const Layout = () => {
 
 {/* last 2 pages hidden will add code for with user verification and link will be visible only to correct user type */}
 
-                    <li className="nav-item invisible">
-                        <Link to="customer_account" className="nav-link">Customer Account</Link>
+                    <li className="nav-item">
+                        <Link id="userAccount" to="user_account" className="nav-link" style={{display: (showUser ? "block" : "none")}}>User Account</Link>
                     </li>
 
-                    <li className="nav-item invisible">
-                        <Link to="admin_account" className="nav-link">Admin Account</Link>
+                    <li className="nav-item">
+                        <Link id="adminAccount" to="admin_home" className="nav-link" style={{display: (showAdmin ? "block" : "none")}}>Admin Home</Link>
                     </li>
 
+                    <li className="nav-item">
+                        <Link to="search" className="nav-link" style={{display: (showAdmin ? "block" : "none")}}>Search & Add Books</Link>
+                    </li>
+                    
+                    <li className="nav-item ms-3">
+                        <select className='form-control' onClick={handleLoginState} >
+                            <option value={"logout"} >Logout</option>
+                            <option value={"user"}>User</option>
+                            <option value={"admin"}>Admin</option>
+                         </select>
+                    </li>
                 </ul>
             </nav>
 

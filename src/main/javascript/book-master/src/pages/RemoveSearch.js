@@ -4,7 +4,7 @@ import RemoveResults from "../components/RemoveResults";
 
 const RemoveSearch=()=>{
 
-    const [search, setSearch] = useState(" ");
+    const [search, setSearch] = useState("");
     const [category, setCategory] = useState("all");
     const [bookData, setBookData] = useState([]);
     const [show, setShow] = useState(false);
