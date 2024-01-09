@@ -1,10 +1,10 @@
-import react , {useState} from 'react';
+import {useState} from 'react';
 import axios from "axios";
 import UserResults from "../components/UserResults";
 
 const LibrarySearch=()=>{
 
-    const [search, setSearch] = useState(" ");
+    const [search, setSearch] = useState("");
     const [category, setCategory] = useState("all");
     const [bookData, setBookData] = useState([]);
     const [show, setShow] = useState(false);

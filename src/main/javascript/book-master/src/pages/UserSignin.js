@@ -44,7 +44,7 @@ function UserSignIn() {
                         <button type='submit' className="btn btn-success">Submit</button>
                     </div>             
                 </form>
-                <div className="containter mt-5">
+                <div className="container mt-5">
                     <h5>Not registered?</h5>
                     <Link to="/user_registration">Sign Up</Link>
                 </div>
