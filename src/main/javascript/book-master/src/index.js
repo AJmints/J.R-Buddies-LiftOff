@@ -5,20 +5,18 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 
-import AdminAccount from "./pages/AdminAccount";
 import Admin1Home from './pages/Admin1Home';
 import Admin2Books from './pages/Admin2Books';
 import Admin2Users from './pages/Admin2Users';
 import Admin2loans from './pages/Admin2Loans';
 import Admin3UserInfo from './pages/Admin3UserInfo';
 import Admin3BookInfo from './pages/Admin3BookInfo'
-import CustomerAccount from "./pages/CustomerAccount";
+import UserAccount from "./pages/UserAccount";
 import Home from "./pages/Home";
 import Layout from "./pages/Layout";
 import NoPage from "./pages/NoPage";
 import UserRegistration from "./pages/UserRegistration";
 import UserSignIn from "./pages/UserSignin";
-import reportWebVitals from './reportWebVitals';
 import Search from './pages/Search'
 import DisplayBook from './pages/DisplayBook';
 import Admin5BookUpdates from './pages/Admin5BookUpdates';
@@ -158,8 +156,6 @@ useEffect(() => {getLoans()}, []);
         <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
           {/* Routes in alphabetical order to be easier to find */}
-          <Route path="admin_account" element={<AdminAccount />} />
-
           <Route path="admin_home" element={<Admin1Home />}/>
          
           <Route path="admin_home/users/" element={<Admin2Users users={users} />}/>
@@ -186,7 +182,7 @@ useEffect(() => {getLoans()}, []);
           <Route path="admin_home/loans/" element={<Admin2loans loans={loans} />}/>
 
           <Route path="added_success" element={<AddedBookToDBSuccess />} />
-          <Route path="customer_account" element={<CustomerAccount />} />
+          <Route path="user_account" element={<UserAccount />} />
           <Route path="displayBook" element={<DisplayBook />} />
           <Route path="event_form" element={<EventsForm /> } />
           <Route path="library_search" element={<LibrarySearch /> } />
@@ -203,8 +199,6 @@ useEffect(() => {getLoans()}, []);
     </BrowserRouter>
   );
 }
-
-reportWebVitals(console.log);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<App />);

@@ -1,5 +1,4 @@
 import './header.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 function header () {
     return <div>
