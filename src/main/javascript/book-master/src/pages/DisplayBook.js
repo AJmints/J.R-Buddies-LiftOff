@@ -17,7 +17,7 @@ const DisplayBook=()=> {
 
     return(
     <>
-        <div>
+        <div className='container mt-3'>
             <table>
                 <tr>
                     <td>
