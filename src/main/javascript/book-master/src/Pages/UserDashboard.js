@@ -1,8 +1,8 @@
 import React , {useState} from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import SideNavBar from "../../components/SideNavBar";
-import MyShelf from "../../components/MyShelfAvailable";
+import SideNavBar from "../components/SideNavBar";
+import MyShelf from "../components/MyShelfAvailable";
 
 
 const UserDashboard = () => {

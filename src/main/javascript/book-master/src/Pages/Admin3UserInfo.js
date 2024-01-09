@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import Admin4ShowUserLoans from "../../components/Admin4ShowUserLoans";
+import Admin4ShowUserLoans from "../components/Admin4ShowUserLoans";
 import axios from "axios";
 import { Link } from "react-router-dom"
 

@@ -12,31 +12,25 @@ import Admin2Users from './pages/Admin2Users';
 import Admin2loans from './pages/Admin2Loans';
 import Admin3UserInfo from './pages/Admin3UserInfo';
 import Admin3BookInfo from './pages/Admin3BookInfo'
-import AdminAccount from "./pages/Admin/AdminAccount";
-import Admin1Home from './pages/Admin/Admin1Home';
-import Admin2Books from './pages/Admin/Admin2Books';
-import Admin2Users from './pages/Admin/Admin2Users';
-import Admin3UserInfo from './pages/Admin/Admin3UserInfo';
-import Admin3BookInfo from './pages/Admin/Admin3BookInfo'
-import AdminEvents from './pages/Admin/AdminEvents';
+import AdminEvents from './pages/AdminEvents';
 import CustomerAccount from "./pages/CustomerAccount";
 import Home from "./pages/Home";
 import Layout from "./pages/Layout";
 import NoPage from "./pages/NoPage";
-import UserRegistration from "./pages/User/UserRegistration";
-import UserSignIn from "./pages/User/UserSignin";
+import UserRegistration from "./pages/UserRegistration";
+import UserSignIn from "./pages/UserSignin";
 import reportWebVitals from './reportWebVitals';
 import Search from './pages/Search'
 import DisplayBook from './pages/DisplayBook';
-import Admin5BookUpdates from './pages/Admin/Admin5BookUpdates';
-import Admin5UserUpdates from './pages/Admin/Admin5UserUpdates';
+import Admin5BookUpdates from './pages/Admin5BookUpdates';
+import Admin5UserUpdates from './pages/Admin5UserUpdates';
 
 import EventsForm from './pages/EventsForm'
 import AddedBookToDBSuccess from "./pages/AddedBookToDBSuccess";
 import LibrarySearch from "./pages/LibrarySearch";
 import RemoveSearch from "./pages/RemoveSearch";
 import RemoveBookSuccess from "./pages/RemoveBookSuccess";
-import UserDashboard from "./pages/User/UserDashboard"
+import UserDashboard from "./pages/UserDashboard"
 
 
 export default function App() {
