@@ -1,12 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {useLocation} from "react-router-dom";
 import ReviewAndRating from "../components/ReviewAndRating";
 import DisplayReviews from '../components/DisplayReviews';
+import axios from 'axios';
 
 const DisplayBook=()=> {
     const location = useLocation();
     const obj = location.state;
     let available = "";
+    const [users, setUsers] = useState([]);
+    const [user, setUser] = useState("");
+    const [userId, setUserId] = useState("");
+    const [ bookCheckout, setBookCheckout ] = useState(true);
+    
+    useEffect(() => {
+        axios.get("http://localhost:8080/api/user/all")
+        .then(res=>setUsers(res.data))
+        .catch(err=>console.log(err));
+    }, [])
+
+    const selectUser = (e)=>{
+        setUserId(e.target.value);
+
+        axios.get("http://localhost:8080/api/user/"+userId)
+            .then(res=>setUser(res.data))
+            .catch(err=>console.log(err));
+
+        console.log(user);
+    }
+
+    const handleCheckout = (e) => {
+        e.preventDefault();
+
+        
+
+    }
     
     if(obj.book.available_quantity > 0){
         available = "Copies Available: " + obj.book.available_quantity;
@@ -18,6 +46,7 @@ const DisplayBook=()=> {
     return(
     <>
         <div className='container mt-3'>
+            
             <table>
                 <tr>
                     <td>
@@ -32,6 +61,15 @@ const DisplayBook=()=> {
                         </table>
                     </td>
                     <td> 
+                        <div className='col-3 mb-4'>
+                            <label htmlFor="user" className='form-label'>User ID: {user.email}</label>
+                            <select className="form-control" onClick={selectUser}>
+                            {users.map((user, index) => {
+                                return(
+                                    <option key={index} value={user.id}>{user.email}</option>)
+                            })}
+                            </select>
+                        </div>
                         <button style={{marginRight: 14 + 'em'}}>Recommend Book</button> 
                         <button style={{marginRight: 14 + 'em'}}>Check Book Out</button>
                         <br></br>
@@ -59,7 +97,7 @@ const DisplayBook=()=> {
         </div>
 
         <div className='container-fluid mb-4'>
-            <ReviewAndRating results={obj}/>
+            <ReviewAndRating results={[obj, user]}/>
         </div>
 
         <div className='container-fluid pb-5 mb-5'>

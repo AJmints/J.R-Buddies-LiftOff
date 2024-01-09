@@ -41,7 +41,7 @@ public class LoanController {
     @PutMapping("/{loanId}")
     public Loan updateLoan(@PathVariable Integer loanId, @RequestBody Loan updatedLoan) {
         Loan loan = loanRepository.findById(loanId).orElseThrow();
-        loan.setLoanDateIn(updatedLoan.getLoanDateIn());
+        loan.setLoanDueDate(updatedLoan.getLoanDueDate());
 
         return loanRepository.save(loan);
 

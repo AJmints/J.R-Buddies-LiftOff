@@ -9,25 +9,25 @@ function ReviewAndRating ({results}) {
     const [rating, setRating] = useState(5);
     const [users, setUsers] = useState([]);
     const [userId, setUserId] = useState("");
-    const bookID = results.book.id
+    const bookID = results[0].book.id
 
     useEffect(() => {
-        axios.get("http://localhost:8080/api/user/all")
-        .then(res=>setUsers(res.data))
-        .catch(err=>console.log(err));
+        // axios.get("http://localhost:8080/api/user/all")
+        // .then(res=>setUsers(res.data))
+        // .catch(err=>console.log(err));
 
         axios.get("http://localhost:8080/book/"+bookID)
         .then(res=>setBook(res.data))
         .catch(err=>console.log(err));
     }, [])
 
-    const selectUser = (e)=>{
-        setUserId(e.target.value);
+    // const selectUser = (e)=>{
+    //     setUserId(e.target.value);
 
-        axios.get("http://localhost:8080/api/user/"+userId)
-            .then(res=>setUser(res.data))
-            .catch(err=>console.log(err));
-    }
+    //     axios.get("http://localhost:8080/api/user/"+userId)
+    //         .then(res=>setUser(res.data))
+    //         .catch(err=>console.log(err));
+    // }
 
     const submitReview = (e) => {
         e.preventDefault();
@@ -43,7 +43,7 @@ function ReviewAndRating ({results}) {
                 <h3>Leave a book review:</h3>
                 <form className="row g-3" onSubmit={submitReview}>
                     <div className='row mt-2'>
-                        <div className='col-3 mt-2'>
+                        {/* <div className='col-3 mt-2'>
                             <label htmlFor="user" className='form-label'>User ID: {user.email}</label>
                             <select className="form-control" onClick={selectUser}>
                             {users.map((user, index) => {
@@ -51,7 +51,7 @@ function ReviewAndRating ({results}) {
                                     <option key={index} value={user.id}>{user.email}</option>)
                             })}
                             </select>
-                        </div>
+                        </div> */}
                         <div className='col-3 mt-2'>
                             <label htmlFor='rating' className='form-label'>Star Rating: </label>
                             <select className='form-control' id='rating' name='rating' onChange={(e) => setRating(e.target.value)} required>

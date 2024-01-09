@@ -8,27 +8,43 @@ import org.launchcode.bookmaster.book.Book;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 
+import java.sql.Time;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.sql.Timestamp;
 
 @Entity
-public class Loan extends AbstractEntity {
+public class Loan1 extends AbstractEntity {
 
     @ManyToOne
     private Book book;
     @ManyToOne
     private User user;
-    private Date loanDateOut;
-    private Date loanDueDate;
+    private Calendar loanDateOut = GregorianCalendar.getInstance();
+
+    private Date calculateDueDate() {
+        Calendar cal = GregorianCalendar.getInstance();
+        Date date = new Date();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, 30);
+        date = cal.getTime();
+        return date;
+    }
+
+    private Date loanDueDate = calculateDueDate();
 
 
-    public Loan( Book book, User user, Date loanDateOut, Date loanDueDate) {
+
+
+    public Loan1( Book book, User user, Calendar loanDateOut, Calendar loanDueDate) {
         this.book = book;
         this.user = user;
         this.loanDateOut = loanDateOut;
-        this.loanDueDate = loanDueDate;
+        this.loanDueDate = loanDueDate.getTime();
     }
 
-    public Loan() {
+    public Loan1() {
     }
 
     @JsonBackReference(value="book-loan")
@@ -50,18 +66,10 @@ public class Loan extends AbstractEntity {
     }
 
     public Date getLoanDateOut() {
-        return loanDateOut;
-    }
-
-    public void setLoanDateOut(Date loanDateOut) {
-        this.loanDateOut = loanDateOut;
+        return loanDateOut.getTime();
     }
 
     public Date getLoanDueDate() {
         return loanDueDate;
-    }
-
-    public void setLoanDueDate(Date loanDueDate) {
-        this.loanDueDate = loanDueDate;
     }
 }

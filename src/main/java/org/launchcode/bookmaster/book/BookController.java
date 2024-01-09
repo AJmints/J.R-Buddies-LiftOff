@@ -75,7 +75,7 @@ public class BookController {
         Iterable<Loan> bookLoans = book.getLoans();
         for (Loan loan : bookLoans) {
             User user = loan.getUser();
-            UserLoanDTO userLoanDTO= new UserLoanDTO(loan.getLoanDateOut(), loan.getLoanDateIn(), user);
+            UserLoanDTO userLoanDTO= new UserLoanDTO(loan.getLoanDateOut(), loan.getLoanDueDate(), user);
             usersLoans.add(userLoanDTO);
         }
         return usersLoans;
