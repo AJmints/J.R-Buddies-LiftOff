@@ -5,32 +5,32 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 
-import AdminAccount from "./pages/AdminAccount";
-import Admin1Home from './pages/Admin1Home';
-import Admin2Books from './pages/Admin2Books';
-import Admin2Users from './pages/Admin2Users';
-import Admin2loans from './pages/Admin2Loans';
-import Admin3UserInfo from './pages/Admin3UserInfo';
-import Admin3BookInfo from './pages/Admin3BookInfo'
-import AdminEvents from './pages/AdminEvents';
+import AdminAccount from "./temp/AdminAccount";
+import Admin1Home from './temp/Admin1Home';
+import Admin2Books from './temp/Admin2Books';
+import Admin2Users from './temp/Admin2Users';
+import Admin2loans from './temp/Admin2Loans';
+import Admin3UserInfo from './temp/Admin3UserInfo';
+import Admin3BookInfo from './temp/Admin3BookInfo'
+import AdminEvents from './temp/AdminEvents';
 import CustomerAccount from "./pages/CustomerAccount";
 import Home from "./pages/Home";
 import Layout from "./pages/Layout";
 import NoPage from "./pages/NoPage";
-import UserRegistration from "./pages/UserRegistration";
-import UserSignIn from "./pages/UserSignin";
+import UserRegistration from "./temp/UserRegistration";
+import UserSignIn from "./temp/UserSignin";
 import reportWebVitals from './reportWebVitals';
-import Search from './pages/Search'
-import DisplayBook from './pages/DisplayBook';
-import Admin5BookUpdates from './pages/Admin5BookUpdates';
-import Admin5UserUpdates from './pages/Admin5UserUpdates';
+import Search from './temp/Search'
+import DisplayBook from './temp/DisplayBook';
+import Admin5BookUpdates from './temp/Admin5BookUpdates';
+import Admin5UserUpdates from './temp/Admin5UserUpdates';
 
-import EventsForm from './pages/EventsForm'
-import AddedBookToDBSuccess from "./pages/AddedBookToDBSuccess";
-import LibrarySearch from "./pages/LibrarySearch";
-import RemoveSearch from "./pages/RemoveSearch";
-import RemoveBookSuccess from "./pages/RemoveBookSuccess";
-import UserDashboard from "./pages/UserDashboard"
+import EventsForm from './temp/EventsForm'
+import AddedBookToDBSuccess from "./temp/AddedBookToDBSuccess";
+import LibrarySearch from "./temp/LibrarySearch";
+import RemoveSearch from "./temp/RemoveSearch";
+import RemoveBookSuccess from "./temp/RemoveBookSuccess";
+import UserDashboard from "./temp/UserDashboard"
 
 
 export default function App() {
