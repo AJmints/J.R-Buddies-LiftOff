@@ -9,6 +9,8 @@ const RemoveRecommendations=()=> {
     const isValid = useRef(false);
     const [recommendData, setRecommendData] = useState([]);
     const [users, setUsers] = useState([]);
+    const[books, setBooks] = useState([]);
+    const[book, setBook] = useState({});
     const show = useRef(false);;
     const navigate = useNavigate();
 
@@ -26,6 +28,24 @@ const RemoveRecommendations=()=> {
             .catch(err=>console.log(err));
     }, []);
 
+    const addBook = (book, recID) =>{
+        const found = books.some(bk => bk.id === book.id);
+        if(!found){
+            book["recID"] = recID;
+            var updates = [...books];
+            updates = [...books, book];
+            setBooks(updates);
+        }
+    }
+
+    const fetchRecs = () => {
+        recommendData.map((rec) => {
+            axios.get("http://localhost:8080/book/"+rec.bookId)
+            .then(res => addBook(res.data, rec.id))
+            .catch(err=>console.log(err));
+         })
+    }
+
     const displayRecommends = (e) => {
         e.preventDefault();
 
@@ -36,6 +56,7 @@ const RemoveRecommendations=()=> {
                 .then(res=>setRecommendData(res.data))
                 .catch(err=>console.log(err));
             show.current = true;
+            fetchRecs();
         }
     }
 
@@ -58,7 +79,8 @@ const RemoveRecommendations=()=> {
                 </div>
 
                 <div id="resultsDiv" style={{display: (show ? 'block' : 'none')}}>
-                    <DeleteRecommendation results={recommendData} />
+                    <h5>Click on Submit a Couple of Times to get Results</h5>
+                    <DeleteRecommendation results={books} />
                 </div>
             </>)
 }

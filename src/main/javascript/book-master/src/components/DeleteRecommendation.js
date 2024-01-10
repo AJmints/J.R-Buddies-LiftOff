@@ -1,4 +1,4 @@
-import react, { useState, useEffect } from "react";
+import react, { useState, useEffect , useCallback} from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -19,21 +19,6 @@ const DeleteRecommendation=({results})=>{
         setChecked(updates);
     };
 
-    const addBook = (book, recID) =>{
-        var updates = [...books];
-        book["recID"] = recID;
-        updates = [...books, book];
-        setBooks(updates);
-    }
-
-    useEffect(() => {
-         results.map((rec) => {
-            axios.get("http://localhost:8080/book/"+rec.bookId)
-            .then(res => addBook(res.data, rec.id))
-            .catch(err=>console.log(err));
-         })
-    }, []);
-
     const removeRecommend = (event) => {
         event.preventDefault();
 
@@ -43,14 +28,14 @@ const DeleteRecommendation=({results})=>{
             .catch(err => console.log(err.response.data.message));
         });
 
-        navigate('/remove_success');
+        navigate('/recommendation_success');
     }
 
     return(
         <div className = "DatabaseBookList">
             <div className="checkList">
                 {
-                    books.map((book, index) => {
+                    results.map((book, index) => {
                         return(
                             <div key={index}>
                                 <img src={book.thumbnail} alt="img"/>
