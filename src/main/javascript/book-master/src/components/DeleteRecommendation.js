@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const DeleteRecommendation=({results})=>{
     const[checked, setChecked] = useState([]);
-    const[books, setBooks] = useState({});
+    const[books, setBooks] = useState([]);
     const[book, setBook] = useState({});
     const navigate = useNavigate();
 
@@ -19,16 +19,18 @@ const DeleteRecommendation=({results})=>{
         setChecked(updates);
     };
 
+    const addBook = (book, recID) =>{
+        var updates = [...books];
+        book["recID"] = recID;
+        updates = [...books, book];
+        setBooks(updates);
+    }
+
     useEffect(() => {
          results.map((rec) => {
             axios.get("http://localhost:8080/book/"+rec.bookId)
-            .then(res => setBook(res.data))
+            .then(res => addBook(res.data, rec.id))
             .catch(err=>console.log(err));
-
-            var updates = {};
-            Object.keys(books).forEach(key => {updates[key] = books[key]});
-            updates[rec.id] = book;
-            setBooks(updates);
          })
     }, []);
 
@@ -36,26 +38,24 @@ const DeleteRecommendation=({results})=>{
         event.preventDefault();
 
         checked.map((recommendationId) => {
-            /*axios.delete(`http://localhost:8080/recommendation/${recommendationId}`)
-            .then((response) => {console.log(`Successfully Deleted Book ${bookId}`);})
-            .catch(err => console.log(err.response.data.message));*/
+            axios.delete(`http://localhost:8080/recommendation/${recommendationId}`)
+            .then((response) => {console.log(`Successfully Deleted Recommendation ${recommendationId}`);})
+            .catch(err => console.log(err.response.data.message));
         });
 
-        //navigate('/remove_success');
+        navigate('/remove_success');
     }
-
-    console.log(results);
 
     return(
         <div className = "DatabaseBookList">
             <div className="checkList">
                 {
-                    Object.entries(books).map(([recID, book], index) => {
+                    books.map((book, index) => {
                         return(
                             <div key={index}>
                                 <img src={book.thumbnail} alt="img"/>
                                 <br></br>
-                                <input value={recID} type="checkbox" onChange={handleChecks}/>
+                                <input value={book.recID} type="checkbox" onChange={handleChecks}/>
                                 <span>{book.title}</span>
                             </div>
                         )
