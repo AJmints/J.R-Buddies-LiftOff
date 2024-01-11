@@ -34,8 +34,9 @@ const UserRecommendationListing=(results)=>{
     useEffect(() => {
         fetchBooks();
         fetchRecs();
-        recsToBooks();
     }, []);
+
+    recsToBooks();
 
     return(
         <div className = "bookList_container">
