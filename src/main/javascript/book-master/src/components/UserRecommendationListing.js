@@ -2,7 +2,7 @@ import react, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const RecommendationListing=(idValue)=>{
+const UserRecommendationListing=(idValue)=>{
     const navigate = useNavigate();
     const [recData, setRecData] = useState([]);
     const [bookData, setBookData] = useState([]);
@@ -63,4 +63,4 @@ const RecommendationListing=(idValue)=>{
     );
 }
 
-export default RecommendationListing;
+export default UserRecommendationListing;

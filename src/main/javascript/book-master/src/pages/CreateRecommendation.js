@@ -1,6 +1,7 @@
 import React , {useState, useRef} from 'react';
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
+import UserRecommendationListing from "../components/UserRecommendationListing";
 
 const CreateRecommendation=()=> {
     const location = useLocation();
@@ -52,6 +53,10 @@ const CreateRecommendation=()=> {
                             onChange={e=>setUserID(e.target.value)}/>
                         <button type="submit">Submit ID</button>
                     </form>
+                </div>
+
+                <div>
+                    <UserRecommendationListing idValue={1} />
                 </div>
             </>)
 }
