@@ -34,7 +34,6 @@ const RemoveResults=({results})=>{
             <div className = "bookList_container">
                 {
                     results.map((item, index) => {
-
                         return(
                             <div key={index} className="bookCard">
                                 <img src={item.thumbnail} alt="img"/>
