@@ -15,13 +15,13 @@ const UserResults=({results})=>{
     }
 
     return(
-        <div className = "bookList container">
+        <div className = "bookList_container">
             {
             results.map((book, index) => {
                 return(
                     <div key={index}>
                         <br></br>
-                        <figure>
+                        <figure className="bookCard">
                             <img
                                 src={book.thumbnail}
                                 width="200"
@@ -30,7 +30,9 @@ const UserResults=({results})=>{
                                 onClick={() => navigate(`/displaybook`, {state: {book}})}
                             />
                         </figure>
-                        <h5>{book.title}</h5>
+                        <div className="cardBottom">
+                            <h5>{book.title}</h5>
+                        </div>
                     </div>
                 )
             })

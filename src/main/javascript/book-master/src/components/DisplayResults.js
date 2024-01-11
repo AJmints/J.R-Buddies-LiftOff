@@ -43,30 +43,30 @@ const DisplayResults=({results})=>{
     }
 
     return(
-        <div className= "bookList container">
-            <div className="checkList">
-                {
-                    results.map((item, index) => {
-                        let bookImg = item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail;
-                        
-                        return(
-                            <div key={index}>
-                                <img src={bookImg} width="200" height="300"alt="img"/>
-                                <br></br>
-                                <input value={[item.volumeInfo.title, "~",item.volumeInfo.authors,"~",
-                                    item.volumeInfo.description,"~", bookImg,"~", item.id,"~", item.volumeInfo.categories]} type="checkbox" onChange={handleChecks}/>
-                                <span>{item.volumeInfo.title}</span>
+        <div className= "bookList_container">
+            {
+                results.map((item, index) => {
+                    let bookImg = item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail;
+
+                    return(
+                        <div key={index} className="bookCard">
+                            <img src={bookImg} width="200" height="300"alt="img"/>
+                            <br></br>
+                            <input value={[item.volumeInfo.title, "~",item.volumeInfo.authors,"~",
+                                item.volumeInfo.description,"~", bookImg,"~", item.id,"~", item.volumeInfo.categories]} type="checkbox" onChange={handleChecks}/>
+                            <div className="cardBottom">
+                                <h5>{item.volumeInfo.title}</h5>
                             </div>
-                        )
-                    })
-                }
-                <br></br>
-                <button onClick={saveBooksToDatabase}>Save Selected Books</button>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-            </div>
+                        </div>
+                    )
+                })
+            }
+            <br></br>
+            <button onClick={saveBooksToDatabase}>Save Selected Books</button>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
         </div>
     )
 }
