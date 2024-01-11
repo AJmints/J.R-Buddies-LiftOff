@@ -33,26 +33,28 @@ const DeleteRecommendation=({results})=>{
 
     return(
         <div className = "DatabaseBookList">
-            <div className="checkList">
+            <div className = "bookList_container">
                 {
                     results.map((book, index) => {
                         return(
-                            <div key={index}>
+                            <div key={index} className="bookCard">
                                 <img src={book.thumbnail} alt="img"/>
                                 <br></br>
                                 <input value={book.recID} type="checkbox" onChange={handleChecks}/>
-                                <span>{book.title}</span>
+                                <div className="cardBottom">
+                                    <h5>{book.title}</h5>
+                                </div>
                             </div>
                         )
                     })
                 }
-                <br></br>
-                <button onClick={removeRecommend}>Remove Selected Recommendations</button>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
             </div>
+            <br></br>
+            <button onClick={removeRecommend}>Remove Selected Recommendations</button>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
         </div>
     )
 }

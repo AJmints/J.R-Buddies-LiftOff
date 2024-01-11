@@ -43,6 +43,7 @@ const DisplayResults=({results})=>{
     }
 
     return(
+        <div>
         <div className= "bookList_container">
             {
                 results.map((item, index) => {
@@ -61,12 +62,13 @@ const DisplayResults=({results})=>{
                     )
                 })
             }
-            <br></br>
-            <button onClick={saveBooksToDatabase}>Save Selected Books</button>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
+        </div>
+        <br></br>
+        <button onClick={saveBooksToDatabase}>Save Selected Books</button>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
         </div>
     )
 }

@@ -79,7 +79,6 @@ const RemoveRecommendations=()=> {
                 </div>
 
                 <div id="resultsDiv" style={{display: (show ? 'block' : 'none')}}>
-                    <h5>Click on Submit a Couple of Times to get Results</h5>
                     <DeleteRecommendation results={books} />
                 </div>
             </>)

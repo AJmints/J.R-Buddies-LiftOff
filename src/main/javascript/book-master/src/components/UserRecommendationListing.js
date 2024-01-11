@@ -38,11 +38,11 @@ const UserRecommendationListing=(results)=>{
     }, []);
 
     return(
-        <div className = "bookList container">
+        <div className = "bookList_container">
             {
             userBooks.map((book, index) => {
                 return(
-                    <div key={index}>
+                    <div key={index} className="bookCard">
                         <br></br>
                         <figure>
                             <img
@@ -53,7 +53,9 @@ const UserRecommendationListing=(results)=>{
                                 onClick={() => navigate(`/displaybook`, {state: {book}})}
                             />
                         </figure>
-                        <h5>{book.title}</h5>
+                        <div className="cardBottom">
+                            <h5>{book.title}</h5>
+                        </div>
                     </div>
                 )
             })

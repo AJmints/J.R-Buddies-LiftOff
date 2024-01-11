@@ -31,27 +31,29 @@ const RemoveResults=({results})=>{
 
     return(
         <div className = "DatabaseBookList">
-            <div className="checkList">
+            <div className = "bookList_container">
                 {
                     results.map((item, index) => {
 
                         return(
-                            <div key={index}>
+                            <div key={index} className="bookCard">
                                 <img src={item.thumbnail} alt="img"/>
                                 <br></br>
                                 <input value={item.id} type="checkbox" onChange={handleChecks}/>
-                                <span>{item.title}</span>
+                                <div className="cardBottom">
+                                    <h5>{item.title}</h5>
+                                </div>
                             </div>
                         )
                     })
                 }
-                <br></br>
-                <button onClick={removeBooksFromDatabase}>Remove Selected Books</button>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
             </div>
+            <br></br>
+            <button onClick={removeBooksFromDatabase}>Remove Selected Books</button>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
         </div>
     )
 }
