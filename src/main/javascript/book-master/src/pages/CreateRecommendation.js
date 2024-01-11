@@ -54,10 +54,6 @@ const CreateRecommendation=()=> {
                         <button type="submit">Submit ID</button>
                     </form>
                 </div>
-
-                <div>
-                    <UserRecommendationListing idValue={1} />
-                </div>
             </>)
 }
 

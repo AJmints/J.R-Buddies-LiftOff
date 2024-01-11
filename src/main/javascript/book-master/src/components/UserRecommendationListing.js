@@ -1,32 +1,31 @@
-import react, { useState } from "react";
+import react, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const UserRecommendationListing=(idValue)=>{
+const UserRecommendationListing=(results)=>{
     const navigate = useNavigate();
     const [recData, setRecData] = useState([]);
     const [bookData, setBookData] = useState([]);
     const [userBooks, setUserBooks] = useState([]);
 
     const fetchRecs = () => {
-        axios.get("http://localhost:8080/recommendation/search?idType=user&idValue="+idValue)
-            .then(res=>setBookData(res.data))
+        axios.get("http://localhost:8080/recommendation/search?idType=user&idValue="+results.idValue)
+            .then(res=>setRecData(res.data))
             .catch(err=>console.log(err));
     }
 
     const fetchBooks = () => {
-        axios.get("http://localhost:8080/api/book/all")
+        axios.get("http://localhost:8080/book/all")
             .then(res=>setBookData(res.data))
             .catch(err=>console.log(err));
     }
 
     const recsToBooks = () => {
-        for(const rec of recData){
-            for(const book of bookData){
-                if(rec.bookId === book.id){
-                    var updates = [...userBooks];
-                    updates = [...userBooks, book];
-                    setUserBooks();
+        for(let i in recData){
+            for(let j in bookData){
+                const found = userBooks.some(bk => bk.id === bookData[j].id);
+                if(!found && recData[i].bookId === bookData[j].id){
+                    setUserBooks(userBooks => [...userBooks, bookData[j]]);
                 }
             }
         }
