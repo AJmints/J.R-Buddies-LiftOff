@@ -89,7 +89,7 @@ const Layout = () => {
                     </li>
 
                     <li className="nav-item">
-                        <Link to="search" className="nav-link" style={{display: (showAdmin ? "block" : "none")}}>Search & Add Books</Link>
+                        <Link to="search" className="nav-link" style={{display: (showAdmin ? "block" : "none")}}>Add Books</Link>
                     </li>
                     
                     <li className="nav-item ms-3">

@@ -1,6 +1,6 @@
 package org.launchcode.bookmaster.user;
 
-import lombok.RequiredArgsConstructor;
+//import lombok.RequiredArgsConstructor;
 //import org.launchcode.bookmaster.user.auth.AuthenticationRequest;
 //import org.launchcode.bookmaster.user.auth.AuthenticationResponse;
 //import org.launchcode.bookmaster.user.auth.AuthenticationService;
@@ -83,7 +83,7 @@ public class UserController {
         Iterable<Loan> userLoans = user.getLoans();
         for (Loan loan : userLoans) {
             Book book = loan.getBook();
-            BookLoanDTO bookLoanDTO= new BookLoanDTO(loan.getLoanDateOut(), loan.getLoanDueDate(), book);
+            BookLoanDTO bookLoanDTO= new BookLoanDTO(loan.getLoanDateOut(), loan.getLoanDateIn(), book);
             booksLoans.add(bookLoanDTO);
         }
         return booksLoans;
@@ -98,15 +98,15 @@ public class UserController {
     @PutMapping("/{userId}")
     public User updateUser(@PathVariable Integer userId, @RequestBody User updatedUser) {
         User user = userRepository.findById(userId).orElseThrow();
-            user.setFirstName(updatedUser.getFirstName());
-            user.setLastName(updatedUser.getLastName());
-            user.setEmail(updatedUser.getEmail());
-            user.setPhone(updatedUser.getPhone());
-            user.setAddress(updatedUser.getAddress());
-            user.setRole(updatedUser.getRole());
+        user.setFirstName(updatedUser.getFirstName());
+        user.setLastName(updatedUser.getLastName());
+        user.setEmail(updatedUser.getEmail());
+        user.setPhone(updatedUser.getPhone());
+        user.setAddress(updatedUser.getAddress());
+        user.setRole(updatedUser.getRole());
 
 
-            return userRepository.save(user);
+        return userRepository.save(user);
 
 
     }

@@ -15,17 +15,20 @@ public class Loan extends AbstractEntity {
 
     @ManyToOne
     private Book book;
+
     @ManyToOne
     private User user;
+
     private Date loanDateOut;
-    private Date loanDueDate;
+    private Date loanDateIn;
 
 
-    public Loan( Book book, User user, Date loanDateOut, Date loanDueDate) {
+    public Loan( Book book, User user, Date loanDateOut, Date loanDateIn) {
         this.book = book;
         this.user = user;
         this.loanDateOut = loanDateOut;
-        this.loanDueDate = loanDueDate;
+        this.loanDateIn = loanDateIn;
+
     }
 
     public Loan() {
@@ -57,11 +60,11 @@ public class Loan extends AbstractEntity {
         this.loanDateOut = loanDateOut;
     }
 
-    public Date getLoanDueDate() {
-        return loanDueDate;
+    public Date getLoanDateIn() {
+        return loanDateIn;
     }
 
-    public void setLoanDueDate(Date loanDueDate) {
-        this.loanDueDate = loanDueDate;
+    public void setLoanDateIn(Date loanDateIn) {
+        this.loanDateIn = loanDateIn;
     }
 }

@@ -1,8 +1,8 @@
 import React , {useEffect, useState} from "react";
 import axios from "axios";
 
-function DisplayReviews ({results}) {
-    const bookID = results.book.id;
+function DisplayReviews ({objects}) {
+    const bookID = objects.book.id;
     const [reviews, setReviews] = useState([]);
     const [show, setShow] = useState(false);
 
@@ -11,7 +11,7 @@ function DisplayReviews ({results}) {
         .then(res=>setReviews(res.data))
         .catch(err=>console.log(err));
 
-        if(Object.keys(results).length === 0){
+        if(Object.keys(objects).length === 0){
             setShow(false);
         } else {
             setShow(true);
@@ -19,7 +19,7 @@ function DisplayReviews ({results}) {
     }, [])
 
     return (<div className="container mt-3" style={{display: (show ? 'block' : 'none')}}>
-        <h3>{results.book.title} Book Reviews:</h3>
+        <h3>{objects.book.title} Book Reviews:</h3>
         {reviews.map((review, index) => {
             return(
                 <div key={index} className="row g-3">
