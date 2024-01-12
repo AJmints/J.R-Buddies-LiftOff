@@ -4,40 +4,57 @@ import { Link } from "react-router-dom";
 
 function UserSignIn() {
 
-    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         try {
-            const response = await axios.post("localhost:8080/api/user/login", {
-                username,
+            const response = await axios.post("http://localhost:8080/api/user/login", {
+                email,
                 password,
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
             });
-
+    
             if (response.status === 200) {
                 const token = response.data.token;
-                document.cookie = 'jwtToken=${token}; path=/; secure; SameSite=Strict';
-
-                console.log('Login successful')
+                document.cookie = `jwtToken=${token}; path=/; secure; SameSite=Strict`;
+    
+                console.log('Login successful');
                 
             } else {
                 console.error("Authentication failed");
             }
         } catch (error) {
-            console.error("Error during login:", error);
+            if (axios.isCancel(error)) {
+                console.error('Request canceled:', error.message);
+            } else if (error.response) {
+                // The request was made, but the server responded with an error status code
+                console.error('HTTP error during login:', error.response.status, error.response.data);
+            } else if (error.request) {
+                // The request was made, but no response was received
+                console.error('No response received during login:', error.request);
+            } else {
+                // Something happened in setting up the request that triggered an error
+                console.error('Request setup error during login:', error.message);
+            }
         }
     };
+    
 
     return (
         <div className='container mt-5'>
             <h3>Log In</h3>
                 <form className='row g-3' onSubmit={handleSubmit}>
                     <div className='col-md-6'>
-                        <label htmlFor='username' className='form-label'>User Name:</label>
-                        <input type='text' className='form-control' id='username' required
-                        value={username} onChange={(e) => setUsername(e.target.value)}/>
+                        <label htmlFor='email' className='form-label'>User Name:</label>
+                        <input type='text' className='form-control' id='email' required
+                        value={email} onChange={(e) => setEmail(e.target.value)}/>
                     </div>
                     <div className='col-md-6'>
                         <label htmlFor="password" className='form-label'>Password:</label>
