@@ -1,6 +1,6 @@
 package org.launchcode.bookmaster.user;
 
-//import lombok.RequiredArgsConstructor;
+import lombok.RequiredArgsConstructor;
 //import org.launchcode.bookmaster.user.auth.AuthenticationRequest;
 //import org.launchcode.bookmaster.user.auth.AuthenticationResponse;
 //import org.launchcode.bookmaster.user.auth.AuthenticationService;
@@ -12,7 +12,7 @@ import org.launchcode.bookmaster.loan.Loan;
 import org.launchcode.bookmaster.loan.LoanRepository;
 import org.launchcode.bookmaster.review.Review;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseEntity;
 import org.launchcode.bookmaster.book.Book;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,16 +29,16 @@ public class UserController {
     private UserRepository userRepository;
 
 //    private final AuthenticationService service;
-
-
+//
+//
 //    @PostMapping("/register")
 //    public ResponseEntity<AuthenticationResponse> register(
 //            @RequestBody RegisterRequest request
 //    ) {
 //        return  ResponseEntity.ok(service.register(request));
 //    }
-
-
+//
+//
 //    @PostMapping("/login")
 //    public ResponseEntity<AuthenticationResponse> authenticate(
 //            @RequestBody AuthenticationRequest request

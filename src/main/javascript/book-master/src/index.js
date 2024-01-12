@@ -11,6 +11,7 @@ import Admin2Users from './pages/Admin2Users';
 import Admin2loans from './pages/Admin2Loans';
 import Admin3UserInfo from './pages/Admin3UserInfo';
 import Admin3BookInfo from './pages/Admin3BookInfo'
+import AdminEvents from './pages/AdminEvents';
 import UserAccount from "./pages/UserAccount";
 import Home from "./pages/Home";
 import Layout from "./pages/Layout";
@@ -27,6 +28,7 @@ import AddedBookToDBSuccess from "./pages/AddedBookToDBSuccess";
 import LibrarySearch from "./pages/LibrarySearch";
 import RemoveSearch from "./pages/RemoveSearch";
 import RemoveBookSuccess from "./pages/RemoveBookSuccess";
+import UserDashboard from "./pages/UserDashboard"
 
 
 export default function App() {
@@ -158,6 +160,8 @@ useEffect(() => {getLoans()}, []);
           {/* Routes in alphabetical order to be easier to find */}
           <Route path="admin_home" element={<Admin1Home />}/>
          
+          <Route path="admin_home/events" element={<AdminEvents />} />
+          <Route path="admin_home/books/" element={<Admin2Books books={books} getBooks={getBooks}/>}/>
           <Route path="admin_home/users/" element={<Admin2Users users={users} />}/>
           <Route path="admin_home/users/:id"
                              element = {< Admin3UserInfo 
@@ -192,9 +196,8 @@ useEffect(() => {getLoans()}, []);
           <Route path="search" element={<Search />} />
           <Route path="user_sign_in" element={<UserSignIn />} />
           <Route path="user_registration" element={<UserRegistration />} />
-          
-          </Route>
-
+          <Route path="user_dashboard" element={<UserDashboard />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

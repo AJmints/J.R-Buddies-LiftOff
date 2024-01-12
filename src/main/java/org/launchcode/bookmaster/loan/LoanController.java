@@ -48,7 +48,7 @@ public class LoanController {
 
     }
 
-    @GetMapping("/git")
+    @GetMapping("/all_details")
     public Iterable<UserBookLoanDTO> getUsersBooksLoan() {
         ArrayList<UserBookLoanDTO> userBookLoans = new ArrayList<>();
 
