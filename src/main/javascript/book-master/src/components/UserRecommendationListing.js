@@ -2,14 +2,14 @@ import react, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const UserRecommendationListing=(results)=>{
+const UserRecommendationListing=({idValue})=>{
     const navigate = useNavigate();
     const [recData, setRecData] = useState([]);
     const [bookData, setBookData] = useState([]);
     const [userBooks, setUserBooks] = useState([]);
 
     const fetchRecs = () => {
-        axios.get("http://localhost:8080/recommendation/search?idType=user&idValue="+results.idValue)
+        axios.get("http://localhost:8080/recommendation/search?idType=user&idValue="+idValue)
             .then(res=>setRecData(res.data))
             .catch(err=>console.log(err));
     }

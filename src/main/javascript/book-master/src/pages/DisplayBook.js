@@ -68,7 +68,6 @@ const DisplayBook=()=> {
                         <button id="recommendButton" onClick={bookRecommend}
                             style={{marginRight: 14 + 'em'}}>Recommend Book</button>
                         <button style={{marginRight: 14 + 'em'}}>Check Book Out</button>
-                        <button style={{marginRight: 14 + 'em'}}>Recommend Book</button>
                         <button style={{marginRight: 14 + 'em'}} onClick={saveForLater}>Save For Later</button>
 
                         {obj.book.available_quantity > 0 ? (
