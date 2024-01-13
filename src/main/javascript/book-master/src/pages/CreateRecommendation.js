@@ -1,7 +1,6 @@
 import React , {useState, useRef} from 'react';
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
-import UserRecommendationListing from "../components/UserRecommendationListing";
 
 const CreateRecommendation=()=> {
     const location = useLocation();
