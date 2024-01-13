@@ -17,7 +17,7 @@ const Admin5UserUpdates = (props) => {
       }
       
 
-    return (
+    return (<div className="container mt-3">
         <div className="user">
             <form onSubmit={handleSubmit}>
                 <br></br>
@@ -94,6 +94,7 @@ const Admin5UserUpdates = (props) => {
             </form>
 
         </div>
+    </div>
     );
 
 

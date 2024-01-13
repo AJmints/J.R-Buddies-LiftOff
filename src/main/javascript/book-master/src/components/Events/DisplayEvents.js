@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const EventList = () => {
+const DisplayEvents = () => {
   const [event, setEvent] = useState([]);
 
   useEffect(() => {
@@ -36,4 +36,4 @@ const EventList = () => {
   );
 };
 
-export default EventList;
+export default DisplayEvents;

@@ -1,7 +1,7 @@
 import React , {useEffect, useState} from "react";
 import axios from "axios";
 
-function UserReviews () {
+function UserLoans () {
     const [userId, setUserId] = useState("");
     const [reviews, setReviews] = useState([]);
     const [users, setUsers] = useState([]);
@@ -104,23 +104,29 @@ function UserReviews () {
                     </select>
                 </div>
             </div>
-            <h3>Book Reviews:</h3>
+            <h3>Currently Checked out Books:</h3>
             {reviews.map((review, index) => {
                 return(
                     <div key={index} className="row border border-3">
-                        <div  className='row mt-2'>
-                            <p><span style={{fontWeight: "bold"}}> Book:</span> {review.book.title}</p>
+                        <div className='col-1'>
+                            <img src={review.book.thumbnail} height={125}/>
                         </div>
-                        <div  className='row'>
-                            <p><span style={{fontWeight: "bold"}}>User Rating:</span> {review.rating}</p>
-                        </div>
-                        <div className='row'>
-                            <p><span style={{fontWeight: "bold"}}>Review:</span></p>
-                            <p className="text-bg-light">"{review.review}"</p>
-                        </div>
-                        <div className="mb-2">
-                            <button type='submit' className="btn btn-primary" value={[review.id, review.book.title, review.book.id, review.rating, review.review]} onClick={(e)=>updateButton(e.target.value)}>Update</button>
-                            <button type='submit' className="btn btn-secondary" value={review.id} onClick={(e) => deleteReviews(e.target.value)}>Delete</button>
+                            <div  className='col mt-4'>
+                                <p><span style={{fontWeight: "bold"}}> Book:</span> {review.book.title}</p>
+                            </div>
+                            <div  className='col mt-4'>
+                                <p><span style={{fontWeight: "bold"}}>Date Checked out:</span> {review.rating}</p>
+                            </div>
+                            <div className='col mt-4'>
+                                <p><span style={{fontWeight: "bold"}}>Due Date: </span>"{review.review}"</p>
+                            </div>
+                            <div className="col-1 mt-4">
+                                <div>
+                                    <button type='submit' className="btn btn-primary" value={[review.id, review.book.title, review.book.id, review.rating, review.review]} onClick={(e)=>updateButton(e.target.value)}>Renew</button>
+                                </div>
+                                <div>
+                                    <button type='submit' className="btn btn-secondary" value={review.id} onClick={(e) => deleteReviews(e.target.value)}>Return</button>
+                                </div>
                         </div>
                     </div>
                 )
@@ -130,4 +136,4 @@ function UserReviews () {
 
 };
 
-export default UserReviews;
+export default UserLoans;

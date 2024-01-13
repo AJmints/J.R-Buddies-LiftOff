@@ -47,9 +47,7 @@ const AdminEvents = (props) => {
     </tr>
   ));
 
-  return (
-    <>
-      <br />
+  return (<div className="container mt-5">
       <div>
         <form onSubmit={handleSubmit} className="row g-2 align-items-center">
           <div className="col-auto">
@@ -94,7 +92,7 @@ const AdminEvents = (props) => {
           </table>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

@@ -25,7 +25,7 @@ const DisplayBook=()=> {
     const isbn = book.isbn;
     const genre = book.genre;
     const total_quantity = book.total_quantity;
-    const new_available_quantity = book.available_quantity-1;
+    const available_quantity = (Number(book.available_quantity)-1);
 
     useEffect(() => {
         axios.get("http://localhost:8080/api/user/all")
@@ -45,8 +45,8 @@ const DisplayBook=()=> {
         e.preventDefault();
         axios.post("http://localhost:8080/loan", {book, user, loanDateOut, loanDateIn})
         .then(function(res) {
-
-            axios.put("http://localhost:8080/book/"+book.id, {title, author, isbn, genre, total_quantity, new_available_quantity})
+            // on successful post updates book available quantity to subtract 1 book
+            axios.put("http://localhost:8080/book/"+book.id, {title, author, isbn, genre, total_quantity, available_quantity})
             .then(function(res) {
                 setBookCheckout(true);
             })
@@ -113,10 +113,10 @@ const DisplayBook=()=> {
                         <div className='col-3 mb-4'>
                             <label htmlFor="user" className='form-label'>User ID: {user.email}</label>
                             <select className="form-control" onClick={selectUser}>
-                            {users.map((user, index) => {
-                                return(
+                                {users.map((user, index) => {
+                                    return(
                                     <option key={index} value={user.id}>{user.email}</option>)
-                            })}
+                                })}
                             </select>
                         </div>
                         <button style={{marginRight: 14 + 'em'}}>Recommend Book</button>

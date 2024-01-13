@@ -60,23 +60,23 @@ const Layout = () => {
                         <button className="btn btn-primary" type="Submit" >Search</button>
                     </form>
 
-                    <li className="nav-item dropdown">
-                    <a
-                        className="nav-link dropdown-toggle"
-                        href="#"
-                        id="navbarDropdown"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                    >
+                    <li className="nav-item dropdown" style={{display: (showLogin ? "block" : "none")}}>
+                        <a
+                            className="nav-link dropdown-toggle"
+                            href="#"
+                            id="navbarDropdown"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                        >
                         Account
-                    </a>
-                    <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <Link to="user_sign_in" className="dropdown-item">Login</Link>
-                        <Link to="user_registration" className="dropdown-item">Register</Link>
-                    </div>
-                </li>
+                        </a>
+                            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <Link to="user_sign_in" className="dropdown-item">Login</Link>
+                                <Link to="user_registration" className="dropdown-item">Register</Link>
+                            </div>
+                    </li>
 
 {/* last 2 pages hidden will add code for with user verification and link will be visible only to correct user type */}
 
