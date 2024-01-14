@@ -12,7 +12,7 @@ const LibrarySearch=()=>{
     const searchLibrary = (e) => {
         e.preventDefault();
 
-        axios.get("http://localhost:8080/book/search_results?column="+category+"&searchTerm="+search)
+        axios.get("http://localhost:8080/book/search_results?column="+category+"&searchTerm="+search.trim())
         .then(res=>setBookData(res.data))
         .catch(err=>console.log(err));
 
@@ -25,7 +25,7 @@ const LibrarySearch=()=>{
                 <h2>Look For Books</h2>
                 <form onSubmit = {searchLibrary}>
                     <input type="text" placeholder="Enter Search Term" value={search}
-                        onChange={e=>setSearch(e.target.value.trim())}/>
+                        onChange={e=>setSearch(e.target.value)}/>
                     <br></br>
                     <label>
                         Search Category

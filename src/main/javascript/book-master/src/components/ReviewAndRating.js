@@ -10,6 +10,7 @@ function ReviewAndRating ({objects}) {
 
     const submitReview = (e) => {
         e.preventDefault();
+        console.log(book,user,review,rating)
 
         axios.post("http://localhost:8080/reviews", {book,user,review,rating})
         .then(res=>console.log(res))

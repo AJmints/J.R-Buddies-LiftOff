@@ -1,4 +1,3 @@
-import react from "react";
 import { useNavigate } from "react-router-dom";
 
 const UserResults=({results})=>{
@@ -15,7 +14,7 @@ const UserResults=({results})=>{
     }
 
     return(
-        <div className = "bookList_container">
+        <div className = "bookList_container container">
             {
             results.map((book, index) => {
                 return(

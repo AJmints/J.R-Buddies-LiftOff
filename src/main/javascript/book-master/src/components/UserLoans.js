@@ -72,28 +72,15 @@ function UserLoans () {
     }
 
     const renewBook = (e) => {
-        const config = {
-            method: 'put',
-            url: "http://localhost:8080/loan/"+e,
-            headers: ("Access-Control-Allow-Origin", "*"),
-            data: {book, user, loanDateOut, loanDateIn}
-        };
 
-        axios(config)
+        axios.put("http://localhost:8080/loan/"+e, {book, user, loanDateOut, loanDateIn})
         .then(function(res) {
             setConfirmBookRenewMsg(false);
             setBookRenewed(true);
         })
-        .catch(err=>console.log(err));
+        .catch(err=>console.log(err))
 
-        // axios.put("http://localhost:8080/loan/"+e, {book, user, loanDateOut, loanDateIn})
-        // .then(function(res) {
-        //     setConfirmBookRenewMsg(false);
-        //     setBookRenewed(true);
-        // })
-        // .catch(err=>console.log(err))
-
-        
+        setTimeout(()=>window.location.reload(), 2000);
     }
 
     const returnBook = (e) => {
@@ -110,6 +97,8 @@ function UserLoans () {
 
         })
         .catch(err => console.log(err.res))
+
+        setTimeout(()=>window.location.reload(), 2000);
 
     }
 

@@ -1,7 +1,5 @@
-import React from 'react';
 import {useNavigate, useLocation} from "react-router-dom";
 import React, { useEffect, useState } from 'react';
-import {useLocation} from "react-router-dom";
 import ReviewAndRating from "../components/ReviewAndRating";
 import DisplayReviews from '../components/DisplayReviews';
 import axios from 'axios';
@@ -125,11 +123,9 @@ const DisplayBook=()=> {
                 <tr>
                     <td>
                         <table>
-                            <tr>
+                            <tr className="bookCard">
                                 <img
                                     src={obj.book.thumbnail}
-                                    width="300"
-                                    height="400"
                                 />
                             </tr>
                         </table>
@@ -144,10 +140,9 @@ const DisplayBook=()=> {
                                 })}
                             </select>
                         </div>
+
                         <button id="recommendButton" onClick={bookRecommend}
                             style={{marginRight: 14 + 'em'}}>Recommend Book</button>
-                        <button style={{marginRight: 14 + 'em'}}>Check Book Out</button>
-                        <button style={{marginRight: 14 + 'em'}}>Recommend Book</button>
                         {/* <button style={{marginRight: 14 + 'em'}} onClick={saveForLater}>Save For Later</button> */}
 
                         {obj.book.available_quantity > 0 ? (
@@ -185,7 +180,7 @@ const DisplayBook=()=> {
         </div>
 
         <div className='container-fluid mb-4'>
-            <ReviewAndRating results={obj}/>
+            <ReviewAndRating objects={[book, user]}/>
         </div>
 
         <div className='container-fluid pb-5 mb-5'>
