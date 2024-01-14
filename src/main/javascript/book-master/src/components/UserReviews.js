@@ -31,7 +31,7 @@ function UserReviews () {
         .catch(err=>console.log(err));
     }
 
-    const updateButton = (e) => {
+    const updateReviewDisplay = (e) => {
         setToggleDisplay(false);
         const data = e.split(",");
         setReview(data[4]);
@@ -108,6 +108,10 @@ function UserReviews () {
             {reviews.map((review, index) => {
                 return(
                     <div key={index} className="row border border-3">
+                        <div className="col-2 mt-2">
+                            <img src={review.book.thumbnail} height={200}/>
+                        </div>
+                        <div className="col-9">
                         <div  className='row mt-2'>
                             <p><span style={{fontWeight: "bold"}}> Book:</span> {review.book.title}</p>
                         </div>
@@ -119,8 +123,9 @@ function UserReviews () {
                             <p className="text-bg-light">"{review.review}"</p>
                         </div>
                         <div className="mb-2">
-                            <button type='submit' className="btn btn-primary" value={[review.id, review.book.title, review.book.id, review.rating, review.review]} onClick={(e)=>updateButton(e.target.value)}>Update</button>
+                            <button type='submit' className="btn btn-primary" value={[review.id, review.book.title, review.book.id, review.rating, review.review]} onClick={(e)=>updateReviewDisplay(e.target.value)}>Update</button>
                             <button type='submit' className="btn btn-secondary" value={review.id} onClick={(e) => deleteReviews(e.target.value)}>Delete</button>
+                        </div>
                         </div>
                     </div>
                 )

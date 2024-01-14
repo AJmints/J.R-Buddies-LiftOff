@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {useLocation} from "react-router-dom";
 import ReviewAndRating from "../components/ReviewAndRating";
 import DisplayReviews from '../components/DisplayReviews';
-import axios, { Axios } from 'axios';
-import { func } from 'prop-types';
+import axios from 'axios';
 
 const DisplayBook=()=> {
     const location = useLocation();
@@ -13,12 +12,12 @@ const DisplayBook=()=> {
     const [users, setUsers] = useState([]);
     const [user, setUser] = useState("");
     const [userId, setUserId] = useState("");
-    const loanDateOut = new Date    
+    const loanDateOut = new Date()
     function calcLoanDateOut(date) {
         date.setDate(date.getDate() + 7*3);
         return date
     }
-    const loanDateIn = calcLoanDateOut(new Date)
+    const loanDateIn = calcLoanDateOut(new Date);
     const [bookCheckout, setBookCheckout] = useState(false);
     const title = book.title;
     const author = book.author;
@@ -45,7 +44,7 @@ const DisplayBook=()=> {
         e.preventDefault();
         axios.post("http://localhost:8080/loan", {book, user, loanDateOut, loanDateIn})
         .then(function(res) {
-            // on successful post updates book available quantity to subtract 1 book
+            // on successful post subtracts 1 from available quantity
             axios.put("http://localhost:8080/book/"+book.id, {title, author, isbn, genre, total_quantity, available_quantity})
             .then(function(res) {
                 setBookCheckout(true);
