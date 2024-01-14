@@ -47,6 +47,7 @@ function UserLoans () {
     const confirmBookRenew = (e) => {
         const loanData = e.split(",");
         setData(loanData);
+        console.log(data)
 
         axios.get("http://localhost:8080/book/"+loanData[1])
         .then(res=>setBook(res.data))
@@ -59,6 +60,7 @@ function UserLoans () {
     const confirmBookReturn = (e) => {
         const loanData = e.split(",");
         setData(loanData)
+        console.log(loanData)
 
         axios.get("http://localhost:8080/book/"+loanData[1])
         .then(res=>setBook(res.data))
@@ -70,12 +72,28 @@ function UserLoans () {
     }
 
     const renewBook = (e) => {
-        axios.put("http://localhost:8080/loan/"+e, {book, user, loanDateOut, loanDateIn})
+        const config = {
+            method: 'put',
+            url: "http://localhost:8080/loan/"+e,
+            headers: ("Access-Control-Allow-Origin", "*"),
+            data: {book, user, loanDateOut, loanDateIn}
+        };
+
+        axios(config)
         .then(function(res) {
             setConfirmBookRenewMsg(false);
             setBookRenewed(true);
         })
-        .catch(err=>console.log(err))
+        .catch(err=>console.log(err));
+
+        // axios.put("http://localhost:8080/loan/"+e, {book, user, loanDateOut, loanDateIn})
+        // .then(function(res) {
+        //     setConfirmBookRenewMsg(false);
+        //     setBookRenewed(true);
+        // })
+        // .catch(err=>console.log(err))
+
+        
     }
 
     const returnBook = (e) => {
