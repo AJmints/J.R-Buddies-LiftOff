@@ -43,7 +43,7 @@ const AdminEvents = (props) => {
         <Link to={`/admin_home/events/${event.id}`}>{event.name}</Link>
       </td>
       <td>{event.details}</td>
-      <td>{event.date}</td>
+      <td>{event.date.slice(5,10)}-{event.date.slice(0,4)}</td>
     </tr>
   ));
 

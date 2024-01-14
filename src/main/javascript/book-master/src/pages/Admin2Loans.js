@@ -38,10 +38,10 @@ const Admin2loans =(props)=>{
                     <Link  to={`/admin_home/loans/${loan.id}`}>{loan.book.id}</Link>
                     </td>
                     <td>
-                        <Link  to={`/admin_home/loans/${loan.id}`}>{loan.loan.loanDateOut}</Link>
+                        <Link  to={`/admin_home/loans/${loan.id}`}>{loan.loan.loanDateOut.slice(5,10)}-{loan.loan.loanDateOut.slice(0,4)}</Link>
                     </td>
                     <td>
-                        <Link to={`/admin_home/books/${loan.id}`}>{loan.loan.loanDateIn}</Link>
+                        <Link to={`/admin_home/books/${loan.id}`}>{loan.loan.loanDateIn.slice(5,10)}-{loan.loan.loanDateIn.slice(0,4)}</Link>
                     </td>
                 </tr>
             )
