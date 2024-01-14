@@ -37,6 +37,8 @@ export default function App() {
   const [users, setUsers] = useState([]);
   const [books, setBooks] = useState([]);
   const [loans, setLoans] = useState([]);
+  //Change to false when way to identify user is setup
+  const [isAdmin, setIsAdmin] = useState(true);
 
   
  ///////////////////////////////
@@ -199,7 +201,7 @@ useEffect(() => {getLoans()}, []);
           <Route path="remove_recommend" element={<RemoveRecommendations />} />
           <Route path="remove_search" element={<RemoveSearch />} />
           <Route path="remove_success" element={<RemoveBookSuccess />} />
-          <Route path="search" element={<Search />} />
+          <Route path="search" element={isAdmin ? <Search /> : <LibrarySearch />} />
           <Route path="user_sign_in" element={<UserSignIn />} />
           <Route path="user_registration" element={<UserRegistration />} />
           <Route path="user_dashboard" element={<UserDashboard />} />
