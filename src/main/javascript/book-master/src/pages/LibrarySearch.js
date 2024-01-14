@@ -5,18 +5,19 @@ import { useLocation } from 'react-router-dom';
 
 const LibrarySearch=()=>{
     const location = useLocation();
-    const searchData = location.state;
+    const data = location.state;
     const [search, setSearch] = useState("");
     const [category, setCategory] = useState("all");
     const [bookData, setBookData] = useState([]);
     const [show, setShow] = useState(false);
+    const userId = data[1].user;
 
     useEffect(() => {
-        console.log(searchData);
-        if (searchData !== null) {
-            setSearch(searchData.keyword);
+        console.log(userId);
+        if (data[0].keyword !== null && data[0] !== "") {
+            setSearch(data[0].keyword);
 
-            axios.get("http://localhost:8080/book/search_results?column="+category+"&searchTerm="+searchData.keyword.trim())
+            axios.get("http://localhost:8080/book/search_results?column="+category+"&searchTerm="+data[0].keyword.trim())
             .then(res=>setBookData(res.data))
             .catch(err=>console.log(err));
 
@@ -57,7 +58,7 @@ const LibrarySearch=()=>{
 
 
             <div id="resultsDiv" style={{display: (show ? 'block' : 'none')}}>
-                <UserResults results={bookData} />
+                <UserResults results={[bookData, userId]} />
             </div>
             <br></br>
             <br></br>

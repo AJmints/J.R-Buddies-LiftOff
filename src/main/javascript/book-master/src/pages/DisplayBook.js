@@ -7,10 +7,10 @@ import axios from 'axios';
 const DisplayBook=()=> {
     const location = useLocation();
     const navigate = useNavigate();
-    const obj = location.state;
+    const obj = location.state[0];
+    const userId = location.state[1].userId;
     let available = "";
     const book = obj.book
-    const [users, setUsers] = useState([]);
     const [user, setUser] = useState("");
     const loanDateOut = new Date()
     function calcLoanDateOut(date) {
@@ -27,16 +27,10 @@ const DisplayBook=()=> {
     const available_quantity = (Number(book.available_quantity)-1);
 
     useEffect(() => {
-        axios.get("http://localhost:8080/api/user/all")
-        .then(res=>setUsers(res.data))
-        .catch(err=>console.log(err));
-    }, [])
-
-    const selectUser = (e)=>{
-        axios.get("http://localhost:8080/api/user/"+e)
+        axios.get("http://localhost:8080/api/user/"+userId)
             .then(res=>setUser(res.data))
             .catch(err=>console.log(err));
-    }
+    }, [])
 
     const handleCheckout = (e) => {
         e.preventDefault();
@@ -128,15 +122,6 @@ const DisplayBook=()=> {
                         </table>
                     </td>
                     <td> 
-                        <div className='col-3 mb-4'>
-                            <label htmlFor="user" className='form-label'>User ID: {user.email}</label>
-                            <select className="form-control" onClick={(e)=>selectUser(e.target.value)}>
-                                {users.map((user, index) => {
-                                    return(
-                                    <option key={index} value={user.id}>{user.email}</option>)
-                                })}
-                            </select>
-                        </div>
 
                         <button id="recommendButton" onClick={bookRecommend}
                             style={{marginRight: 14 + 'em'}}>Recommend Book</button>

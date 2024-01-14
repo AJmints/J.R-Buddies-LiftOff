@@ -50,7 +50,7 @@ const Layout = () => {
 
     const handleSearch = (e) => {
         e.preventDefault();
-        navigate("/library_search", {state: {keyword}});
+        navigate("/library_search", {state: [{keyword},{user}]});
     }
 
     return (
@@ -66,7 +66,7 @@ const Layout = () => {
                     </li>
 
                     <li className="nav-item">
-                        <Link to="library_search" className="nav-link">Search Library</Link>
+                        <Link to="library_search" className="nav-link" state={[{keyword:null},{user:user}]}>Search Library</Link>
                     </li>
 
                     {/* will use quick search to search all fields with keyword and go to searchResults.js page to display results */}
@@ -93,18 +93,18 @@ const Layout = () => {
                                 <Link to="user_registration" className="dropdown-item" style={{display: (showLogin ? "block" : "none")}}>Register</Link>
                                 {/* links seen by users logged in with role USER */}
                                 <Link id="userAccount" to="user_account" className="dropdown-item" style={{display: (showLogin ? "none" : "block")}} state={user}>Account</Link>
-                                <Link id="userAccount" to="user_account" className="dropdown-item" style={{display: (showUser ? "block" : "none")}}>Dashboard</Link>
+                                <Link id="userAccount" to="user_account" className="dropdown-item" style={{display: (showUser ? "block" : "none")}} state={user}>Dashboard</Link>
                                 {/* links seen by users logged in with role ADMIN */}
                                 <Link id="adminAccount" to="admin_home" className="dropdown-item" style={{display: (showAdmin ? "block" : "none")}}>Admin Features</Link>
                                 <Link to="search" className="dropdown-item" style={{display: (showAdmin ? "block" : "none")}}>Add Books</Link>
                                 {/* quick view of books on loan for current user */}
-                                <div className="dropdown-divider" style={{display: (showLogin ? "none" : "block")}}></div>
-                                <div id="laons_quick_view" className="dropdown-item" style={{display: (showLogin ? "none" : "block")}}>
+                                <div id="laons_quick_view" className="dropdown-item text-bg-secondary" style={{display: (showLogin ? "none" : "block")}}>
                                     <p><span style={{fontWeight: "bold"}}>Books currently checked out:</span></p>
+                                    <p className="text-white" style={{display: userLoans.length === 0 ? "" : "none"}}><small>No Books Currently Checked Out</small></p>
                                     {userLoans.map((loan, index) => {
                                         return(
                                         <div key={index}>
-                                            <div className="dropdown-divider" style={{display: (showLogin ? "none" : "block")}}></div>
+                                            <div className="dropdown-divider bg-white" style={{display: (showLogin ? "none" : "block")}}></div>
                                             <p><span style={{fontWeight: "bold"}}>Book:</span> {loan.book.title}</p>
                                             <p><span style={{fontWeight: "bold"}}>Due Date:</span> {loan.loanDateIn.slice(5,10)}-{loan.loanDateIn.slice(0,4)}</p>
                                         </div>)
@@ -120,7 +120,7 @@ const Layout = () => {
                         <select className="form-control" onClick={(e)=>selectUser(e.target.value)} required>
                                 {users.map((user, index) => {
                                                 return(
-                                <option key={index} value={[user.id,user.role,user]}>{user.email}</option>)
+                                <option key={index} value={[user.id,user.role]}>{user.email}</option>)
                                             })}
                         </select>
                     </li>
