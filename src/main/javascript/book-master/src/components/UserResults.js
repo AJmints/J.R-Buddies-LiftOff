@@ -5,7 +5,7 @@ const UserResults=({results})=>{
 
     if(Object.keys(results).length === 0){
         return(
-            <div>
+            <div className="container">
                 <br></br>
                 <br></br>
                 <h2>No Results Found. Try Again.</h2>
@@ -14,7 +14,7 @@ const UserResults=({results})=>{
     }
 
     return(
-        <div className = "bookList_container container">
+        <div className="bookList_container container">
             {
             results.map((book, index) => {
                 return(

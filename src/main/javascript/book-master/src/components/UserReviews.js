@@ -1,11 +1,9 @@
 import React , {useEffect, useState} from "react";
 import axios from "axios";
 
-function UserReviews () {
-    const [userId, setUserId] = useState("");
+function UserReviews ({userData}) {
+    const user = userData;
     const [reviews, setReviews] = useState([]);
-    const [users, setUsers] = useState([]);
-    const [user, setUser] = useState("");
     const [toggleDisplay, setToggleDisplay] = useState(true);
     const [reviewData, setReviewData] = useState([]);
     const [review, setReview] = useState("");
@@ -14,20 +12,10 @@ function UserReviews () {
     
 
     useEffect(() => {
-        axios.get("http://localhost:8080/api/user/all")
-        .then(res=>setUsers(res.data))
-        .catch(err=>console.log(err));
-    }, [])
-
-    const selectUser = (e) => {
-        axios.get("http://localhost:8080/api/user/reviews/"+e)
+        axios.get("http://localhost:8080/api/user/reviews/"+user)
         .then(res=>setReviews(res.data))
         .catch(err=>console.log(err));
-
-        axios.get("http://localhost:8080/api/user/"+e)
-        .then(res=>setUser(res.data))
-        .catch(err=>console.log(err));
-    }
+    }, [])
 
     const updateReviewDisplay = (e) => {
         setToggleDisplay(false);
@@ -91,16 +79,10 @@ function UserReviews () {
             </form>
         </div>
         <div id="user_reviews" style={{display: toggleDisplay ? "block" : "none"}}>
-            <div className='row mt-2'>
-                    <label htmlFor="user" className='form-label'>User ID: {user.email} </label>
-                    <select className="form-control" onClick={(e)=>selectUser(e.target.value)} required>
-                            {users.map((user, index) => {
-                                    return(
-                            <option key={index} value={user.id}>{user.email}</option>)
-                                })}
-                    </select>
-            </div>
             <h3>Book Reviews:</h3>
+
+            <p className="text-secondary mt-5 ms-5" style={{display: reviews.length ===0 ? "" : "none"}}>No Books Currently Checked Out</p>
+
             {reviews.map((review, index) => {
                 return(
                     <div key={index} className="row border border-3">

@@ -1,10 +1,9 @@
 import React , {useEffect, useState} from "react";
 import axios from "axios";
 
-function UserLoans () {
+function UserLoans ({userData}) {
+    const user = userData;
     const [loans, setLoans] = useState([]);
-    const [users, setUsers] = useState([]);
-    const [user, setUser] = useState("");
     const [book, setBook] = useState("");
     const loanDateOut = new Date    
     function calcLoanDateOut(date) {
@@ -26,20 +25,10 @@ function UserLoans () {
     const [ data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:8080/api/user/all")
-        .then(res=>setUsers(res.data))
-        .catch(err=>console.log(err));
-    }, [])
-
-    const selectUser = (e) => {
-        axios.get("http://localhost:8080/api/user/loans/"+e)
+        axios.get("http://localhost:8080/api/user/loans/"+user)
         .then(res=>setLoans(res.data))
         .catch(err=>console.log(err));
-
-        axios.get("http://localhost:8080/api/user/"+e)
-        .then(res=>setUser(res.data))
-        .catch(err=>console.log(err));
-    }
+    }, [])
 
     const confirmBookRenew = (e) => {
         const loanData = e.split(",");
@@ -101,18 +90,10 @@ function UserLoans () {
 
 
     return <div className="container mt-3 pb-5 mb-5" >
-        
-        <div id="users" className='col-3 mt-2 mb-3' style={{display: toggleDisplay ? "block" : "none"}}>
-            <label htmlFor="user" className='form-label'>User ID: {user.email} </label>
-            <select className="form-control" onClick={(e)=>selectUser(e.target.value)} required>
-                    {users.map((user, index) => {
-                                    return(
-                    <option key={index} value={user.id}>{user.email}</option>)
-                                })}
-            </select>
-        </div>
 
             <h3>Currently Checked out Books:</h3>
+
+            <p className="text-secondary mt-5 ms-5" style={{display: loans.length === 0 ? "" : "none"}}>No Books Currently Checked Out</p>
 
             <div id="user_Book_Confirm" className="row border border-3" style={{display: toggleDisplay ? "none" : ""}}>
                 <div  className='col-1'>
@@ -139,7 +120,7 @@ function UserLoans () {
                 </div>
             </div>
 
-            <div id="loans_mapping" style={{display: toggleDisplay ? "block" : "none"}}>
+            <div id="loans_mapping" style={{display: toggleDisplay ? "" : "none"}}>
                 {loans.map((loan, index) => {
                     return(
                         <div key={index} className="row border border-3">

@@ -12,7 +12,6 @@ const DisplayBook=()=> {
     const book = obj.book
     const [users, setUsers] = useState([]);
     const [user, setUser] = useState("");
-    const [userId, setUserId] = useState("");
     const loanDateOut = new Date()
     function calcLoanDateOut(date) {
         date.setDate(date.getDate() + 7*3);
@@ -34,9 +33,7 @@ const DisplayBook=()=> {
     }, [])
 
     const selectUser = (e)=>{
-        setUserId(e.target.value);
-
-        axios.get("http://localhost:8080/api/user/"+userId)
+        axios.get("http://localhost:8080/api/user/"+e)
             .then(res=>setUser(res.data))
             .catch(err=>console.log(err));
     }
@@ -133,7 +130,7 @@ const DisplayBook=()=> {
                     <td> 
                         <div className='col-3 mb-4'>
                             <label htmlFor="user" className='form-label'>User ID: {user.email}</label>
-                            <select className="form-control" onClick={selectUser}>
+                            <select className="form-control" onClick={(e)=>selectUser(e.target.value)}>
                                 {users.map((user, index) => {
                                     return(
                                     <option key={index} value={user.id}>{user.email}</option>)
