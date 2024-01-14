@@ -27,7 +27,7 @@ const DisplayEvents = () => {
             <tr key={event.id}>
               <th scope="col">{event.name}</th>
               <th scope="col">{event.details}</th>
-              <th scope="col">{event.date}</th>
+              <th scope="col">{event.date.slice(5,10)}-{event.date.slice(0,4)}</th>
             </tr>
         ))}
         </tbody>

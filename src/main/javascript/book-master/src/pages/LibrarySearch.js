@@ -1,13 +1,28 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import axios from "axios";
 import UserResults from "../components/UserResults";
+import { useLocation } from 'react-router-dom';
 
 const LibrarySearch=()=>{
-
+    const location = useLocation();
+    const searchData = location.state;
     const [search, setSearch] = useState("");
     const [category, setCategory] = useState("all");
     const [bookData, setBookData] = useState([]);
     const [show, setShow] = useState(false);
+
+    useEffect(() => {
+        console.log(searchData);
+        if (searchData !== null) {
+            setSearch(searchData.keyword);
+
+            axios.get("http://localhost:8080/book/search_results?column="+category+"&searchTerm="+searchData.keyword.trim())
+            .then(res=>setBookData(res.data))
+            .catch(err=>console.log(err));
+
+            setShow(true);
+        } else {}
+    }, [])
 
     const searchLibrary = (e) => {
         e.preventDefault();
