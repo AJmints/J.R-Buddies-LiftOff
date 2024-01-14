@@ -20,13 +20,11 @@ function UserReviews () {
     }, [])
 
     const selectUser = (e) => {
-        setUserId(e.target.value);
-            
-        axios.get("http://localhost:8080/api/user/reviews/"+userId)
+        axios.get("http://localhost:8080/api/user/reviews/"+e)
         .then(res=>setReviews(res.data))
         .catch(err=>console.log(err));
 
-        axios.get("http://localhost:8080/api/user/"+userId)
+        axios.get("http://localhost:8080/api/user/"+e)
         .then(res=>setUser(res.data))
         .catch(err=>console.log(err));
     }
@@ -94,15 +92,13 @@ function UserReviews () {
         </div>
         <div id="user_reviews" style={{display: toggleDisplay ? "block" : "none"}}>
             <div className='row mt-2'>
-                <div className='col-3 mt-2 mb-3'>
                     <label htmlFor="user" className='form-label'>User ID: {user.email} </label>
-                    <select className="form-control" onClick={selectUser} required>
+                    <select className="form-control" onClick={(e)=>selectUser(e.target.value)} required>
                             {users.map((user, index) => {
                                     return(
                             <option key={index} value={user.id}>{user.email}</option>)
                                 })}
                     </select>
-                </div>
             </div>
             <h3>Book Reviews:</h3>
             {reviews.map((review, index) => {

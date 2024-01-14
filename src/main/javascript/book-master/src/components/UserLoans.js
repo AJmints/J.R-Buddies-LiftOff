@@ -2,7 +2,6 @@ import React , {useEffect, useState} from "react";
 import axios from "axios";
 
 function UserLoans () {
-    const [userId, setUserId] = useState("");
     const [loans, setLoans] = useState([]);
     const [users, setUsers] = useState([]);
     const [user, setUser] = useState("");
@@ -33,13 +32,11 @@ function UserLoans () {
     }, [])
 
     const selectUser = (e) => {
-        setUserId(e.target.value);
-            
-        axios.get("http://localhost:8080/api/user/loans/"+userId)
+        axios.get("http://localhost:8080/api/user/loans/"+e)
         .then(res=>setLoans(res.data))
         .catch(err=>console.log(err));
 
-        axios.get("http://localhost:8080/api/user/"+userId)
+        axios.get("http://localhost:8080/api/user/"+e)
         .then(res=>setUser(res.data))
         .catch(err=>console.log(err));
     }
@@ -105,18 +102,14 @@ function UserLoans () {
 
     return <div className="container mt-3 pb-5 mb-5" >
         
-        <div id="users" style={{display: toggleDisplay ? "block" : "none"}}>
-            <div className='row mt-2'>
-                <div className='col-3 mt-2 mb-3'>
-                    <label htmlFor="user" className='form-label'>User ID: {user.email} </label>
-                    <select className="form-control" onClick={selectUser} required>
-                            {users.map((user, index) => {
+        <div id="users" className='col-3 mt-2 mb-3' style={{display: toggleDisplay ? "block" : "none"}}>
+            <label htmlFor="user" className='form-label'>User ID: {user.email} </label>
+            <select className="form-control" onClick={(e)=>selectUser(e.target.value)} required>
+                    {users.map((user, index) => {
                                     return(
-                            <option key={index} value={user.id}>{user.email}</option>)
+                    <option key={index} value={user.id}>{user.email}</option>)
                                 })}
-                    </select>
-                </div>
-            </div>
+            </select>
         </div>
 
             <h3>Currently Checked out Books:</h3>
@@ -157,10 +150,10 @@ function UserLoans () {
                                 <p><span style={{fontWeight: "bold"}}> Book:</span> {loan.book.title}</p>
                             </div>
                             <div  className='col-3 mt-5'>
-                                <p><span style={{fontWeight: "bold"}}>Date Checked out:</span> {loan.loanDateOut}</p>
+                                <p><span style={{fontWeight: "bold"}}>Date Checked out:</span> {loan.loanDateOut.slice(5,10)}-{loan.loanDateOut.slice(0,4)}</p>
                             </div>
                             <div className='col-3 mt-5'>
-                                <p><span style={{fontWeight: "bold"}}>Due Date: </span>{loan.loanDateIn}</p>
+                                <p><span style={{fontWeight: "bold"}}>Due Date: </span> {loan.loanDateIn.slice(5,10)}-{loan.loanDateIn.slice(0,4)}</p>
                             </div>
                             <div className="col-1 mt-4">
                                 <div>
