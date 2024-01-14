@@ -114,10 +114,8 @@ const DisplayBook=()=> {
                 <tr>
                     <td>
                         <table>
-                            <tr className="bookCard">
-                                <img
-                                    src={obj.book.thumbnail}
-                                />
+                            <tr>
+                                <img src={obj.book.thumbnail} width="300" height="400"/>
                             </tr>
                         </table>
                     </td>
