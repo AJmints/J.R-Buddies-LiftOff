@@ -1,9 +1,11 @@
-import react, { useState } from "react";
+import react, { useState, useEffect , useCallback} from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const RemoveResults=({results})=>{
+const DeleteRecommendation=({results})=>{
     const[checked, setChecked] = useState([]);
+    const[books, setBooks] = useState([]);
+    const[book, setBook] = useState({});
     const navigate = useNavigate();
 
     const handleChecks = (event) => {
@@ -17,30 +19,30 @@ const RemoveResults=({results})=>{
         setChecked(updates);
     };
 
-    const removeBooksFromDatabase = (event) => {
+    const removeRecommend = (event) => {
         event.preventDefault();
 
-        checked.map((bookId) => {
-            axios.delete(`http://localhost:8080/book/${bookId}`)
-            .then((response) => {console.log(`Successfully Deleted Book ${bookId}`);})
+        checked.map((recommendationId) => {
+            axios.delete(`http://localhost:8080/recommendation/${recommendationId}`)
+            .then((response) => {console.log(`Successfully Deleted Recommendation ${recommendationId}`);})
             .catch(err => console.log(err.response.data.message));
         });
 
-        navigate('/remove_success');
+        navigate('/recommendation_success');
     }
 
     return(
         <div className = "DatabaseBookList">
             <div className = "bookList_container">
                 {
-                    results.map((item, index) => {
+                    results.map((book, index) => {
                         return(
                             <div key={index} className="bookCard">
-                                <img src={item.thumbnail} alt="img"/>
+                                <img src={book.thumbnail} alt="img"/>
                                 <br></br>
-                                <input value={item.id} type="checkbox" onChange={handleChecks}/>
+                                <input value={book.recID} type="checkbox" onChange={handleChecks}/>
                                 <div className="cardBottom">
-                                    <h5>{item.title}</h5>
+                                    <h5>{book.title}</h5>
                                 </div>
                             </div>
                         )
@@ -48,7 +50,7 @@ const RemoveResults=({results})=>{
                 }
             </div>
             <br></br>
-            <button onClick={removeBooksFromDatabase}>Remove Selected Books</button>
+            <button onClick={removeRecommend}>Remove Selected Recommendations</button>
             <br></br>
             <br></br>
             <br></br>
@@ -57,4 +59,4 @@ const RemoveResults=({results})=>{
     )
 }
 
-export default RemoveResults;
+export default DeleteRecommendation;

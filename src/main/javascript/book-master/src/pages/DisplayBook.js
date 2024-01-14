@@ -1,3 +1,5 @@
+import React from 'react';
+import {useNavigate, useLocation} from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 import {useLocation} from "react-router-dom";
 import ReviewAndRating from "../components/ReviewAndRating";
@@ -6,6 +8,7 @@ import axios from 'axios';
 
 const DisplayBook=()=> {
     const location = useLocation();
+    const navigate = useNavigate();
     const obj = location.state;
     let available = "";
     const book = obj.book
@@ -29,7 +32,7 @@ const DisplayBook=()=> {
     useEffect(() => {
         axios.get("http://localhost:8080/api/user/all")
         .then(res=>setUsers(res.data))
-        .catch(err=>console.log(err));    
+        .catch(err=>console.log(err));
     }, [])
 
     const selectUser = (e)=>{
@@ -55,7 +58,7 @@ const DisplayBook=()=> {
         .catch(err=>console.log(err))
 
     }
-    
+
     if(obj.book.available_quantity > 0){
         available = "Copies Available: " + obj.book.available_quantity;
     }
@@ -63,7 +66,11 @@ const DisplayBook=()=> {
         available = "All Copies Are Currently Checked Out";
     }
 
-    // const saveForLater = async () => {
+    const bookRecommend = () => {
+        navigate("/create_recommendation", {state: obj});
+    }
+
+    const saveForLater = async () => {
     //     try {
     //         const userId = '1';
     //           // Make a POST request to your backend API
@@ -74,12 +81,12 @@ const DisplayBook=()=> {
     //             // Add any additional headers if needed
     //             },
     //             // You may need to send some data with the request (e.g., book information)
-    //             body: JSON.stringify({ 
+    //             body: JSON.stringify({
     //                 userId: userId,
     //                 bookId: obj.book.id
     //             }),
     //           });
-        
+
     //         if (response.ok) {
     //             console.log('Book saved for later successfully.');
     //             // You can perform any additional actions here
@@ -90,11 +97,30 @@ const DisplayBook=()=> {
     //         console.error('Error:', error);
     //         }
     //       };
+    //           'Content-Type': 'application/json', // Set the appropriate content type
+    //           // Add any additional headers if needed
+    //         },
+    //         // You may need to send some data with the request (e.g., book information)
+    //         body: JSON.stringify({
+    //             userId: userId,
+    //             bookId: obj.book.id
+    //         }),
+    //       });
+
+    //       if (response.ok) {
+    //         console.log('Book saved for later successfully.');
+    //         // You can perform any additional actions here
+    //       } else {
+    //         console.error('Failed to save book for later.');
+    //       }
+    //     } catch (error) {
+    //       console.error('Error:', error);
+    //     }
+     };
 
     return(
     <>
         <div className='container mt-3'>
-            
             <table>
                 <tr>
                     <td>
@@ -118,6 +144,9 @@ const DisplayBook=()=> {
                                 })}
                             </select>
                         </div>
+                        <button id="recommendButton" onClick={bookRecommend}
+                            style={{marginRight: 14 + 'em'}}>Recommend Book</button>
+                        <button style={{marginRight: 14 + 'em'}}>Check Book Out</button>
                         <button style={{marginRight: 14 + 'em'}}>Recommend Book</button>
                         {/* <button style={{marginRight: 14 + 'em'}} onClick={saveForLater}>Save For Later</button> */}
 
@@ -127,10 +156,10 @@ const DisplayBook=()=> {
                             {bookCheckout && (<p className='text-success'>Book Successfully Checked out!</p>)}
                             </>
                         ) : (
-                            <button style={{marginRight: 14 + 'em'}}>Place Hold</button> 
+                            <button style={{marginRight: 14 + 'em'}}>Place Hold</button>
                         )}
-                        
-                        
+
+
                         <br></br>
                         <br></br>
                         <table>
@@ -156,11 +185,11 @@ const DisplayBook=()=> {
         </div>
 
         <div className='container-fluid mb-4'>
-            <ReviewAndRating objects={[obj.book, user]}/>
+            <ReviewAndRating results={obj}/>
         </div>
 
         <div className='container-fluid pb-5 mb-5'>
-            <DisplayReviews objects={obj}/>
+            <DisplayReviews results={obj}/>
         </div>
 
     </>
