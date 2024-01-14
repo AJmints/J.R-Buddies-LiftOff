@@ -60,14 +60,14 @@ const Layout = () => {
             </header>
             
             <nav className="navbar navbar-expand-sm bg-dark navbar-dark justify-content-center">
-                <ul className="navbar-nav">
-                    <li className="nav-item">
+                <div className="navbar-nav">
+                    <div className="nav-item">
                         <Link to="/" className="nav-link">Home</Link>
-                    </li>
+                    </div>
 
-                    <li className="nav-item">
+                    <div className="nav-item">
                         <Link to="library_search" className="nav-link" state={[{keyword:null},{user:user}]}>Search Library</Link>
-                    </li>
+                    </div>
 
                     {/* will use quick search to search all fields with keyword and go to searchResults.js page to display results */}
                     <form className="d-flex" onSubmit={handleSearch}>
@@ -75,7 +75,16 @@ const Layout = () => {
                         <button className="btn btn-primary" type="Submit" >Search</button>
                     </form>
 
-                    <li className="nav-item dropdown">
+                    <div className="mx-2">
+                        <select className="form-control" onClick={(e)=>selectUser(e.target.value)} required>
+                                {users.map((user, index) => {
+                                                return(
+                                <option key={index} value={[user.id,user.role]}>{user.email}</option>)
+                                            })}
+                        </select>
+                    </div>
+
+                    <div id="navDropDown" className="nav-item dropdown">
                         <a
                             className="nav-link dropdown-toggle"
                             href="#"
@@ -114,18 +123,8 @@ const Layout = () => {
                                     <div className="dropdown-divider" style={{display: (showLogin ? "none" : "block")}}></div> */}
                                 </div>
                             </div>
-                    </li>
-
-                    <li>
-                        <select className="form-control" onClick={(e)=>selectUser(e.target.value)} required>
-                                {users.map((user, index) => {
-                                                return(
-                                <option key={index} value={[user.id,user.role]}>{user.email}</option>)
-                                            })}
-                        </select>
-                    </li>
-                    
-                </ul>
+                    </div>
+                </div>
             </nav>
 
             <main>
