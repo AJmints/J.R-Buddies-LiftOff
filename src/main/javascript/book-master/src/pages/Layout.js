@@ -98,29 +98,29 @@ const Layout = () => {
                         </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown" >
                                 {/* links only seen to users not logged in */}
-                                <Link to="user_sign_in" className="dropdown-item" style={{display: (showLogin ? "block" : "none")}}>Login</Link>
-                                <Link to="user_registration" className="dropdown-item" style={{display: (showLogin ? "block" : "none")}}>Register</Link>
+                                <Link to="user_sign_in" className="dropdown-item" style={{display: (showLogin ? "" : "none")}}>Login</Link>
+                                <Link to="user_registration" className="dropdown-item" style={{display: (showLogin ? "" : "none")}}>Register</Link>
                                 {/* links seen by users logged in with role USER */}
-                                <Link id="userAccount" to="user_account" className="dropdown-item" style={{display: (showLogin ? "none" : "block")}} state={user}>Account</Link>
-                                <Link id="userAccount" to="user_account" className="dropdown-item" style={{display: (showUser ? "block" : "none")}} state={user}>Dashboard</Link>
+                                <Link id="userAccount" to="user_account" className="dropdown-item" style={{display: (showLogin ? "none" : "")}} state={user}>Account</Link>
+                                <Link id="userAccount" to="user_account" className="dropdown-item" style={{display: (showUser ? "" : "none")}} state={user}>Dashboard</Link>
                                 {/* links seen by users logged in with role ADMIN */}
-                                <Link id="adminAccount" to="admin_home" className="dropdown-item" style={{display: (showAdmin ? "block" : "none")}}>Admin Features</Link>
-                                <Link to="search" className="dropdown-item" style={{display: (showAdmin ? "block" : "none")}}>Add Books</Link>
+                                <Link id="adminAccount" to="admin_home" className="dropdown-item" style={{display: (showAdmin ? "" : "none")}}>Admin Features</Link>
+                                <Link to="search" className="dropdown-item" style={{display: (showAdmin ? "" : "none")}}>Add Books</Link>
                                 {/* quick view of books on loan for current user */}
-                                <div id="laons_quick_view" className="dropdown-item text-bg-secondary" style={{display: (showLogin ? "none" : "block")}}>
+                                <div id="laons_quick_view" className="dropdown-item text-bg-secondary" style={{display: (showLogin ? "none" : "")}}>
                                     <p><span style={{fontWeight: "bold"}}>Books currently checked out:</span></p>
                                     <p className="text-white" style={{display: userLoans.length === 0 ? "" : "none"}}><small>No Books Currently Checked Out</small></p>
                                     {userLoans.map((loan, index) => {
                                         return(
                                         <div key={index}>
-                                            <div className="dropdown-divider bg-white" style={{display: (showLogin ? "none" : "block")}}></div>
+                                            <div className="dropdown-divider bg-white" style={{display: (showLogin ? "none" : "")}}></div>
                                             <p><span style={{fontWeight: "bold"}}>Book:</span> {loan.book.title}</p>
                                             <p><span style={{fontWeight: "bold"}}>Due Date:</span> {loan.loanDateIn.slice(5,10)}-{loan.loanDateIn.slice(0,4)}</p>
                                         </div>)
                                         })}
                                     {/* <div className="mx-0"><p><span style={{fontWeight: "bold"}}>Book:</span> Harry Potter and the sorcerers stone</p></div>
                                     <div className="mx-0"><p><span style={{fontWeight: "bold"}}>Due Date:</span> 01-02-2024</p></div>
-                                    <div className="dropdown-divider" style={{display: (showLogin ? "none" : "block")}}></div> */}
+                                    <div className="dropdown-divider" style={{display: (showLogin ? "none" : "")}}></div> */}
                                 </div>
                             </div>
                     </div>
