@@ -23,7 +23,7 @@ const Layout = () => {
         axios.get("http://localhost:8080/api/user/all")
         .then(res=>setUsers(res.data))
         .catch(err=>console.log(err));
-    }, [])
+    }, []);
 
     const selectUser = (e) => {
         const userData = e.split(",");

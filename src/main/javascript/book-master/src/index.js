@@ -158,7 +158,7 @@ useEffect(() => {getLoans()}, []);
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
+        <Route index element={<Home />} books={books}/>
           {/* Routes in alphabetical order to be easier to find */}
           <Route path="admin_home" element={<Admin1Home />}/>
 
