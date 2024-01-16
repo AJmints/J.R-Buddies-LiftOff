@@ -25,6 +25,8 @@ const Search=()=>{
                 </form>
             </div>
 
+            <br />
+
             <div>
                 <DisplayResults results={bookData} />
             </div>
