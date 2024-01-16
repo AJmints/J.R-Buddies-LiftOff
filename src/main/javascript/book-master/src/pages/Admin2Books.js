@@ -23,7 +23,7 @@ const Admin2Books = (props) => {
 
           const filterBooksByTitle = (title) =>{
             const searchBooks = books.filter((item)=>{
-              return item.title.includes(title) 
+              return item.title.toLowerCase().includes(title.toLowerCase()) 
             })
             setBooks(searchBooks)
           }
