@@ -7,6 +7,7 @@ function UserLoans () {
     const userId = location.state;
     const [loans, setLoans] = useState([]);
     const [book, setBook] = useState("");
+    
     const loanDateOut = new Date    
     function calcLoanDateOut(date) {
         date.setDate(date.getDate() + 7*3);
