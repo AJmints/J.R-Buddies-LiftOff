@@ -3,10 +3,10 @@ import { useState } from "react";
 
 const EventUpdates = (props) => {
     const location = useLocation();
-    const { book } = location.state;
+    const { event } = location.state;
     const navigate = useNavigate();
 
-    const [editForm, setEditForm] = useState(book);
+    const [editForm, setEditForm] = useState(event);
 
     const handleChange = (event) => {
         setEditForm({ ...editForm, [event.target.name]: event.target.value });

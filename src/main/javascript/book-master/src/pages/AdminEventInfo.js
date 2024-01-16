@@ -1,5 +1,4 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
-import React, { useState, useEffect } from "react";
 
 const EventInfo = (props) => {
     const { id } = useParams();
@@ -8,7 +7,7 @@ const EventInfo = (props) => {
     const navigate = useNavigate();
 
     const removeEvent = () => {
-        props.deleteEvent(book.id);
+        props.deleteEvent(event.id);
         navigate("/admin_home/events");
     };
 

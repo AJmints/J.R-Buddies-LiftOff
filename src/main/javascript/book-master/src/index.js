@@ -13,6 +13,8 @@ import Admin2loans from './pages/Admin2Loans';
 import Admin3UserInfo from './pages/Admin3UserInfo';
 import Admin3BookInfo from './pages/Admin3BookInfo'
 import AdminEvents from './pages/AdminEvents';
+import AdminEventInfo from './pages/AdminEventInfo';
+import AdminEventUpdates from './pages/AdminEventUpdates';
 import UserAccount from "./pages/UserAccount";
 import Home from "./pages/Home";
 import Layout from "./pages/Layout";
@@ -38,6 +40,7 @@ export default function App() {
   const [users, setUsers] = useState([]);
   const [books, setBooks] = useState([]);
   const [loans, setLoans] = useState([]);
+  const [events, setEvents] = useState([]);
 
   
  ///////////////////////////////
@@ -155,6 +158,38 @@ const updateLoan = (loan, id) => {
 
 useEffect(() => {getLoans()}, []);
 
+const URL_EVENTS = "http://localhost:8080/event/"
+
+const getEvents = async () => {
+  try {
+    const response = await axios.get(URL_EVENTS + "all");
+    setEvents(response.data);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  };
+};
+
+const deleteEvent = async (id) => {
+ try{
+  axios.delete(URL_EVENTS + id)
+} catch (error) {
+  console.error("Error fetching data:", error);
+};
+ getEvents()
+  }
+
+
+const updateEvent = (event, id) => {
+  try{
+         axios.put(URL_EVENTS + id, event)
+        } catch (error) {
+                  console.error("Error fetching data:", error);
+                };  
+      getEvents()
+};
+
+useEffect(() => {getEvents()}, []);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -163,7 +198,17 @@ useEffect(() => {getLoans()}, []);
           {/* Routes in alphabetical order to be easier to find */}
           <Route path="admin_home" element={<Admin1Home />}/>
 
-          <Route path="admin_home/events" element={<AdminEvents />} />
+          <Route path="admin_home/events/" element={<AdminEvents events={events} getEvents={getEvents}/>} />
+          <Route path="admin_home/events/" element={<AdminEvents events={events}/>}/>
+          <Route path="admin_home/events/:id"
+                             element = {< AdminEventInfo
+                                          events={events}
+                                          deleteEvent={deleteEvent}
+
+                                        />
+                                                        }
+          />
+           <Route path="/admin_home/events/edit/:id" element={<AdminEventUpdates updateEvent={updateEvent}/>}/>
           <Route path="admin_home/books/" element={<Admin2Books books={books} getBooks={getBooks}/>}/>
 
           <Route path="admin_home/users/" element={<Admin2Users users={users} />}/>

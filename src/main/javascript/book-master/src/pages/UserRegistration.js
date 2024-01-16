@@ -12,10 +12,11 @@ const UserRegistration = () => {
     const [address, setAddress] = useState("");
     const [password, setPassword] = useState("");
     const [verifyPassword, setVerifyPassword] = useState("");
-    const [role, setRole] = useState("USER");
     const [passwordMismatch, setPasswordMismatch] = useState(false);
     const [missingFields, setMissingFields] = useState([]);
     const [formSubmitted, setFormSubmitted] = useState(false);
+    const role = "USER"
+
 
     const handleInputChange = (e, setStateFunction) => {
         setStateFunction(e.target.value);
