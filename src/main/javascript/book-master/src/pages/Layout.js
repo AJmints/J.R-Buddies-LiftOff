@@ -18,12 +18,33 @@ const Layout = () => {
     const [users, setUsers] = useState([]);
     const [userLoans, setUserLoans] = useState([]);
     const [user, setUser] = useState("");
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
 
     useEffect(() => {
         axios.get("http://localhost:8080/api/user/all")
         .then(res=>setUsers(res.data))
         .catch(err=>console.log(err));
     }, []);
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await axios.post("localhost:8080/api/user/login", {
+                username,
+                password,
+            });
+
+            if (response.status === 200) {
+                console.log("Login successful");
+            } else {
+                console.error("Authentication failed");
+            }
+        } catch (error) {
+            console.error("Error during login:", error);
+        }
+    };
 
     const selectUser = (e) => {
         const userData = e.split(",");
@@ -98,8 +119,29 @@ const Layout = () => {
                         </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown" >
                                 {/* links only seen to users not logged in */}
-                                <Link to="user_sign_in" className="dropdown-item" style={{display: (showLogin ? "" : "none")}}>Login</Link>
-                                <Link to="user_registration" className="dropdown-item" style={{display: (showLogin ? "" : "none")}}>Register</Link>
+                                {/* <Link to="user_sign_in" className="dropdown-item" style={{display: (showLogin ? "" : "none")}}>Login</Link>
+                                <Link to="user_registration" className="dropdown-item" style={{display: (showLogin ? "" : "none")}}>Register</Link> */}
+                                <div className="row mx-1" style={{display: (showLogin ? "" : "none")}}>
+                                    <h4>Log In</h4>
+                                    <form onSubmit={handleLogin}>
+                                    <div className='row mx-0'>
+                                        <label htmlFor='username' className='form-label'><small>User Name:</small></label>
+                                        <input type='text' className='form-control' id='username' required value={username} onChange={(e) => setUsername(e.target.value)}/>
+                                    </div>
+                                <div className='row mx-0 mb-2'>
+                                    <label htmlFor="password" className='form-label'>Password:</label>
+                                    <input type='password' className='form-control' id='password' required value={password} onChange={(e) => setPassword(e.target.value)}/>
+                                </div>
+                                <div>
+                                    
+                                </div>             
+                                </form>
+                            <div className="row pe-5 mx-4">
+                                <button type='submit' className="btn btn-success">Submit</button>
+                                <h5>Not registered?</h5>
+                                <Link to="/user_registration" className="justify-content-center">Sign Up</Link>
+                            </div>
+                            </div>
                                 {/* links seen by users logged in with role USER */}
                                 <Link id="userAccount" to="user_account" className="dropdown-item" style={{display: (showLogin ? "none" : "")}} state={user}>Account</Link>
                                 <Link id="userAccount" to="user_account" className="dropdown-item" style={{display: (showUser ? "" : "none")}} state={user}>Dashboard</Link>
