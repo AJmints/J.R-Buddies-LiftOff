@@ -4,16 +4,14 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.*;
 import org.launchcode.bookmaster.abstractEntity.AbstractEntity;
 import org.launchcode.bookmaster.loan.Loan;
 import org.launchcode.bookmaster.review.Review;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+
+import java.util.*;
 
 @Data
 @EqualsAndHashCode(callSuper=true)
@@ -21,7 +19,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class User extends AbstractEntity implements UserDetails {
+public class User extends AbstractEntity {
 
     private String firstName;
     private String lastName;
@@ -29,15 +27,26 @@ public class User extends AbstractEntity implements UserDetails {
     private String address;
     private String email;
     private String password;
-    @Enumerated(EnumType.STRING)
-    private Role role;
 
+    @Builder.Default
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "users_role", joinColumns = @JoinColumn(name = "cust_id", referencedColumnName = "id"),
+    inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    Set<Role> role = new HashSet<Role>();
 
     @OneToMany(mappedBy = "user")
     private final List<Review> reviews = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
     private final List<Loan> loans = new ArrayList<>();
+
+    public Set<Role> getRole() {
+        return role;
+    }
+
+    public void setRole(Set<Role> role) {
+        this.role = role;
+    }
 
 //    public User(String firstName, String lastName, String phone, String address, String email, String password, Role role) {
 //        this.firstName = firstName;
@@ -116,42 +125,6 @@ public class User extends AbstractEntity implements UserDetails {
     @JsonManagedReference(value="user-review")
     public List<Review> getReviews() {
         return reviews;
-    }
-
-
-        @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return email;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
     }
 
     @Override
