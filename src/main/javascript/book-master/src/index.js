@@ -12,7 +12,6 @@ import Admin2loans from './pages/Admin2Loans';
 import Admin3UserInfo from './pages/Admin3UserInfo';
 import Admin3BookInfo from './pages/Admin3BookInfo'
 import AdminEvents from './pages/AdminEvents';
-import UserAccount from "./pages/UserAccount";
 import Home from "./pages/Home";
 import Layout from "./pages/Layout";
 import NoPage from "./pages/NoPage";
@@ -31,6 +30,8 @@ import CreateRecommendation from "./pages/CreateRecommendation";
 import RecommendationSuccess from "./pages/RecommendationSuccess";
 import RemoveRecommendations from "./pages/RemoveRecommendations";
 import UserDashboard from "./pages/UserDashboard"
+import UserLoans from './pages/UserLoans';
+import UserReviews from './pages/UserReviews';
 
 
 export default function App() {
@@ -189,7 +190,6 @@ useEffect(() => {getLoans()}, []);
           <Route path="admin_home/loans/" element={<Admin2loans loans={loans} />}/>
 
           <Route path="added_success" element={<AddedBookToDBSuccess />} />
-          <Route path="user_account" element={<UserAccount />} />
           <Route path="create_recommendation" element={<CreateRecommendation />} />
           <Route path="displayBook" element={<DisplayBook />} />
           <Route path="event_form" element={<EventsForm /> } />
@@ -203,6 +203,8 @@ useEffect(() => {getLoans()}, []);
           <Route path="user_sign_in" element={<UserSignIn />} />
           <Route path="user_registration" element={<UserRegistration />} />
           <Route path="user_dashboard" element={<UserDashboard />} />
+          <Route path="user_loans" element={<UserLoans />} />
+          <Route path="user_reviews" element={<UserReviews />} />
         </Route>
       </Routes>
     </BrowserRouter>

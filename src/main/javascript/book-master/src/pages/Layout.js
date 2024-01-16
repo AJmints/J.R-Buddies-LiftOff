@@ -57,7 +57,7 @@ const Layout = () => {
         if (userData[1] === "ADMIN") {
             setShowLogin(false);
             setShowAdmin(true);
-            setShowUser(false);
+            setShowUser(true);
         } else if (userData[1] === "USER") {
             setShowLogin(false);
             setShowAdmin(false);
@@ -143,13 +143,12 @@ const Layout = () => {
                             </div>
                             </div>
                                 {/* links seen by users logged in with role USER */}
-                                <Link id="userAccount" to="user_account" className="dropdown-item" style={{display: (showLogin ? "none" : "")}} state={user}>Account</Link>
-                                <Link id="userAccount" to="user_account" className="dropdown-item" style={{display: (showUser ? "" : "none")}} state={user}>Dashboard</Link>
+                                <Link id="userDashboard" to="user_dashboard" className="dropdown-item" style={{display: (showUser ? "" : "none")}} state={user}>User Dashboard</Link>
                                 {/* links seen by users logged in with role ADMIN */}
                                 <Link id="adminAccount" to="admin_home" className="dropdown-item" style={{display: (showAdmin ? "" : "none")}}>Admin Features</Link>
                                 <Link to="search" className="dropdown-item" style={{display: (showAdmin ? "" : "none")}}>Add Books</Link>
                                 {/* quick view of books on loan for current user */}
-                                <div id="laons_quick_view" className="dropdown-item text-bg-secondary" style={{display: (showLogin ? "none" : "")}}>
+                                <div id="laons_quick_view" className="dropdown-item text-bg-secondary" style={{display: (showUser ? "" : "none")}}>
                                     <p><span style={{fontWeight: "bold"}}>Books currently checked out:</span></p>
                                     <p className="text-white" style={{display: userLoans.length === 0 ? "" : "none"}}><small>No Books Currently Checked Out</small></p>
                                     {userLoans.map((loan, index) => {

@@ -1,8 +1,10 @@
 import React , {useEffect, useState} from "react";
 import axios from "axios";
+import { Link, useLocation } from "react-router-dom";
 
-function UserReviews ({userData}) {
-    const user = userData;
+function UserReviews () {
+    const location = useLocation();
+    const userId = location.state;
     const [reviews, setReviews] = useState([]);
     const [toggleDisplay, setToggleDisplay] = useState(true);
     const [reviewData, setReviewData] = useState([]);
@@ -12,7 +14,7 @@ function UserReviews ({userData}) {
     
 
     useEffect(() => {
-        axios.get("http://localhost:8080/api/user/reviews/"+user)
+        axios.get("http://localhost:8080/api/user/reviews/"+userId)
         .then(res=>setReviews(res.data))
         .catch(err=>console.log(err));
     }, [])
@@ -32,7 +34,7 @@ function UserReviews ({userData}) {
 
     const updateReview = (e) => {
         e.preventDefault();
-        axios.put("http://localhost:8080/reviews/"+reviewData[0], {book, user, review, rating})
+        axios.put("http://localhost:8080/reviews/"+reviewData[0], {book, userId, review, rating})
         .then(res=>console.log(res))
         .catch(err=>console.log(err))
 
@@ -79,6 +81,12 @@ function UserReviews ({userData}) {
             </form>
         </div>
         <div id="user_reviews" style={{display: toggleDisplay ? "block" : "none"}}>
+
+        <div className="my-4">
+                <Link to="/" className="nav-link" >Return Home</Link>
+                <Link to="/user_dashboard" className="nav-link" state={userId}>Return to Dashboard</Link>
+            </div>
+            
             <h3>Book Reviews:</h3>
 
             <p className="text-secondary mt-5 ms-5" style={{display: reviews.length ===0 ? "" : "none"}}>No Books Currently Checked Out</p>

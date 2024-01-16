@@ -1,8 +1,10 @@
 import React , {useEffect, useState} from "react";
 import axios from "axios";
+import { Link, useLocation } from "react-router-dom";
 
-function UserLoans ({userData}) {
-    const user = userData;
+function UserLoans () {
+    const location = useLocation();
+    const userId = location.state;
     const [loans, setLoans] = useState([]);
     const [book, setBook] = useState("");
     const loanDateOut = new Date    
@@ -25,7 +27,7 @@ function UserLoans ({userData}) {
     const [ data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:8080/api/user/loans/"+user)
+        axios.get("http://localhost:8080/api/user/loans/"+userId)
         .then(res=>setLoans(res.data))
         .catch(err=>console.log(err));
     }, [])
@@ -59,7 +61,7 @@ function UserLoans ({userData}) {
 
     const renewBook = (e) => {
 
-        axios.put("http://localhost:8080/loan/"+e, {book, user, loanDateOut, loanDateIn})
+        axios.put("http://localhost:8080/loan/"+e, {book, userId, loanDateOut, loanDateIn})
         .then(function(res) {
             setConfirmBookRenewMsg(false);
             setBookRenewed(true);
@@ -90,7 +92,12 @@ function UserLoans ({userData}) {
 
 
     return <div className="container mt-3 pb-5 mb-5" >
-
+        
+            <div className="my-4">
+                <Link to="/" className="nav-link" >Return Home</Link>
+                <Link to="/user_dashboard" className="nav-link" state={userId}>Return to Dashboard</Link>
+            </div>
+            
             <h3>Currently Checked out Books:</h3>
 
             <p className="text-secondary mt-5 ms-5" style={{display: loans.length === 0 ? "" : "none"}}>No Books Currently Checked Out</p>
