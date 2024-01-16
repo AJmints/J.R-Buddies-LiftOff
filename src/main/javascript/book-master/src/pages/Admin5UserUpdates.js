@@ -5,8 +5,11 @@ const Admin5UserUpdates = (props) => {
     const location = useLocation()
     const { user } = location.state
     const navigate = useNavigate();
+    const roles = props.roles;
+   
 
     const [editForm, setEditForm] = useState(user)
+
     const handleChange = event => {
         setEditForm({ ...editForm, [event.target.name]: event.target.value })
       }
@@ -14,8 +17,9 @@ const Admin5UserUpdates = (props) => {
         event.preventDefault()
         props.updateUser(editForm, user.id)
         navigate("/admin_home/users")
+        window.location.reload(false)
       }
-      
+      console.log(user)
 
     return (
         <div className="user">
@@ -84,9 +88,15 @@ const Admin5UserUpdates = (props) => {
             <div className="mb-3 row">
                 <label className="col-sm-2 col-form-label">Role </label>
                 <div className="col-sm-10 w-50">
-                    <select name="role" id="role" value={editForm.role} onChange={handleChange}>
-                        <option>USER</option>
-                        <option>ADMIN</option>
+                    <select name="role" id="role" onChange={handleChange}> 
+                    {roles.map(role =>
+                    {
+                       let roles = []
+                       roles.push(role)
+                       console.log(roles)
+                    return <option value={roles}>{role.role}</option>}
+                    )}
+                     
                      </select>
                 </div>
             </div>
