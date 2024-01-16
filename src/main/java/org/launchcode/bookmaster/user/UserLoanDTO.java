@@ -37,7 +37,7 @@ public class UserLoanDTO {
     }
 
     public void setLoanDateIn(Date loanDateIn) {
-        loanDateIn = loanDateIn;
+        this.loanDateIn = loanDateIn;
     }
 
     public User getUser() {
