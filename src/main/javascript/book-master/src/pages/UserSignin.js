@@ -1,9 +1,12 @@
 import React, {useState} from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Cookies from "universal-cookie";
+import {jwtDecode as jwt_decode} from "jwt-decode";
 
 function UserSignIn() {
 
+    const cookies = new Cookies();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -23,9 +26,13 @@ function UserSignIn() {
     
             if (response.status === 200) {
                 const token = response.data.token;
-                document.cookie = `jwtToken=${token}; path=/; secure; SameSite=Strict`;
-    
                 console.log('Login successful');
+
+                const decodedToken = jwt_decode(token);
+                console.log('Decoded Token:', decodedToken);
+
+                // const user = decodedToken.sub;
+                // console.log(user);
                 
             } else {
                 console.error("Authentication failed");
