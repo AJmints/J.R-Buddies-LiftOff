@@ -1,8 +1,9 @@
 package org.launchcode.bookmaster.user;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.*;
+import lombok.*;
 import lombok.*;
 import org.launchcode.bookmaster.abstractEntity.AbstractEntity;
 import org.launchcode.bookmaster.loan.Loan;
@@ -157,4 +158,11 @@ public class User extends AbstractEntity implements UserDetails {
     public String toString() {
         return firstName + " " + lastName;
     }
+
+    public String getUserName() {
+        return String.valueOf(id) ;
+    }
+
+
+
 }

@@ -28,6 +28,7 @@ const Admin2Users = (props) => {
           }
 
           const displayed = users.map((user)=>{
+            console.log(user)
             return (
                 <tr key= {user.id}>
                     <td>

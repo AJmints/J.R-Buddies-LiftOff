@@ -8,6 +8,7 @@ import org.launchcode.bookmaster.book.Book;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity

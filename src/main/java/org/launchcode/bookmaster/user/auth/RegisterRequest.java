@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.launchcode.bookmaster.user.Role;
+
 
 @Data
 @Builder
@@ -18,5 +18,5 @@ public class RegisterRequest {
     private String address;
     private String email;
     private String password;
-    private Role role;
+    private String role;
 }
