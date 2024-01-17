@@ -41,22 +41,18 @@ public class DefaultUserServiceImpl implements DefaultUserService{
 	}
 
 	@Override
-	public User save(RegisterRequest userRegisteredDTO) {
+	public User save(RegisterRequest registerRequest) {
 		Role role = new Role();
-		if(userRegisteredDTO.getRole().equals("USER"))
-		  role = roleRepo.findByRole("USER");
-		else if(userRegisteredDTO.getRole().equals("ADMIN"))
-		 role = roleRepo.findByRole("ADMIN");
+		 role = roleRepo.findByRole(registerRequest.getRole());
 		Set<Role> roles = new HashSet<Role>() ;
 		roles.add(role);
-
 		User user = new User();
-		user.setFirstName(userRegisteredDTO.getFirstName());
-		user.setLastName(userRegisteredDTO.getLastName());
-		user.setPhone(userRegisteredDTO.getPhone());
-		user.setEmail(userRegisteredDTO.getEmail());
-		user.setAddress(userRegisteredDTO.getAddress());
-		user.setPassword(passwordEncoder.encode(userRegisteredDTO.getPassword()));
+		user.setFirstName(registerRequest.getFirstName());
+		user.setLastName(registerRequest.getLastName());
+		user.setPhone(registerRequest.getPhone());
+		user.setEmail(registerRequest.getEmail());
+		user.setAddress(registerRequest.getAddress());
+		user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
 		user.setRole(roles);
 
 		return userRepository.save(user);

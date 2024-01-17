@@ -8,9 +8,6 @@ import org.launchcode.bookmaster.abstractEntity.AbstractEntity;
 import org.launchcode.bookmaster.loan.Loan;
 import org.launchcode.bookmaster.review.Review;
 import org.launchcode.bookmaster.role.Role;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.*;
 
