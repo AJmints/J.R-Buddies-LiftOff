@@ -18,6 +18,7 @@ const Admin5UserUpdates = (props) => {
         props.updateUser(editForm, user.id)
         navigate("/admin_home/users")
         window.location.reload(false)
+        
       }
       console.log(user)
 
@@ -88,16 +89,10 @@ const Admin5UserUpdates = (props) => {
             <div className="mb-3 row">
                 <label className="col-sm-2 col-form-label">Role </label>
                 <div className="col-sm-10 w-50">
-                    <select name="role" id="role" onChange={handleChange}> 
-                    {roles.map(role =>
-                    {
-                       let roles = []
-                       roles.push(role)
-                       console.log(roles)
-                    return <option value={roles}>{role.role}</option>}
-                    )}
-                     
-                     </select>
+                    <select type="text" name="role" id="role" value={editForm.role[0].role} onChange={handleChange}>
+                    {roles.map(role=> (<option>{role.role}</option>))}
+                    </select>
+        
                 </div>
             </div>
                 <input type="submit" className="btn btn-primary" value="Update user" />

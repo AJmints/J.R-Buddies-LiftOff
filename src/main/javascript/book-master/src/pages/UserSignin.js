@@ -18,6 +18,7 @@ function UserSignIn() {
 
             if (response.status === 200) {
                 console.log("Login successful");
+                console.log(response)
             } else {
                 console.error("Authentication failed");
             }
