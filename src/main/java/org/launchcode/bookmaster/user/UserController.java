@@ -1,6 +1,8 @@
 package org.launchcode.bookmaster.user;
 
 import lombok.RequiredArgsConstructor;
+import org.launchcode.bookmaster.role.Role;
+import org.launchcode.bookmaster.role.RoleRepository;
 import org.launchcode.bookmaster.user.auth.AuthenticationRequest;
 import org.launchcode.bookmaster.user.auth.AuthenticationResponse;
 import org.launchcode.bookmaster.user.auth.AuthenticationService;
@@ -18,9 +20,7 @@ import org.springframework.http.ResponseEntity;
 import org.launchcode.bookmaster.book.Book;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 
 @RequiredArgsConstructor
@@ -33,6 +33,8 @@ public class UserController {
     private UserRepository userRepository;
     @Autowired
     DefaultUserService defaultUserService;
+    @Autowired
+    RoleRepository roleRepository;
 
     private final AuthenticationService service;
 
@@ -107,18 +109,20 @@ public class UserController {
     }
 
     @PutMapping("/{userId}")
-    public User updateUser(@PathVariable Integer userId, @RequestBody User updatedUser) {
+    public User updateUser(@PathVariable Integer userId, @RequestBody RegisterRequest request) {
         User user = userRepository.findById(userId).orElseThrow();
-            user.setFirstName(updatedUser.getFirstName());
-            user.setLastName(updatedUser.getLastName());
-            user.setEmail(updatedUser.getEmail());
-            user.setPhone(updatedUser.getPhone());
-            user.setAddress(updatedUser.getAddress());
-            user.setRole(updatedUser.getRole());
+        Role role = new Role();
+        role = roleRepository.findByRole(request.getRole());
+        Set<Role> roles = new HashSet<Role>() ;
+        roles.add(role);
+        user.setFirstName(request.getFirstName());
+        user.setLastName(request.getLastName());
+        user.setPhone(request.getPhone());
+        user.setEmail(request.getEmail());
+        user.setAddress(request.getAddress());
+        user.setRole(roles);
 
-
-            return userRepository.save(user);
-
+        return userRepository.save(user);
 
     }
 
