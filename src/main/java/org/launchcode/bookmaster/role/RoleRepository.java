@@ -1,4 +1,4 @@
-package org.launchcode.bookmaster.user;
+package org.launchcode.bookmaster.role;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
