@@ -18,7 +18,7 @@ const Layout = () => {
     const [users, setUsers] = useState([]);
     const [userLoans, setUserLoans] = useState([]);
     const [user, setUser] = useState("");
-    const [username, setUsername] = useState("");
+    const [email, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
     useEffect(() => {
@@ -27,23 +27,27 @@ const Layout = () => {
         .catch(err=>console.log(err));
     }, []);
 
-    const handleLogin = async (e) => {
+    const handleLogin = (e) => {
         e.preventDefault();
 
-        try {
-            const response = await axios.post("localhost:8080/api/user/login", {
-                username,
-                password,
-            });
+        // try {
+        //     const response = await axios.post("localhost:8080/api/user/login", {
+        //         email,
+        //         password,
+        //     });
 
-            if (response.status === 200) {
-                console.log("Login successful");
-            } else {
-                console.error("Authentication failed");
-            }
-        } catch (error) {
-            console.error("Error during login:", error);
-        }
+        //     if (response.status === 200) {
+        //         console.log("Login successful");
+        //     } else {
+        //         console.error("Authentication failed");
+        //     }
+        // } catch (error) {
+        //     console.error("Error during login:", error);
+        // }
+
+        axios.post("localhost:8080/api/user/login", {email, password})
+        .then(res=>console.log(res))
+        .catch(err=>console.log(err));
     };
 
     const selectUser = (e) => {
@@ -125,8 +129,8 @@ const Layout = () => {
                                     <h4>Log In</h4>
                                     <form onSubmit={handleLogin}>
                                     <div className='row mx-0'>
-                                        <label htmlFor='username' className='form-label'><small>User Name:</small></label>
-                                        <input type='text' className='form-control' id='username' required value={username} onChange={(e) => setUsername(e.target.value)}/>
+                                        <label htmlFor='email' className='form-label'><small>User Name:</small></label>
+                                        <input type='text' className='form-control' id='email' required value={email} onChange={(e) => setUsername(e.target.value)}/>
                                     </div>
                                 <div className='row mx-0 mb-2'>
                                     <label htmlFor="password" className='form-label'>Password:</label>

@@ -1,7 +1,6 @@
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import DisplayEvents from "../components/Events/DisplayEvents";
-import axios from 'axios';
 import DisplayLatestBooks from '../components/DisplayLatestBooks';
 
 const Home = () => {
