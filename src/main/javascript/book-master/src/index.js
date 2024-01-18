@@ -16,7 +16,6 @@ import Admin3AddRoles from './pages/Admin3AddRoles';
 import AdminEvents from './pages/AdminEvents';
 import AdminEventInfo from './pages/AdminEventInfo';
 import AdminEventUpdates from './pages/AdminEventUpdates';
-import UserAccount from "./pages/UserAccount";
 import Home from "./pages/Home";
 import Layout from "./pages/Layout";
 import NoPage from "./pages/NoPage";
@@ -35,6 +34,8 @@ import CreateRecommendation from "./pages/CreateRecommendation";
 import RecommendationSuccess from "./pages/RecommendationSuccess";
 import RemoveRecommendations from "./pages/RemoveRecommendations";
 import UserDashboard from "./pages/UserDashboard"
+import UserLoans from './pages/UserLoans';
+import UserReviews from './pages/UserReviews';
 import Admin2Roles from './pages/Admin2Roles';
 
 
@@ -241,7 +242,7 @@ useEffect(() => {getEvents()}, []);
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
+        <Route index element={<Home />} books={books}/>
           {/* Routes in alphabetical order to be easier to find */}
           <Route path="admin_home" element={<Admin1Home />}/>
 
@@ -282,7 +283,6 @@ useEffect(() => {getEvents()}, []);
           getRoles={getRoles}/>}></Route>
 
           <Route path="added_success" element={<AddedBookToDBSuccess />} />
-          <Route path="user_account" element={<UserAccount />} />
           <Route path="create_recommendation" element={<CreateRecommendation />} />
           <Route path="displayBook" element={<DisplayBook />} />
           <Route path="event_form" element={<EventsForm /> } />
@@ -296,6 +296,8 @@ useEffect(() => {getEvents()}, []);
           <Route path="user_sign_in" element={<UserSignIn />} />
           <Route path="user_registration" element={<UserRegistration />} />
           <Route path="user_dashboard" element={<UserDashboard />} />
+          <Route path="user_loans" element={<UserLoans />} />
+          <Route path="user_reviews" element={<UserReviews />} />
         </Route>
       </Routes>
     </BrowserRouter>

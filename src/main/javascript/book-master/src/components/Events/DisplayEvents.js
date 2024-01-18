@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const EventList = () => {
+const DisplayEvents = () => {
   const [event, setEvent] = useState([]);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const EventList = () => {
             <tr key={event.id}>
               <th scope="col">{event.name}</th>
               <th scope="col">{event.details}</th>
-              <th scope="col">{event.date}</th>
+              <th scope="col">{event.date.slice(5,10)}-{event.date.slice(0,4)}</th>
             </tr>
         ))}
         </tbody>
@@ -36,4 +36,4 @@ const EventList = () => {
   );
 };
 
-export default EventList;
+export default DisplayEvents;

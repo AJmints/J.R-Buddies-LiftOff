@@ -1,4 +1,4 @@
-import React, {useState, useContext} from "react";
+import React, {useState} from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -15,7 +15,7 @@ function UserSignIn() {
         setEmail('');
         setPassword('');
 
-    
+
         try {
             const response = await axios.post("http://localhost:8080/api/user/login", {
                 email,
@@ -26,7 +26,7 @@ function UserSignIn() {
                     'Accept': 'application/json',
                 },
             });
-    
+
            const accessToken = response.data.token;
            localStorage.setItem('accessToken', accessToken);
            console.log(localStorage);
@@ -46,7 +46,6 @@ function UserSignIn() {
             }
         }
     };
-    
 
     return (
         <div className='container mt-5'>

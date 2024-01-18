@@ -88,7 +88,7 @@ public class Book extends AbstractEntity {
         return genre;
     }
 
-    public void setGender(String genre) {
+    public void setGenre(String genre) {
         this.genre = genre;
     }
 
