@@ -54,14 +54,8 @@ const UserRegistration = () => {
                 role,
             });
 
-            if (response.status === 200) {
-                const token = response.data.token;
-                document.cookie = `jwtToken=${token}; path=/; secure; SameSite=Strict`;
-                setFormSubmitted(true);
+            setFormSubmitted(true);
 
-            } else {
-
-            }
         } catch (error) {
             if (axios.isCancel(error)) {
                 console.error('Request canceled:', error.message);
