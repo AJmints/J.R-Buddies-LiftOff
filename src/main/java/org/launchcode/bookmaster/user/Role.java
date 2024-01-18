@@ -1,8 +1,19 @@
 package org.launchcode.bookmaster.user;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 
-public enum Role {
+import jakarta.persistence.Entity;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import org.launchcode.bookmaster.abstractEntity.AbstractEntity;
 
-    USER, ADMIN;
+@Data
+@EqualsAndHashCode(callSuper=true)
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+public class Role extends AbstractEntity {
+
+    private String role;
 }

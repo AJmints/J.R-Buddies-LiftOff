@@ -5,43 +5,55 @@ const Admin2loans =(props)=>{
     const loansToDisplay = props.loans
  
           const [loans, setLoans] = useState(loansToDisplay)
-          const [status, setStatus] = useState([])
+          const [loanDateOut, setLoanDateOut] = useState([])
           
             
           useEffect(() => {setLoans(loansToDisplay)}, [loansToDisplay]);
 
           const handleChange = event => {
-            setStatus(event.target.value )
+            setLoanDateOut(event.target.value )
           }
 
           const handleSubmit = event => {
             event.preventDefault()
-            filterLoansByStatus(status)
-            setStatus([])
+            filterLoansByDate(loanDateOut)
+            setLoanDateOut([])
           }
 
-          const filterLoansByStatus = (status) =>{
+          const filterLoansByDate = (loanDateOut) =>{
+
+            let date = new Date(loanDateOut)
+            date.setDate(date.getDate()+1)
+            let date1 = date.getTime()
+            
             const searchLoans = loans.filter((item)=>{
-              return item.status.includes(status) 
+              
+              let date = new Date(item.loan.loanDateOut)
+              date.setDate(date.getDate()+1)
+              let date2 = date.getTime()
+              
+              return date1 === date2
             })
             setLoans(searchLoans)
           }
 
           const displayed = loans.map((loan)=>{
-            console.log(loan)
+          
+              
+
             return (
                 <tr key= {loan.loan.id}>
                     <td>
-                    <Link  to={`/admin_home/loans/${loan.id}`}>{loan.user.id}</Link>
+                    <Link  to={`/admin_home/users/${loan.user.id}`}>{loan.user.id}</Link>
                     </td>
                     <td>
-                    <Link  to={`/admin_home/loans/${loan.id}`}>{loan.book.id}</Link>
+                    <Link  to={`/admin_home/books/${loan.book.id}`}>{loan.book.id}</Link>
                     </td>
                     <td>
-                        <Link  to={`/admin_home/loans/${loan.id}`}>{loan.loan.loanDateOut}</Link>
+                       {loan.loan.loanDateOut}
                     </td>
                     <td>
-                        <Link to={`/admin_home/books/${loan.id}`}>{loan.loan.loanDateIn}</Link>
+                        {loan.loan.loanDateIn?loan.loan.loanDateIn : "No Returned" }
                     </td>
                 </tr>
             )
@@ -54,9 +66,9 @@ const Admin2loans =(props)=>{
             <form onSubmit={handleSubmit} className="row g-2 align-items-center">
                      <div className="col-auto">
                           <input
-                            type="text"
+                            type="date"
                             id="status"
-                            value={status}
+                            value={loanDateOut}
                             name="status"
                             className="form-control"
                             placeholder="loan's status"

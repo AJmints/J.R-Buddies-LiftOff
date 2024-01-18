@@ -63,7 +63,7 @@ const Admin3UserInfo = (props) => {
             </div>
             <div className="form-group row">
                 <label className="col-sm-2 col-form-label"> Role: </label> 
-                <label className="col-sm-2 col-form-label"> {user.role} </label> 
+                <label className="col-sm-2 col-form-label"> {user.role[0].role} </label> 
             </div>
     
             <div className="form-group row">
