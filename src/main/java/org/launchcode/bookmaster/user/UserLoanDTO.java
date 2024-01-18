@@ -4,14 +4,24 @@ import java.util.Date;
 
 public class UserLoanDTO {
 
+    private Integer id;
     private Date loanDateOut;
     private Date loanDateIn;
     private User user;
 
-    public UserLoanDTO(Date loanDateOut, Date loanDateIn, User user) {
+    public UserLoanDTO(Integer id, Date loanDateOut, Date loanDateIn, User user) {
+        this.id = id;
         this.loanDateOut = loanDateOut;
         this.loanDateIn = loanDateIn;
         this.user = user;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Date getLoanDateOut() {

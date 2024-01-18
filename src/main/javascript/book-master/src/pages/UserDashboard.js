@@ -1,17 +1,19 @@
 import React , {useState} from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import SideNavBar from "../components/SideNavBar";
 import MyShelf from "../components/MyShelfAvailable";
 
 
 const UserDashboard = () => {
+  const location = useLocation();
+  const userId = location.state; 
+
   return (
     <div className="container-fluid">
       <h1>My Library Dashboard</h1>
       <div className="row">
         <div className="col-md-2">
-          <SideNavBar />
+          <SideNavBar userId={userId}/>
           <br></br>
           {/* My Profile*/}
         </div>
