@@ -6,12 +6,15 @@ const Search=()=>{
 
     const [search, setSearch] = useState("");
     const [bookData, setBookData] = useState([]);
+    const [show, setShow] = useState(false);
 
     const searchBook = (e) => {
         e.preventDefault();
         axios.get('https://www.googleapis.com/books/v1/volumes?q='+search+'&key=AIzaSyBp48rUKYmtTfkAGAktCqmsmgOZAjRxR3g'+'&maxResults=40')
         .then(res=>setBookData(res.data.items))
         .catch(err=>console.log(err));
+
+        setShow(true);
     }
 
     return(
@@ -27,7 +30,7 @@ const Search=()=>{
 
             <br />
 
-            <div>
+            <div style={{display: (show ? 'block' : 'none')}}>
                 <DisplayResults results={bookData} />
             </div>
         </>)
