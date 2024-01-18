@@ -14,6 +14,7 @@ const Admin5BookUpdates = (props) => {
         event.preventDefault()
         props.updateBook(editForm, book.id)
         navigate("/admin_home/books")
+        window.location.reload(false)
       }
      
 

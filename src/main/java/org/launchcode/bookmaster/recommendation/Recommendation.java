@@ -2,7 +2,6 @@ package org.launchcode.bookmaster.recommendation;
 
 import jakarta.persistence.Entity;
 import org.launchcode.bookmaster.abstractEntity.AbstractEntity;
-import org.launchcode.bookmaster.user.Role;
 
 @Entity
 public class Recommendation extends AbstractEntity {

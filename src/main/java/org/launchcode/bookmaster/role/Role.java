@@ -1,4 +1,4 @@
-package org.launchcode.bookmaster.user;
+package org.launchcode.bookmaster.role;
 
 
 import jakarta.persistence.Entity;

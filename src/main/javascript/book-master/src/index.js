@@ -10,7 +10,8 @@ import Admin2Books from './pages/Admin2Books';
 import Admin2Users from './pages/Admin2Users';
 import Admin2loans from './pages/Admin2Loans';
 import Admin3UserInfo from './pages/Admin3UserInfo';
-import Admin3BookInfo from './pages/Admin3BookInfo'
+import Admin3BookInfo from './pages/Admin3BookInfo';
+import Admin3AddRoles from './pages/Admin3AddRoles';
 import AdminEvents from './pages/AdminEvents';
 import Home from "./pages/Home";
 import Layout from "./pages/Layout";
@@ -32,12 +33,14 @@ import RemoveRecommendations from "./pages/RemoveRecommendations";
 import UserDashboard from "./pages/UserDashboard"
 import UserLoans from './pages/UserLoans';
 import UserReviews from './pages/UserReviews';
+import Admin2Roles from './pages/Admin2Roles';
 
 
 export default function App() {
   const [users, setUsers] = useState([]);
   const [books, setBooks] = useState([]);
   const [loans, setLoans] = useState([]);
+  const [roles, setRoles] = useState([]);
 
   
  ///////////////////////////////
@@ -155,6 +158,42 @@ const updateLoan = (loan, id) => {
 
 useEffect(() => {getLoans()}, []);
 
+ ///////////////////////////////
+// FETCHING ROLES
+////////////////////////////////
+
+const URL_ROLES = "http://localhost:8080/role"
+
+const getRoles = async () => {
+  try {
+    const response = await axios.get(URL_ROLES);
+    setRoles(response.data);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  };
+};
+
+const saveRole = async (role) => {
+  try {
+    const response = await axios.post(URL_ROLES, role);
+    setRoles(response.data);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  };
+  getRoles()
+};
+
+const deleteRole = async (id) => {
+ try{
+  axios.delete(URL_ROLES  + "/" + id)
+} catch (error) {
+  console.error("Error fetching data:", error);
+};
+ getRoles()
+  }
+
+  useEffect(() => {getRoles()}, []);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -164,8 +203,6 @@ useEffect(() => {getLoans()}, []);
           <Route path="admin_home" element={<Admin1Home />}/>
 
           <Route path="admin_home/events" element={<AdminEvents />} />
-          <Route path="admin_home/books/" element={<Admin2Books books={books} getBooks={getBooks}/>}/>
-
           <Route path="admin_home/users/" element={<Admin2Users users={users} />}/>
           <Route path="admin_home/users/:id"
                              element = {< Admin3UserInfo
@@ -174,7 +211,7 @@ useEffect(() => {getLoans()}, []);
                                         />
                                                         }
           />
-           <Route path="/admin_home/users/edit/:id" element={<Admin5UserUpdates  updateUser={updateUser}/>}/>
+           <Route path="/admin_home/users/edit/:id" element={<Admin5UserUpdates  updateUser={updateUser} roles={roles}/>}/>
 
           <Route path="admin_home/books/" element={<Admin2Books books={books}/>}/>
           <Route path="admin_home/books/:id"
@@ -188,6 +225,9 @@ useEffect(() => {getLoans()}, []);
           <Route path="/admin_home/books/edit/:id" element={<Admin5BookUpdates updateBook={updateBook}/>}/>
 
           <Route path="admin_home/loans/" element={<Admin2loans loans={loans} />}/>
+          <Route path='admin_home/roles/' element={<Admin2Roles roles = {roles} deleteRole={deleteRole}/>}/>
+          <Route path="admin_home/roles/save" element={<Admin3AddRoles saveRole={saveRole}
+          getRoles={getRoles}/>}></Route>
 
           <Route path="added_success" element={<AddedBookToDBSuccess />} />
           <Route path="create_recommendation" element={<CreateRecommendation />} />

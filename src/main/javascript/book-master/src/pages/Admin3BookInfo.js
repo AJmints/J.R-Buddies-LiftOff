@@ -18,6 +18,7 @@ const Admin3BookInfo = (props) => {
     const removeBook = ()=>{
         props.deleteBook(book.id)
         navigate("/admin_home/books")
+        window.location.reload(false)
     }
 
     const getBookLoansUsers = async (id) => {

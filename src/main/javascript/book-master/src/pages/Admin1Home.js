@@ -21,6 +21,10 @@ const Admin1Home = () => {
                             {
                                 name:"Events",
                                 call:"events"
+                            },
+                            {
+                                name:"Roles",
+                                call:"roles"
                             } ]
 
             const displayed = tables.map((table)=>{
