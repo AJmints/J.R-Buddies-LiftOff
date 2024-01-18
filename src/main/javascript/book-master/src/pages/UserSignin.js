@@ -6,12 +6,11 @@ function UserSignIn() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [success, setSuccess] = useState("false");
+    const [success, setSuccess] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setEmail('');
-        setPassword('');
+        console.log('Form submitted')
         setSuccess(true);
 
     
@@ -28,6 +27,7 @@ function UserSignIn() {
     
            const accessToken = response.data.token;
            localStorage.setItem('accessToken', accessToken);
+           console.log(localStorage);
 
         } catch (error) {
             if (axios.isCancel(error)) {
