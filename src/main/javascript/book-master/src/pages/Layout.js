@@ -104,7 +104,7 @@ const Layout = () => {
                         <select className="form-control" onClick={(e)=>selectUser(e.target.value)} required>
                                 {users.map((user, index) => {
                                                 return(
-                                <option key={index} value={[user.id,user.role]}>{user.email}</option>)
+                                <option key={index} value={[user.id,user.role[0].role]}>{user.email}</option>)
                                             })}
                         </select>
                     </div>
