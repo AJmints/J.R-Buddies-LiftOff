@@ -12,10 +12,10 @@ const UserRegistration = () => {
     const [address, setAddress] = useState("");
     const [password, setPassword] = useState("");
     const [verifyPassword, setVerifyPassword] = useState("");
+    const [role, setRole] = useState("USER")
     const [passwordMismatch, setPasswordMismatch] = useState(false);
     const [missingFields, setMissingFields] = useState([]);
     const [formSubmitted, setFormSubmitted] = useState(false);
-    const role = "USER"
 
 
     const handleInputChange = (e, setStateFunction) => {
@@ -25,6 +25,8 @@ const UserRegistration = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("Form Submitted");
+        setEmail("");
+        setPassword("");
 
         const missingFieldsArray = [];
         if (!firstName) missingFieldsArray.push('First Name');
@@ -61,7 +63,18 @@ const UserRegistration = () => {
 
             }
         } catch (error) {
-            console.error("Error during registration:", error);
+            if (axios.isCancel(error)) {
+                console.error('Request canceled:', error.message);
+            } else if (error.response) {
+                // The request was made, but the server responded with an error status code
+                console.error('HTTP error during login:', error.response.status, error.response.data);
+            } else if (error.request) {
+                // The request was made, but no response was received
+                console.error('No response received during login:', error.request);
+            } else {
+                // Something happened in setting up the request that triggered an error
+                console.error('Request setup error during login:', error.message);
+            }
         }
     };
 

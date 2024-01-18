@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 
 
@@ -48,6 +49,15 @@ export default function App() {
  ///////////////////////////////
 // FETCHING USERS TABLES
 ////////////////////////////////
+
+const isAdmin = () => {
+  const token = localStorage.getItem('accessToken');
+  if (token) {
+    const decoded = jwtDecode(token);
+    return decoded.roles.includes('ADMIN');
+  }
+  return false;
+};
 
   const URL = "http://localhost:8080/api/user/all"
   const URL2 = "http://localhost:8080/api/user/"

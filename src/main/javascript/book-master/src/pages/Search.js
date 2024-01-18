@@ -9,13 +9,7 @@ const Search=()=>{
 
     const searchBook = (e) => {
         e.preventDefault();
-        axios.get('https://www.googleapis.com/books/v1/volumes?q='+search+'&key=AIzaSyBp48rUKYmtTfkAGAktCqmsmgOZAjRxR3g'+'&maxResults=40', {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer ' + localStorage.getItem('accessToken')
-            }
-
-        })
+        axios.get('https://www.googleapis.com/books/v1/volumes?q='+search+'&key=AIzaSyBp48rUKYmtTfkAGAktCqmsmgOZAjRxR3g'+'&maxResults=40')
         .then(res=>setBookData(res.data.items))
         .catch(err=>console.log(err));
     }

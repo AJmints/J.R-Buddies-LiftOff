@@ -12,6 +12,8 @@ function UserSignIn() {
         e.preventDefault();
         console.log('Form submitted')
         setSuccess(true);
+        setEmail('');
+        setPassword('');
 
     
         try {
