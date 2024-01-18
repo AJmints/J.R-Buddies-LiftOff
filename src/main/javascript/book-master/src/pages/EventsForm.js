@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const EventsForm = () => {
 
@@ -35,10 +36,16 @@ const EventsForm = () => {
         }
     };
 
+    const reloadPage = () => {
+        window.location.reload();
+    }
+
     if (formSubmitted) {
         return (
             <div className="container mt-5">
                 <h5>Your event has been added!</h5>
+                <Link to="/"><h3>Return home</h3></Link>
+                <Link onClick={reloadPage}><h3>Add Another Event</h3></Link>
             </div>
         )
     }

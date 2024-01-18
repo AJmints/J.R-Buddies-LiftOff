@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function UserSignIn() {
 
-    const [username, setUsername] = useState("");
+    const [email, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
     const handleSubmit = async (e) => {
@@ -12,7 +12,7 @@ function UserSignIn() {
 
         try {
             const response = await axios.post("localhost:8080/api/user/login", {
-                username,
+                email,
                 password,
             });
 
@@ -32,9 +32,9 @@ function UserSignIn() {
             <h3>Log In</h3>
                 <form className='row g-3' onSubmit={handleSubmit}>
                     <div className='col-md-6'>
-                        <label htmlFor='username' className='form-label'>User Name:</label>
-                        <input type='text' className='form-control' id='username' required
-                        value={username} onChange={(e) => setUsername(e.target.value)}/>
+                        <label htmlFor='email' className='form-label'>User Name:</label>
+                        <input type='text' className='form-control' id='email' required
+                        value={email} onChange={(e) => setUsername(e.target.value)}/>
                     </div>
                     <div className='col-md-6'>
                         <label htmlFor="password" className='form-label'>Password:</label>

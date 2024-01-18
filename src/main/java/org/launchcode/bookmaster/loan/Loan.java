@@ -29,6 +29,7 @@ public class Loan extends AbstractEntity {
         this.user = user;
         this.loanDateOut = loanDateOut;
         this.loanDateIn = loanDateIn;
+
     }
 
     public Loan() {

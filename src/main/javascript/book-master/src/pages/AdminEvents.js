@@ -43,13 +43,11 @@ const AdminEvents = (props) => {
         <Link to={`/admin_home/events/${event.id}`}>{event.name}</Link>
       </td>
       <td>{event.details}</td>
-      <td>{event.date}</td>
+      <td>{event.date.slice(5,10)}-{event.date.slice(0,4)}</td>
     </tr>
   ));
 
-  return (
-    <>
-      <br />
+  return (<div className="container mt-5">
       <div>
         <form onSubmit={handleSubmit} className="row g-2 align-items-center">
           <div className="col-auto">
@@ -94,7 +92,7 @@ const AdminEvents = (props) => {
           </table>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

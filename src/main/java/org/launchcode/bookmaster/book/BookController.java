@@ -44,7 +44,7 @@ public class BookController {
         book.setTitle(updatedBook.getTitle());
         book.setAuthor(updatedBook.getAuthor());
         book.setIsbn(updatedBook.getIsbn());
-        book.setGender(updatedBook.getGenre());
+        book.setGenre(updatedBook.getGenre());
         book.setTotal_quantity(updatedBook.getTotal_quantity());
         book.setAvailable_quantity(updatedBook.getAvailable_quantity());
 
@@ -74,7 +74,7 @@ public class BookController {
         Iterable<Loan> bookLoans = book.getLoans();
         for (Loan loan : bookLoans) {
             User user = loan.getUser();
-            UserLoanDTO userLoanDTO= new UserLoanDTO(loan.getLoanDateOut(), loan.getLoanDateIn(), user);
+            UserLoanDTO userLoanDTO= new UserLoanDTO(loan.getId(), loan.getLoanDateOut(), loan.getLoanDateIn(), user);
             usersLoans.add(userLoanDTO);
         }
         return usersLoans;
