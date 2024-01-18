@@ -34,7 +34,30 @@ const EventUpdates = (props) => {
                         />
                     </div>
                 </div>
-                {/* Similar input fields for 'Details' and 'Date' */}
+                <div className="mb-3 row">
+                    <label className="col-sm-2 col-form label">Event Detail: </label>
+                    <div className="col-sm-10 w-50">
+                        <input
+                            type="text"
+                            value={editForm.details}
+                            name="details"
+                            placeholder="event details"
+                            onChange={handleChange}
+                            />
+                    </div>
+                </div>
+                <div className="mb-3 row">
+                    <label className="col-sm-2 col-form label">Event Date: </label>
+                    <div className="col-sm-10 w-50">
+                        <input
+                            type="text"
+                            value={editForm.date}
+                            name="date"
+                            placeholder="event date"
+                            onChange={handleChange}
+                            />
+                    </div>
+                </div>
                 <input type="submit" className="btn btn-primary" value="Update event" />
             </form>
         </div>

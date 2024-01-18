@@ -40,6 +40,8 @@ const AdminEvents = (props) => {
     </tr>
   ));
 
+  console.log(displayed);
+
   return (
     <>
       <br />
