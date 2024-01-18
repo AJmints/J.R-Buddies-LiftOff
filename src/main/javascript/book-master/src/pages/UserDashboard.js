@@ -22,7 +22,7 @@ const UserDashboard = () => {
           <MyShelf />
         </div>
         <div className="col-md-10">
-          <UserRecommendationListing idValue={userId}/>
+          <UserRecommendationListing userId={userId}/>
         </div>
       </div>
     </div>
