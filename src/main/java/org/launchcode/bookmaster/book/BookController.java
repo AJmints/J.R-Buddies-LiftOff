@@ -66,7 +66,7 @@ public class BookController {
         return usersReviews;
     }
 
-    @GetMapping("/loan/{bookId}")
+    @GetMapping("/loans/{bookId}")
     public Iterable<UserLoanDTO> getBooksLoan(@PathVariable Integer bookId) {
         ArrayList<UserLoanDTO> usersLoans = new ArrayList<>();
 

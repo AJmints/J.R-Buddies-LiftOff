@@ -40,7 +40,7 @@ public class User extends AbstractEntity {
     @OneToMany(mappedBy = "user")
     private final List<Review> reviews = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade=CascadeType.REMOVE)
     private final List<Loan> loans = new ArrayList<>();
 
     public Set<Role> getRole() {

@@ -24,7 +24,7 @@ public class Book extends AbstractEntity {
     private Integer available_quantity;
 
 
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "book", cascade=CascadeType.REMOVE)
     private List<Loan> loans = new ArrayList<>();
 
     @OneToMany(mappedBy = "book")
