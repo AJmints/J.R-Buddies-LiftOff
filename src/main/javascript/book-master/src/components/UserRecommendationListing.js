@@ -52,7 +52,6 @@ const UserRecommendationListing=({userId})=>{
                                 width="200"
                                 height="300"
                                 role="link"
-                                onClick={() => navigate(`/displaybook`, {state: {book}})}
                             />
                         </figure>
                         <div className="cardBottom">
