@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function UserSignIn() {
 
-    const [email, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const handleSubmit = async (e) => {
@@ -34,7 +34,7 @@ function UserSignIn() {
                     <div className='col-md-6'>
                         <label htmlFor='email' className='form-label'>User Name:</label>
                         <input type='text' className='form-control' id='email' required
-                        value={email} onChange={(e) => setUsername(e.target.value)}/>
+                        value={email} onChange={(e) => setEmail(e.target.value)}/>
                     </div>
                     <div className='col-md-6'>
                         <label htmlFor="password" className='form-label'>Password:</label>

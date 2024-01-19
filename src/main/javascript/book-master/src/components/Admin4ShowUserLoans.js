@@ -11,7 +11,7 @@ const Admin4ShowUserLoans = (props) => {
             <td>{loan.book.title}</td>
             <td>{loan.book.author}</td>
             <td>{loan.loanDateOut.slice(5,10)}-{loan.loanDateOut.slice(0,4)}</td>
-            <td>{loan.loanDateIn.slice(5,10)}-{loan.loanDateIn.slice(0,4)}</td>
+            <td>{loan.loanDateIn?loan.loanDateIn.slice(5,10)+"-"+loan.loanDateIn.slice(0,4) : "No Returned" }</td>
         
           </tr>
       )

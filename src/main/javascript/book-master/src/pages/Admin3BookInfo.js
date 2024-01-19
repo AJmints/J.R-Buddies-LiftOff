@@ -7,7 +7,7 @@ import { Link } from "react-router-dom"
 const Admin3BookInfo = (props) => {
 
     const [bookLoansUsers, setBookLoansUsers]= useState([]);
-    const URL_Loans = "http://localhost:8080/book/loan/"
+    const URL_Loans = "http://localhost:8080/book/loans/"
 
     const { id } = useParams()
     const books = props.books
