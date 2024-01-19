@@ -54,11 +54,11 @@ export default function App() {
 ////////////////////////////////
 
 const isAdmin = () => {
-  const token = localStorage.getItem('accessToken');
+  /*const token = localStorage.getItem('accessToken');
   if (token) {
     const decoded = jwtDecode(token);
     return decoded.roles.includes('ADMIN');
-  }
+  }*/
   return false;
 };
 
