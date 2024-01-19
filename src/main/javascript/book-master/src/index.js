@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import { jwtDecode } from "jwt-decode";
+//import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 
 
@@ -46,7 +46,7 @@ export default function App() {
   const [roles, setRoles] = useState([]);
   const [events, setEvents] = useState([]);
   //Change to false when way to identify user is setup
-  const [isAdmin, setIsAdmin] = useState(true);
+  const [admin, setAdmin] = useState(true);
 
   
  ///////////////////////////////
@@ -294,7 +294,7 @@ useEffect(() => {getEvents()}, []);
           <Route path="remove_recommend" element={<RemoveRecommendations />} />
           <Route path="remove_search" element={<RemoveSearch />} />
           <Route path="remove_success" element={<RemoveBookSuccess />} />
-          <Route path="search" element={isAdmin ? <Search /> : <LibrarySearch />} />
+          <Route path="search" element={admin ? <Search /> : <LibrarySearch />} />
           <Route path="user_sign_in" element={<UserSignIn />} />
           <Route path="user_registration" element={<UserRegistration />} />
           <Route path="user_dashboard" element={<UserDashboard />} />
