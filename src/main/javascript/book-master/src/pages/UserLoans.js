@@ -8,11 +8,12 @@ function UserLoans () {
     const [loans, setLoans] = useState([]);
     const [book, setBook] = useState("");
     
-    const loanDateOut = new Date    
+    const loanDateOut = Intl.DateTimeFormat('en-US').format(new Date) 
     function calcLoanDateOut(date) {
         date.setDate(date.getDate() + 7*3);
-        return date
+        return Intl.DateTimeFormat('en-US').format(date)
     }
+    
     const loanDateIn = calcLoanDateOut(new Date)
     const [confirmBookRenewMsg, setConfirmBookRenewMsg] = useState(false);
     const [bookRenewed, setBookRenewed] = useState(false);
@@ -30,7 +31,6 @@ function UserLoans () {
     useEffect(() => {
         axios.get("http://localhost:8080/api/user/loans/"+userId)
         .then(res=>setLoans(res.data))
-        .catch(err=>console.log(err));
     }, [])
 
     const confirmBookRenew = (e) => {
