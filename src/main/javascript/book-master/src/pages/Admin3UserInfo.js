@@ -35,7 +35,7 @@ const Admin3UserInfo = (props) => {
    
    
 
-    return (<div className="container mt-5">
+    return ( <div className="container mt-5">
         <div className="form-group row" key= {user.id}>
             <Link to={`/admin_home/users/edit/${user.id}`}  state={{ user }}><button className="btn btn-primary">edit information</button></Link>
             <div className="form-group row">
@@ -87,8 +87,8 @@ const Admin3UserInfo = (props) => {
             
             <button id="delete" onClick={removeUser} className="btn btn-danger">Delete User</button>
             
-        </div>
-    </div>
+      </div>
+      </div>
     )
 };
 

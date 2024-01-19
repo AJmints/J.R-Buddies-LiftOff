@@ -18,11 +18,9 @@ import java.util.*;
 @AllArgsConstructor
 @Entity
 public class User extends AbstractEntity {
-//@Entity
-//public class User extends AbstractEntity{
 
-    private String firstName; //updated to match react
-    private String lastName; //updated to match react
+    private String firstName;
+    private String lastName;
     private String phone;
     private String address;
     private String email;
@@ -31,11 +29,8 @@ public class User extends AbstractEntity {
     @Builder.Default
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_role", joinColumns = @JoinColumn(name = "cust_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id") )
+    inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     Set<Role> role = new HashSet<Role>();
-
-    // If the form is connecting to this they need to match. We need to figure out how the role is going to work.
-    // Need a verify password field
 
     @OneToMany(mappedBy = "user")
     private final List<Review> reviews = new ArrayList<>();
@@ -51,19 +46,19 @@ public class User extends AbstractEntity {
         this.role = role;
     }
 
-//    public User(String firstName, String lastName, String phone, String address, String email, String password, Role role) {
+//    public User(String firstName, String lastName, String phone, String address, String email, String password) {
 //        this.firstName = firstName;
 //        this.lastName = lastName;
 //        this.phone = phone;
 //        this.address = address;
 //        this.email = email;
 //        this.password = password;
-//        this.role = role;
+////        this.role = role;
 //    }
 //
 //    public User() {
 //    }
-
+//
 //    public String getFirstName() {
 //        return firstName;
 //    }
@@ -110,7 +105,7 @@ public class User extends AbstractEntity {
 //    public void setPassword(String password) {
 //        this.password = password;
 //    }
-//
+
 //    public Role getRole() {
 //        return role;
 //    }
@@ -119,7 +114,6 @@ public class User extends AbstractEntity {
 //    public void setRole(Role role) {
 //        this.role = role;
 //    }
-
 
     @JsonManagedReference(value="user-loan")
     public List<Loan> getLoans() {
@@ -130,7 +124,6 @@ public class User extends AbstractEntity {
     public List<Review> getReviews() {
         return reviews;
     }
-
 
     @Override
     public String toString() {
