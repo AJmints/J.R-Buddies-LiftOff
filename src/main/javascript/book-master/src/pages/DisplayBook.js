@@ -1,8 +1,8 @@
-import {useNavigate, useLocation} from "react-router-dom";
-import React, { useEffect, useState } from 'react';
+import { useNavigate, useLocation } from "react-router-dom";
 import ReviewAndRating from "../components/ReviewAndRating";
 import DisplayReviews from '../components/DisplayReviews';
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const DisplayBook=()=> {
     const location = useLocation();
@@ -120,7 +120,6 @@ const DisplayBook=()=> {
                         </table>
                     </td>
                     <td> 
-
                         <button id="recommendButton" onClick={bookRecommend}
                             style={{marginRight: 14 + 'em'}}>Recommend Book</button>
                         {/* <button style={{marginRight: 14 + 'em'}} onClick={saveForLater}>Save For Later</button> */}
