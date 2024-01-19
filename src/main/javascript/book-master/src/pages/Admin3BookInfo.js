@@ -90,7 +90,8 @@ const Admin3BookInfo = (props) => {
             <button  onClick={removeBook} className="btn btn-danger">Delete Book</button>
 
       </div>
-      </div>)
+      </div>
+      )
 }
 
 export default Admin3BookInfo;

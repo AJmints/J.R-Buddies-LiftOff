@@ -50,10 +50,10 @@ const Admin2loans =(props)=>{
                     <Link  to={`/admin_home/books/${loan.book.id}`}>{loan.book.id}</Link>
                     </td>
                     <td>
-                       {loan.loan.loanDateOut.slice(5,10)+"-"+loan.loan.loanDateOut.slice(0,4)}
+                       {loan.loan.loanDateOut}
                     </td>
                     <td>
-                        {loan.loan.loanDateIn?loan.loan.loanDateIn.slice(5,10)+"-"+loan.loan.loanDateIn.slice(0,4) : "No Returned" }
+                        {loan.loan.loanDateIn?loan.loan.loanDateIn : "No Returned" }
                     </td>
                 </tr>
             )

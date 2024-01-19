@@ -129,7 +129,7 @@ public class UserController {
     public ResponseEntity<Object> generateResponse(String message, HttpStatus st, Object responseobj) {
 
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("meaasge", message);
+        map.put("message", message);
         map.put("Status", st.value());
         map.put("data", responseobj);
 

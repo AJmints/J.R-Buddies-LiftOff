@@ -35,14 +35,18 @@ const Admin1Home = () => {
                 )
             })
 
-    return (<div className="container mt-3">
+    return (
+        <>
+        <div className="container mt-3">
             <h1 className="display-2">Administration features</h1>
             <br/>
             <br/>
             <section className="btn-group btn-group-lg" role="group" >
                 {displayed}
             </section>
-        </div>)
+        </div>
+        </>
+    )
     
 }
 export default Admin1Home;

@@ -1,37 +1,29 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 const AdminEvents = (props) => {
-  const [events, setEvents] = useState([]);
+  const eventsToDisplay = props.events
+
+
+  const [events, setEvents] = useState(eventsToDisplay);
   const [name, setName] = useState("");
-  const [allEvents, setAllEvents] = useState([]);
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  useEffect(() => {setEvents(eventsToDisplay)}, [eventsToDisplay]);
 
-  const fetchData = async () => {
-    try {
-      const response = await axios.get("http://localhost:8080/event/all");
-      setEvents(response.data);
-      setAllEvents(response.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-
-  const handleChange = (event) => {
-    setName(event.target.value);
-  };
+  const handleChange = event => {
+    setName(event.target.value )
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
     filterEventsByName(name);
+    setName([])
   };
 
   const filterEventsByName = (searchName) => {
-    const searchEvents = allEvents.filter((item) =>
+    const searchEvents = events.filter((item) =>
       item.name.toLowerCase().includes(searchName.toLowerCase())
     );
     setEvents(searchEvents);

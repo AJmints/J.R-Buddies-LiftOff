@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 
 
@@ -13,6 +14,8 @@ import Admin3UserInfo from './pages/Admin3UserInfo';
 import Admin3BookInfo from './pages/Admin3BookInfo';
 import Admin3AddRoles from './pages/Admin3AddRoles';
 import AdminEvents from './pages/AdminEvents';
+import AdminEventInfo from './pages/AdminEventInfo';
+import AdminEventUpdates from './pages/AdminEventUpdates';
 import Home from "./pages/Home";
 import Layout from "./pages/Layout";
 import NoPage from "./pages/NoPage";
@@ -41,11 +44,21 @@ export default function App() {
   const [books, setBooks] = useState([]);
   const [loans, setLoans] = useState([]);
   const [roles, setRoles] = useState([]);
+  const [events, setEvents] = useState([]);
 
   
  ///////////////////////////////
 // FETCHING USERS TABLES
 ////////////////////////////////
+
+const isAdmin = () => {
+  const token = localStorage.getItem('accessToken');
+  if (token) {
+    const decoded = jwtDecode(token);
+    return decoded.roles.includes('ADMIN');
+  }
+  return false;
+};
 
   const URL = "http://localhost:8080/api/user/all"
   const URL2 = "http://localhost:8080/api/user/"
@@ -194,6 +207,37 @@ const deleteRole = async (id) => {
 
   useEffect(() => {getRoles()}, []);
 
+const URL_EVENTS = "http://localhost:8080/event/"
+
+const getEvents = async () => {
+  try {
+    const response = await axios.get(URL_EVENTS + "all");
+    setEvents(response.data);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  };
+};
+
+const deleteEvent = async (id) => {
+ try{
+  axios.delete(URL_EVENTS + id)
+} catch (error) {
+  console.error("Error fetching data:", error);
+};
+ getEvents()
+  }
+
+const updateEvent = (event, id) => {
+  try{
+         axios.put(URL_EVENTS + id, event)
+        } catch (error) {
+                  console.error("Error fetching data:", error);
+                };  
+      getEvents()
+};
+
+useEffect(() => {getEvents()}, []);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -202,7 +246,16 @@ const deleteRole = async (id) => {
           {/* Routes in alphabetical order to be easier to find */}
           <Route path="admin_home" element={<Admin1Home />}/>
 
-          <Route path="admin_home/events" element={<AdminEvents />} />
+          <Route path="admin_home/events" element={<AdminEvents events={events}/>} />
+          <Route path="admin_home/events/:id"
+                             element = {< AdminEventInfo
+                                          events={events}
+                                          deleteEvent={deleteEvent}
+
+                                        />
+                                                        }
+          />
+          <Route path="/admin_home/events/edit/:id" element={<AdminEventUpdates updateEvent={updateEvent}/>}/>
           <Route path="admin_home/users/" element={<Admin2Users users={users} />}/>
           <Route path="admin_home/users/:id"
                              element = {< Admin3UserInfo

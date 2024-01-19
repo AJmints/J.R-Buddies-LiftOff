@@ -24,18 +24,18 @@ public class DefaultUserServiceImpl implements DefaultUserService{
 
 	@Autowired
 	UserRepository userRepository;
-	
+
 	@Autowired
 	RoleRepository roleRepo;
-	
+
 	private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-	
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		 User user = userRepository.findByEmail(username);
 	     return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(), mapRolesToAuthorities(user.getRole()));
 	}
-	
+
 	public Collection<? extends GrantedAuthority> mapRolesToAuthorities(Set<Role> roles){
 		return roles.stream().map(role -> new SimpleGrantedAuthority(role.getRole())).collect(Collectors.toList());
 	}
@@ -54,7 +54,7 @@ public class DefaultUserServiceImpl implements DefaultUserService{
 		user.setAddress(registerRequest.getAddress());
 		user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
 		user.setRole(roles);
-		
+
 		return userRepository.save(user);
 	}
 }
