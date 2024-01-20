@@ -30,9 +30,6 @@ import AddedBookToDBSuccess from "./pages/AddedBookToDBSuccess";
 import LibrarySearch from "./pages/LibrarySearch";
 import RemoveSearch from "./pages/RemoveSearch";
 import RemoveBookSuccess from "./pages/RemoveBookSuccess";
-import CreateRecommendation from "./pages/CreateRecommendation";
-import RecommendationSuccess from "./pages/RecommendationSuccess";
-import RemoveRecommendations from "./pages/RemoveRecommendations";
 import UserDashboard from "./pages/UserDashboard"
 import UserLoans from './pages/UserLoans';
 import UserReviews from './pages/UserReviews';
@@ -285,13 +282,10 @@ useEffect(() => {getEvents()}, []);
           getRoles={getRoles}/>}></Route>
 
           <Route path="added_success" element={<AddedBookToDBSuccess />} />
-          <Route path="create_recommendation" element={<CreateRecommendation />} />
           <Route path="displayBook" element={<DisplayBook />} />
           <Route path="event_form" element={<EventsForm /> } />
           <Route path="library_search" element={<LibrarySearch /> } />
           <Route path="*" element={<NoPage />} />
-          <Route path="recommendation_success" element={<RecommendationSuccess />} />
-          <Route path="remove_recommend" element={<RemoveRecommendations />} />
           <Route path="remove_search" element={<RemoveSearch />} />
           <Route path="remove_success" element={<RemoveBookSuccess />} />
           <Route path="search" element={admin ? <Search /> : <LibrarySearch />} />

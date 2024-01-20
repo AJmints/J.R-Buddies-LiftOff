@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import ReviewAndRating from "../components/ReviewAndRating";
 import DisplayReviews from '../components/DisplayReviews';
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 
 const DisplayBook=()=> {
@@ -19,6 +19,11 @@ const DisplayBook=()=> {
     }
     const loanDateIn = calcLoanDateOut(new Date);
     const [bookCheckout, setBookCheckout] = useState(false);
+    const [recommended, setRecommended] = useState(false);
+    const [recommendData, setRecommendData] = useState([]);
+    const [userRec, setUserRec] = useState([]);
+    const show = useRef(false);
+
     const title = book.title;
     const author = book.author;
     const isbn = book.isbn;
@@ -26,11 +31,35 @@ const DisplayBook=()=> {
     const total_quantity = book.total_quantity;
     const available_quantity = (Number(book.available_quantity)-1);
 
+    const fetchRec = () => {
+        recommendData.map((rec) => {
+            if(rec.bookId == book.id){
+                setRecommended(true);
+                document.getElementById("recommendButton").innerHTML="Remove Recommendation";
+                setUserRec(rec);
+            }
+         })
+    }
+
+    const identifyUser = () => {
+        if(userId){
+            axios.get('http://localhost:8080/recommendation/search?idType=user&idValue='+userId)
+                .then(res=>setRecommendData(res.data))
+                .catch(err=>console.log(err));
+            show.current = true;
+            fetchRec();
+        }
+    }
+
     useEffect(() => {
         axios.get("http://localhost:8080/api/user/"+userId)
             .then(res=>setUser(res.data))
             .catch(err=>console.log(err));
+
+        identifyUser();
     }, [])
+
+    useEffect(() => fetchRec(), [recommendData])
 
     const handleCheckout = (e) => {
         e.preventDefault();
@@ -55,8 +84,33 @@ const DisplayBook=()=> {
         available = "All Copies Are Currently Checked Out";
     }
 
-    const bookRecommend = () => {
-        navigate("/create_recommendation", {state: obj});
+    const bookRecommend = (e) => {
+        e.preventDefault();
+        if(recommended){
+            axios.delete(`http://localhost:8080/recommendation/${userRec.id}`)
+                .then((response) => {console.log(`Successfully Deleted Recommendation ${userRec.id}`);})
+                .catch(err => console.log(err.response.data.message));
+
+            setRecommended(false);
+            document.getElementById("recommendButton").innerHTML="Recommend Book";
+        }
+        else{
+            const recommendation = {'bookId': book.id, 'userId': userId};
+
+            const config = {
+                method: 'post',
+                url: 'http://localhost:8080/recommendation/save',
+                headers: {'Content-Type':'application/json'},
+                data: JSON.stringify(recommendation)
+            };
+
+            axios(config)
+            .then(function(res) {setRecommended(true);})
+            .catch(err => console.log(err.response.data.message));
+
+            document.getElementById("recommendButton").innerHTML="Remove Recommendation";
+            fetchRec();
+        }
     }
 
     const saveForLater = async () => {
@@ -121,7 +175,7 @@ const DisplayBook=()=> {
                     </td>
                     <td> 
                         <button id="recommendButton" onClick={bookRecommend}
-                            style={{marginRight: 14 + 'em'}}>Recommend Book</button>
+                            style={{marginRight: 14 + 'em'}, {display: (show ? 'block' : 'none')}}>Recommend Book</button>
                         {/* <button style={{marginRight: 14 + 'em'}} onClick={saveForLater}>Save For Later</button> */}
 
                         {obj.book.available_quantity > 0 ? (
