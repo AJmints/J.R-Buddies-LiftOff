@@ -58,11 +58,11 @@ function UserReviews () {
                         <div className='col-3 mt-2'>
                             <label htmlFor='rating' className='form-label'>Change Star Rating: </label>
                             <select className='form-control' id='rating' name='rating' onChange={(e) => setRating(e.target.value)}>
-                                <option value={5}>5 Stars</option>
-                                <option value={4}>4 Stars</option>
-                                <option value={3}>3 Stars</option>
-                                <option value={2}>2 Stars</option>
-                                <option value={1}>1 Stars</option>
+                                {reviewData[3] == 5 ? <option value={5} selected>5 Stars</option> : <option value={5}>5 Stars</option>}
+                                {reviewData[3] == 4 ? <option value={4} selected>4 Stars</option> : <option value={4}>4 Stars</option>}
+                                {reviewData[3] == 3 ? <option value={3} selected>3 Stars</option> : <option value={3}>3 Stars</option>}
+                                {reviewData[3] == 2 ? <option value={2} selected>2 Stars</option> : <option value={2}>2 Stars</option>}
+                                {reviewData[3] == 1 ? <option value={1} selected>1 Stars</option> : <option value={1}>1 Stars</option>}
                             </select>
                         </div>
                     </div>
