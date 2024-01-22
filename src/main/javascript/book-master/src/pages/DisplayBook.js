@@ -30,6 +30,8 @@ const DisplayBook=()=> {
         axios.get("http://localhost:8080/api/user/"+userId)
             .then(res=>setUser(res.data))
             .catch(err=>console.log(err));
+
+            console.log(new Intl.DateTimeFormat('en-US').format(Date));
     }, [])
 
     const handleCheckout = (e) => {

@@ -7,14 +7,12 @@ function UserLoans () {
     const userId = location.state;
     const [loans, setLoans] = useState([]);
     const [book, setBook] = useState("");
-    
-    const loanDateOut = Intl.DateTimeFormat('en-US').format(new Date) 
+    const loanDateOut = new Date()
     function calcLoanDateOut(date) {
         date.setDate(date.getDate() + 7*3);
-        return Intl.DateTimeFormat('en-US').format(date)
+        return date
     }
-    
-    const loanDateIn = calcLoanDateOut(new Date)
+    const loanDateIn = calcLoanDateOut(new Date);
     const [confirmBookRenewMsg, setConfirmBookRenewMsg] = useState(false);
     const [bookRenewed, setBookRenewed] = useState(false);
     const [confirmBookReturnMsg, setConfirmBookReturnMsg] = useState(false);
@@ -139,10 +137,10 @@ function UserLoans () {
                                 <p><span style={{fontWeight: "bold"}}> Book:</span> {loan.book.title}</p>
                             </div>
                             <div  className='col-3 mt-5'>
-                                <p><span style={{fontWeight: "bold"}}>Date Checked out:</span> {loan.loanDateOut.slice(5,10)}-{loan.loanDateOut.slice(0,4)}</p>
+                                <p><span style={{fontWeight: "bold"}}>Date Checked out:</span> {Intl.DateTimeFormat('en-US').format(loanDateOut)}</p>
                             </div>
                             <div className='col-3 mt-5'>
-                                <p><span style={{fontWeight: "bold"}}>Due Date: </span> {loan.loanDateIn.slice(5,10)}-{loan.loanDateIn.slice(0,4)}</p>
+                                <p><span style={{fontWeight: "bold"}}>Due Date: </span> {Intl.DateTimeFormat('en-US').format(loanDateIn)}</p>
                             </div>
                             <div className="col-1 mt-4">
                                 <div>
