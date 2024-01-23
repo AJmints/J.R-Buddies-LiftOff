@@ -2,6 +2,7 @@ import React , {useState} from "react";
 import { useLocation } from "react-router-dom";
 import SideNavBar from "../components/SideNavBar";
 import MyShelf from "../components/MyShelfAvailable";
+import UserRecommendationListing from "../components/UserRecommendationListing";
 
 
 const UserDashboard = () => {
@@ -19,6 +20,9 @@ const UserDashboard = () => {
         </div>
         <div className="col-md-10">
           <MyShelf />
+        </div>
+        <div className="col-md-10">
+          <UserRecommendationListing userId={userId}/>
         </div>
       </div>
     </div>

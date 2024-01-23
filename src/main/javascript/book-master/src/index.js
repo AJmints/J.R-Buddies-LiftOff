@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import { jwtDecode } from "jwt-decode";
+//import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 
 
@@ -30,9 +30,6 @@ import AddedBookToDBSuccess from "./pages/AddedBookToDBSuccess";
 import LibrarySearch from "./pages/LibrarySearch";
 import RemoveSearch from "./pages/RemoveSearch";
 import RemoveBookSuccess from "./pages/RemoveBookSuccess";
-import CreateRecommendation from "./pages/CreateRecommendation";
-import RecommendationSuccess from "./pages/RecommendationSuccess";
-import RemoveRecommendations from "./pages/RemoveRecommendations";
 import UserDashboard from "./pages/UserDashboard"
 import UserLoans from './pages/UserLoans';
 import UserReviews from './pages/UserReviews';
@@ -45,6 +42,8 @@ export default function App() {
   const [loans, setLoans] = useState([]);
   const [roles, setRoles] = useState([]);
   const [events, setEvents] = useState([]);
+  //Change to false when way to identify user is setup
+  const [admin, setAdmin] = useState(true);
 
   
  ///////////////////////////////
@@ -52,11 +51,11 @@ export default function App() {
 ////////////////////////////////
 
 const isAdmin = () => {
-  const token = localStorage.getItem('accessToken');
+  /*const token = localStorage.getItem('accessToken');
   if (token) {
     const decoded = jwtDecode(token);
     return decoded.roles.includes('ADMIN');
-  }
+  }*/
   return false;
 };
 
@@ -232,7 +231,7 @@ const updateEvent = (event, id) => {
          axios.put(URL_EVENTS + id, event)
         } catch (error) {
                   console.error("Error fetching data:", error);
-                };  
+                };
       getEvents()
 };
 
@@ -283,16 +282,13 @@ useEffect(() => {getEvents()}, []);
           getRoles={getRoles}/>}></Route>
 
           <Route path="added_success" element={<AddedBookToDBSuccess />} />
-          <Route path="create_recommendation" element={<CreateRecommendation />} />
           <Route path="displayBook" element={<DisplayBook />} />
           <Route path="event_form" element={<EventsForm /> } />
           <Route path="library_search" element={<LibrarySearch /> } />
           <Route path="*" element={<NoPage />} />
-          <Route path="recommendation_success" element={<RecommendationSuccess />} />
-          <Route path="remove_recommend" element={<RemoveRecommendations />} />
           <Route path="remove_search" element={<RemoveSearch />} />
           <Route path="remove_success" element={<RemoveBookSuccess />} />
-          <Route path="search" element={<Search />} />
+          <Route path="search" element={admin ? <Search /> : <LibrarySearch />} />
           <Route path="user_sign_in" element={<UserSignIn />} />
           <Route path="user_registration" element={<UserRegistration />} />
           <Route path="user_dashboard" element={<UserDashboard />} />

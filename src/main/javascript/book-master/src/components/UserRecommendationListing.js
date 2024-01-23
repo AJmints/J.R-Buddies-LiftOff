@@ -2,14 +2,14 @@ import react, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const UserRecommendationListing=(results)=>{
+const UserRecommendationListing=({userId})=>{
     const navigate = useNavigate();
     const [recData, setRecData] = useState([]);
     const [bookData, setBookData] = useState([]);
     const [userBooks, setUserBooks] = useState([]);
 
     const fetchRecs = () => {
-        axios.get("http://localhost:8080/recommendation/search?idType=user&idValue="+results.idValue)
+        axios.get("http://localhost:8080/recommendation/search?idType=user&idValue="+userId)
             .then(res=>setRecData(res.data))
             .catch(err=>console.log(err));
     }
@@ -40,6 +40,7 @@ const UserRecommendationListing=(results)=>{
 
     return(
         <div className = "bookList_container">
+        <h3>Your Recommendations</h3>
             {
             userBooks.map((book, index) => {
                 return(
@@ -51,7 +52,6 @@ const UserRecommendationListing=(results)=>{
                                 width="200"
                                 height="300"
                                 role="link"
-                                onClick={() => navigate(`/displaybook`, {state: {book}})}
                             />
                         </figure>
                         <div className="cardBottom">
