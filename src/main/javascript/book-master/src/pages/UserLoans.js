@@ -103,7 +103,7 @@ function UserLoans () {
 
             <div id="user_Book_Confirm" className="row border border-3" style={{display: toggleDisplay ? "none" : ""}}>
                 <div  className='col-1'>
-                    <img src={data[2]} height={125}/>
+                    <img src={data[2]} height={125} alt={data[3]}/>
                 </div>
                 <div  className='col-8 mt-5'>
                     <p><span style={{fontWeight: "bold"}}> Book:</span> {data[3]}</p>
@@ -131,7 +131,7 @@ function UserLoans () {
                     return(
                         <div key={index} className="row border border-3">
                             <div className='col-1'>
-                                <img src={loan.book.thumbnail} height={125}/>
+                                <img src={loan.book.thumbnail} height={125} alt={loan.book.title}/>
                             </div>
                             <div  className='col-4 mt-5'>
                                 <p><span style={{fontWeight: "bold"}}> Book:</span> {loan.book.title}</p>
