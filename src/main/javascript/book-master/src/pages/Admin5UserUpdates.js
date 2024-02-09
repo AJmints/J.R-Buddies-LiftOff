@@ -7,20 +7,31 @@ const Admin5UserUpdates = (props) => {
     const navigate = useNavigate();
     const roles = props.roles;
    
+   
 
-    const [editForm, setEditForm] = useState(user)
+    const [editForm, setEditForm] = useState({
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        address: user.address,
+        phone: user.phone,
+        role: user.role[0].role
+    })
+    
 
     const handleChange = event => {
-        setEditForm({ ...editForm, [event.target.name]: event.target.value })
-      }
+            setEditForm({ ...editForm, [event.target.name]: event.target.value })
+        }
+      
+
       const handleSubmit = event => {
         event.preventDefault()
-        props.updateUser(editForm, user.id)
+        props.updateUser(user.id, editForm)
         navigate("/admin_home/users")
         window.location.reload(false)
         
       }
-      console.log(user)
+    
 
     return (<div className="container mt-3">
         <div className="user">
@@ -86,11 +97,25 @@ const Admin5UserUpdates = (props) => {
                     />
                 </div>
             </div>
+
+            {/* <div className="mb-3 row">
+                <label className="col-sm-2 col-form-label">Role</label>
+                <div className="col-sm-10 w-50">
+                    <input
+                    type="text"
+                    value={editForm.role}
+                    name="role"
+                    placeholder="role"
+                    onChange={handleChange}
+                    />
+                </div>
+            </div> */}
+            
             <div className="mb-3 row">
                 <label className="col-sm-2 col-form-label">Role </label>
-                <div className="col-sm-10 w-50">
-                    <select type="text" name="role" id="role" value={editForm.role[0].role} onChange={handleChange}>
-                    {roles.map(role=> (<option>{role.role}</option>))}
+                <div className="col-sm-10 w-50" >
+                    <select type="text" name="role" defaultValue={editForm.role} onChange={handleChange}>
+                    {roles.map(role=> (<option key={role.id} value={role.role}>{role.role}</option>))}
                     </select>
         
                 </div>

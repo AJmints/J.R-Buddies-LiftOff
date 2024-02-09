@@ -72,9 +72,9 @@ const isAdmin = () => {
     }
   };
 
-  const updateUser = (user, id) => {
+  const updateUser = ( id, updateUser) => {
     try{
-           axios.put(URL2 + id, user)
+           axios.put(URL2 + id, updateUser)
           } catch (error) {
                     console.error("Error fetching data:", error);
                   };  
